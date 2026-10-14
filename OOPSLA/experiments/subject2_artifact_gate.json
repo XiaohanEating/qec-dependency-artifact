@@ -1,0 +1,388 @@
+{
+  "metadata": {
+    "title": "subject 2 real-artifact gate (qecc_routing pipeline)",
+    "date": "2026-10-12",
+    "subject": "qecc_routing (Berthusen et al., arXiv:2404.17676)",
+    "qecc_commit": "4ef18121c39492414b85ff36b3a61c83f9ebf95f",
+    "source_file": "src_py/bivariate-bicycle/general.py",
+    "method": "compile/exec of the pinned general.py from its file path (the directory name is not a package name), truncated at the module-level experiment loop (general.py:448); substitutions are source-level re-assignments of module globals; every product is produced by the pinned code itself",
+    "truncation": "general.py:448-496 (the tqdm experiment driver, 1,000,001 iterations writing into results/) is not a definition and is not executed",
+    "seed": 20261012,
+    "lr_time": 5,
+    "num_rounds": 10,
+    "quick": false,
+    "dependency_availability": {
+      "numpy": {
+        "available": true,
+        "version": "2.2.6",
+        "needed_by": "general.py, mec.py"
+      },
+      "scipy": {
+        "available": true,
+        "version": "1.15.3",
+        "needed_by": "general.py (sparse)"
+      },
+      "matplotlib": {
+        "available": true,
+        "version": "3.9.2",
+        "needed_by": "general.py (pyplot)"
+      },
+      "stim": {
+        "available": true,
+        "version": "1.14.0",
+        "needed_by": "general.py"
+      },
+      "galois": {
+        "available": true,
+        "version": "0.4.2",
+        "needed_by": "general.py (GF(2) rank)"
+      },
+      "ldpc": {
+        "available": true,
+        "version": "2.1.2",
+        "needed_by": "general.py (bposd)"
+      },
+      "tqdm": {
+        "available": true,
+        "version": "4.67.1",
+        "needed_by": "general.py (experiment loop)"
+      },
+      "pandas": {
+        "available": false,
+        "error": "numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject",
+        "needed_by": "code_exploration.py only -- NOT needed by the gate"
+      },
+      "networkx": {
+        "available": true,
+        "version": "3.4.2",
+        "needed_by": "requirements.txt only -- not imported by src_py"
+      },
+      "sinter": {
+        "available": true,
+        "version": "1.14.0",
+        "needed_by": "requirements.txt only -- not imported by src_py"
+      },
+      "_note": "galois 0.4.2 required upgrading numba (numpy 2.2 compat) and coverage (numba 0.61 compat) on this machine; the general.py pipeline imports are otherwise all satisfied"
+    }
+  },
+  "variants": {
+    "baseline": {
+      "patch": "none (pinned baseline)",
+      "source_sha256": "1570bfa12a7a9b224704dd86cd650af48a7769eded71caa5d60d6c54ca6d0fc2",
+      "artifacts": {
+        "Hz": {
+          "sha256": "4ea1789bd26bc3248182edc4cdd53582afae2bc1255a0c45fae6d263e06c1dc3",
+          "shape": [
+            45,
+            90
+          ]
+        },
+        "lattice": {
+          "sha256": "6ced96a8de40a2222b3629ffd6014293a0d198d80951c99a702c0052e00546bc",
+          "shape": [
+            10,
+            18
+          ]
+        },
+        "x_rs": {
+          "sha256": "8f66ff2eda9f564fafc74f97acb25af9fbf3c8fa90951e528661dfe59393ba51",
+          "len": 45
+        },
+        "z_rs": {
+          "sha256": "b85883ca33c30f1cbd2dde7037e959e6b1dfd76f212fca88ab70acd125dabbac",
+          "len": 45
+        },
+        "split": {
+          "sha256": "b5c70d569d6b2a497c8f4d569a26b71f45dd149b503f7ab1bc13cb26d94f1cdf"
+        },
+        "succ_probs": {
+          "x_sha256": "021cda4dfbf42a93baf5d73d09068df2f3759b4a0c00893ea5c8775a6a1e2e5e",
+          "z_sha256": "e3e1b214ee039b9fc37881f7f021ac6aeaf0dfbc3f5561ba319cee4b4efbfbaf",
+          "len": 45
+        },
+        "circuit": {
+          "sha256": "0e60b8b79bf3b7c6c864951cb0288ceb999bba5ba642522a5dc041b1df64cba9",
+          "num_measurements": 989,
+          "num_detectors": 405
+        },
+        "depolarize1_probs": [
+          0.0,
+          0.0001,
+          0.0046,
+          0.0066
+        ]
+      }
+    },
+    "code_alt": {
+      "patch": "general.py:18 `code` -> the repo's own commented k=8 candidate (general.py:17): [12,3,9,1,2,0,1,11,3,12,2,0,11,6]",
+      "source_sha256": "5627f12d02b53dcb115efd6aa8d1de1e7656978fad14188e918b8df457440709",
+      "artifacts": {
+        "Hz": {
+          "sha256": "7237d0dc38ce1b03bc8085dd4d8eaf203d65d0c75566ab7fdf82ae9203b73542",
+          "shape": [
+            36,
+            72
+          ]
+        },
+        "lattice": {
+          "sha256": "f6eba4f83814c8cc6e4d303105ee9c102cf578ea83c10d9dceab334b7e744a25",
+          "shape": [
+            6,
+            24
+          ]
+        },
+        "x_rs": {
+          "sha256": "fa646ae313c434a9ffe3d69237f72483fdc55998d8dabe5d6296ef9f3c14012c",
+          "len": 36
+        },
+        "z_rs": {
+          "sha256": "07d4df48ff770d49e146517022d4c230e3fd0308aa851d34a2cb2513bfe14484",
+          "len": 36
+        },
+        "split": {
+          "sha256": "96cd7b702ad33afc1900a5a0f143bc4235132a951ccd8804212dcc1fecee69ea"
+        },
+        "succ_probs": {
+          "x_sha256": "f227661fc739af26167f7f75726f3b935b0a8cdf9b90f8bfb1f707e72f4c7a5e",
+          "z_sha256": "259e3b0cc22e68dcb0a1fcfaece8d8c558f9ec396a419c2d98df3c7c5c983887",
+          "len": 36
+        },
+        "circuit": {
+          "sha256": "06a9b81845fe4e9a09544999cea18ff945c76acc22be827ef29fba35219ef3d4",
+          "num_measurements": 776,
+          "num_detectors": 317
+        },
+        "depolarize1_probs": [
+          0.0,
+          0.0001,
+          0.0054,
+          0.0078
+        ]
+      }
+    },
+    "noise_alt": {
+      "patch": "only the noise globals re-assigned after their pinned definitions (general.py:39-41): probs = probs * 0.9; idle_error = 2 * idle_error",
+      "source_sha256": "b522b5858cc9849b8af75a40f47fa12a899f46ca1864708d5699876949a6baca",
+      "artifacts": {
+        "Hz": {
+          "sha256": "4ea1789bd26bc3248182edc4cdd53582afae2bc1255a0c45fae6d263e06c1dc3",
+          "shape": [
+            45,
+            90
+          ]
+        },
+        "lattice": {
+          "sha256": "6ced96a8de40a2222b3629ffd6014293a0d198d80951c99a702c0052e00546bc",
+          "shape": [
+            10,
+            18
+          ]
+        },
+        "x_rs": {
+          "sha256": "8f66ff2eda9f564fafc74f97acb25af9fbf3c8fa90951e528661dfe59393ba51",
+          "len": 45
+        },
+        "z_rs": {
+          "sha256": "b85883ca33c30f1cbd2dde7037e959e6b1dfd76f212fca88ab70acd125dabbac",
+          "len": 45
+        },
+        "split": {
+          "sha256": "b5c70d569d6b2a497c8f4d569a26b71f45dd149b503f7ab1bc13cb26d94f1cdf"
+        },
+        "succ_probs": {
+          "x_sha256": "eacbf5586aecebc3de8d07c694a334b1d7a44908864ebc86dfb589a27a8bdfd4",
+          "z_sha256": "d728e63a0da61f04bab55e520d3ea5395a12d4bf17d8f07a0655063d7a1b68f1",
+          "len": 45
+        },
+        "circuit": {
+          "sha256": "674cbf47bb3c2b44123944d7e0dc90365d668479cbc27050b9e72f894b92f705",
+          "num_measurements": 653,
+          "num_detectors": 238
+        },
+        "depolarize1_probs": [
+          0.0,
+          0.0001,
+          0.0082,
+          0.0122
+        ]
+      }
+    }
+  },
+  "reproducibility": {
+    "identical": {
+      "Hz": true,
+      "lattice": true,
+      "succ_probs": true,
+      "circuit": true
+    },
+    "all_identical": true
+  },
+  "controls": {
+    "code_change": {
+      "question": "(a) does a code-spec change move the real artifacts?",
+      "comparisons": {
+        "Hz": {
+          "baseline_sha256": "4ea1789bd26bc3248182edc4cdd53582afae2bc1255a0c45fae6d263e06c1dc3",
+          "alt_sha256": "7237d0dc38ce1b03bc8085dd4d8eaf203d65d0c75566ab7fdf82ae9203b73542",
+          "changed": true
+        },
+        "lattice": {
+          "baseline_sha256": "6ced96a8de40a2222b3629ffd6014293a0d198d80951c99a702c0052e00546bc",
+          "alt_sha256": "f6eba4f83814c8cc6e4d303105ee9c102cf578ea83c10d9dceab334b7e744a25",
+          "changed": true
+        },
+        "x_rs": {
+          "baseline_sha256": "8f66ff2eda9f564fafc74f97acb25af9fbf3c8fa90951e528661dfe59393ba51",
+          "alt_sha256": "fa646ae313c434a9ffe3d69237f72483fdc55998d8dabe5d6296ef9f3c14012c",
+          "changed": true
+        },
+        "z_rs": {
+          "baseline_sha256": "b85883ca33c30f1cbd2dde7037e959e6b1dfd76f212fca88ab70acd125dabbac",
+          "alt_sha256": "07d4df48ff770d49e146517022d4c230e3fd0308aa851d34a2cb2513bfe14484",
+          "changed": true
+        },
+        "split": {
+          "baseline_sha256": "b5c70d569d6b2a497c8f4d569a26b71f45dd149b503f7ab1bc13cb26d94f1cdf",
+          "alt_sha256": "96cd7b702ad33afc1900a5a0f143bc4235132a951ccd8804212dcc1fecee69ea",
+          "changed": true
+        },
+        "circuit": {
+          "baseline_sha256": "0e60b8b79bf3b7c6c864951cb0288ceb999bba5ba642522a5dc041b1df64cba9",
+          "alt_sha256": "06a9b81845fe4e9a09544999cea18ff945c76acc22be827ef29fba35219ef3d4",
+          "changed": true
+        },
+        "succ_probs_x": {
+          "changed": true,
+          "same_shape": false,
+          "max_abs_delta": null,
+          "baseline_sha256": "021cda4dfbf42a93baf5d73d09068df2f3759b4a0c00893ea5c8775a6a1e2e5e",
+          "alt_sha256": "f227661fc739af26167f7f75726f3b935b0a8cdf9b90f8bfb1f707e72f4c7a5e"
+        },
+        "succ_probs_z": {
+          "changed": true,
+          "same_shape": false,
+          "max_abs_delta": null,
+          "baseline_sha256": "e3e1b214ee039b9fc37881f7f021ac6aeaf0dfbc3f5561ba319cee4b4efbfbaf",
+          "alt_sha256": "259e3b0cc22e68dcb0a1fcfaece8d8c558f9ec396a419c2d98df3c7c5c983887"
+        },
+        "depolarize1_probs": {
+          "baseline": [
+            0.0,
+            0.0001,
+            0.0046,
+            0.0066
+          ],
+          "alt": [
+            0.0,
+            0.0001,
+            0.0054,
+            0.0078
+          ],
+          "changed": true
+        }
+      },
+      "verdict_pass": true
+    },
+    "noise_only_hidden_read": {
+      "question": "(b) does a noise-only change move the products of components that declare only {code}?",
+      "hidden_components": [
+        "idle",
+        "succ_probs"
+      ],
+      "comparisons": {
+        "Hz": {
+          "baseline_sha256": "4ea1789bd26bc3248182edc4cdd53582afae2bc1255a0c45fae6d263e06c1dc3",
+          "alt_sha256": "4ea1789bd26bc3248182edc4cdd53582afae2bc1255a0c45fae6d263e06c1dc3",
+          "changed": false
+        },
+        "lattice": {
+          "baseline_sha256": "6ced96a8de40a2222b3629ffd6014293a0d198d80951c99a702c0052e00546bc",
+          "alt_sha256": "6ced96a8de40a2222b3629ffd6014293a0d198d80951c99a702c0052e00546bc",
+          "changed": false
+        },
+        "x_rs": {
+          "baseline_sha256": "8f66ff2eda9f564fafc74f97acb25af9fbf3c8fa90951e528661dfe59393ba51",
+          "alt_sha256": "8f66ff2eda9f564fafc74f97acb25af9fbf3c8fa90951e528661dfe59393ba51",
+          "changed": false
+        },
+        "z_rs": {
+          "baseline_sha256": "b85883ca33c30f1cbd2dde7037e959e6b1dfd76f212fca88ab70acd125dabbac",
+          "alt_sha256": "b85883ca33c30f1cbd2dde7037e959e6b1dfd76f212fca88ab70acd125dabbac",
+          "changed": false
+        },
+        "split": {
+          "baseline_sha256": "b5c70d569d6b2a497c8f4d569a26b71f45dd149b503f7ab1bc13cb26d94f1cdf",
+          "alt_sha256": "b5c70d569d6b2a497c8f4d569a26b71f45dd149b503f7ab1bc13cb26d94f1cdf",
+          "changed": false
+        },
+        "circuit": {
+          "baseline_sha256": "0e60b8b79bf3b7c6c864951cb0288ceb999bba5ba642522a5dc041b1df64cba9",
+          "alt_sha256": "674cbf47bb3c2b44123944d7e0dc90365d668479cbc27050b9e72f894b92f705",
+          "changed": true
+        },
+        "succ_probs_x": {
+          "changed": true,
+          "same_shape": true,
+          "max_abs_delta": 0.45687394820995186,
+          "baseline_sha256": "021cda4dfbf42a93baf5d73d09068df2f3759b4a0c00893ea5c8775a6a1e2e5e",
+          "alt_sha256": "eacbf5586aecebc3de8d07c694a334b1d7a44908864ebc86dfb589a27a8bdfd4"
+        },
+        "succ_probs_z": {
+          "changed": true,
+          "same_shape": true,
+          "max_abs_delta": 0.456873948209952,
+          "baseline_sha256": "e3e1b214ee039b9fc37881f7f021ac6aeaf0dfbc3f5561ba319cee4b4efbfbaf",
+          "alt_sha256": "d728e63a0da61f04bab55e520d3ea5395a12d4bf17d8f07a0655063d7a1b68f1"
+        },
+        "depolarize1_probs": {
+          "baseline": [
+            0.0,
+            0.0001,
+            0.0046,
+            0.0066
+          ],
+          "alt": [
+            0.0,
+            0.0001,
+            0.0082,
+            0.0122
+          ],
+          "changed": true
+        }
+      },
+      "verdict_pass": true,
+      "interpretation": "succ_probs and idle declare R(c) = {code} in the hand model, yet the real pipeline recomputes their products from the global `probs`/`idle_error` tables: the noise-only patch changes x/z_check_succ_probs (max|Δ| > 0) and the idle DEPOLARIZE1 probability inside the real stim.Circuit.  This is hypothesis H3 evidenced on real artifacts, on a system with no registry."
+    },
+    "faithful_invariance": {
+      "question": "(c) are faithful components' products invariant under a coordinate they do not declare?",
+      "unchanged_artifacts": {
+        "Hz": {
+          "baseline_sha256": "4ea1789bd26bc3248182edc4cdd53582afae2bc1255a0c45fae6d263e06c1dc3",
+          "held": true
+        },
+        "lattice": {
+          "baseline_sha256": "6ced96a8de40a2222b3629ffd6014293a0d198d80951c99a702c0052e00546bc",
+          "held": true
+        },
+        "x_rs": {
+          "baseline_sha256": "8f66ff2eda9f564fafc74f97acb25af9fbf3c8fa90951e528661dfe59393ba51",
+          "held": true
+        },
+        "z_rs": {
+          "baseline_sha256": "b85883ca33c30f1cbd2dde7037e959e6b1dfd76f212fca88ab70acd125dabbac",
+          "held": true
+        },
+        "split": {
+          "baseline_sha256": "b5c70d569d6b2a497c8f4d569a26b71f45dd149b503f7ab1bc13cb26d94f1cdf",
+          "held": true
+        }
+      },
+      "verdict_pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "max_abs_delta_succ_probs_x": 0.45687394820995186,
+    "max_abs_delta_succ_probs_z": 0.456873948209952
+  }
+}

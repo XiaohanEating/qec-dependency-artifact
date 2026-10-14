@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "description": "Framework for additional QEC software subjects (Gap 4)",
+    "date": "2026-10-11"
+  },
+  "subjects": {
+    "stim_sinter_pymatching": {
+      "name": "Stim + sinter + PyMatching",
+      "repo": "https://github.com/quantumlib/Stim",
+      "pinned_commit": "TODO",
+      "description": "De facto standard: Stim for circuits, sinter for Monte Carlo, PyMatching for decoding",
+      "components": {
+        "code": "Stim's stabilizer codes / custom code construction",
+        "circuit": "Stim circuit generation (different from QUITS extractor)",
+        "noise": "Stim's noise models (DEPOLARIZE, etc.)",
+        "decoder": "PyMatching (MWPM) / sinter's internal decoders",
+        "simulation": "sinter Monte Carlo sampling"
+      },
+      "hidden_dependencies_known": [
+        "Stim circuit construction reads noise parameters",
+        "sinter sampling depends on both circuit and decoder",
+        "PyMatching reads detector error model from Stim"
+      ],
+      "status": "not_cloned"
+    },
+    "deltakit": {
+      "name": "Deltakit (Google Quantum AI)",
+      "repo": "https://github.com/quantumlib/deltakit",
+      "pinned_commit": "TODO",
+      "description": "Google's QEC software stack with tile-based codes",
+      "components": {
+        "code": "Tile-based stabilizer codes (surface, color, etc.)",
+        "circuit": "Stim-based circuit construction",
+        "noise": "Custom noise models",
+        "decoder": "Internal decoders (MWPM, BP, etc.)"
+      },
+      "hidden_dependencies_known": [],
+      "status": "not_cloned"
+    },
+    "tsim": {
+      "name": "Tsim (AWS Braket / IonQ)",
+      "repo": "TODO",
+      "pinned_commit": "TODO",
+      "description": "AWS Braket simulator for trapped ion QEC",
+      "components": {
+        "code": "Trapped-ion specific codes",
+        "circuit": "Native circuit construction",
+        "noise": "Ion-specific noise models",
+        "decoder": "Custom decoders"
+      },
+      "hidden_dependencies_known": [],
+      "status": "not_available"
+    },
+    "bp_osd_standalone": {
+      "name": "BP+OSD standalone decoder",
+      "repo": "https://github.com/quantumlib/bp_osd",
+      "pinned_commit": "TODO",
+      "description": "Standalone BP+OSD decoder library",
+      "components": {
+        "decoder": "BP+OSD implementation",
+        "input": "Detector error model + syndrome"
+      },
+      "hidden_dependencies_known": [],
+      "status": "not_cloned"
+    },
+    "qec_code_sim": {
+      "name": "qec_code_sim (alternative simulator)",
+      "repo": "TODO",
+      "pinned_commit": "TODO",
+      "description": "Alternative QEC simulator for cross-validation",
+      "components": {
+        "code": "Multiple code families",
+        "circuit": "Native circuit construction",
+        "noise": "Standard noise models",
+        "decoder": "Multiple decoders"
+      },
+      "hidden_dependencies_known": [],
+      "status": "not_available"
+    }
+  },
+  "requirements": {
+    "per_subject": [
+      "Clone and pin repository at specific commit",
+      "Identify component boundaries (code/circuit/noise/decoder/simulation)",
+      "Map to semantic model: Spec, Component, Assembly",
+      "Implement produce() functions returning real artifacts",
+      "Extract declared read sets R(c) (static analysis or manual)",
+      "Run hidden dependency audit (Theorem 3 probe)",
+      "Run substitution experiments (Theorem 1 validation)",
+      "Run physical impact experiments (LER, threshold, decoder ranking)",
+      "Document any hidden dependencies found"
+    ],
+    "infrastructure_needed": [
+      "Docker images for each subject (or conda environments)",
+      "Shared evaluation script that works across subjects",
+      "Unified artifact fingerprinting (stim circuit, DEM, etc.)",
+      "Cross-subject comparison tables"
+    ]
+  }
+}

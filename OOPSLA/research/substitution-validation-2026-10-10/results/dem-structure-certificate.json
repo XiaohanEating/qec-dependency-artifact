@@ -1,0 +1,52 @@
+{
+  "environment": {
+    "python": "3.11.17 (main, Oct  9 2026, 15:19:27) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "environment/python",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "hash_seed": "0",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "stim": "1.16.0",
+      "ldpc": "2.4.1",
+      "qldpc": "0.4.1",
+      "quits": "1.2.0",
+      "galois": "0.4.11",
+      "pytest": "9.1.1"
+    }
+  },
+  "records": {
+    "normal": {
+      "file": "OOPSLA/research/substitution-validation-2026-10-10/results/quits/normal.dem",
+      "file_sha256": "d100edde09a641cf7c41f8eafbdf46f3d98d22ad744b0822385a5c2bad3558b5",
+      "structural": {
+        "sha256": "ac1e8b5e03f831dc698f8014398dd01ee420ad1e23bfc67441b1f31c042e678a",
+        "rows": 1332,
+        "targets": 7065,
+        "certificate_bytes": 94458
+      },
+      "full_rows": 1332,
+      "structural_certificate_ns": 11232800,
+      "full_snapshot_ns": 8917600
+    },
+    "lower": {
+      "file": "OOPSLA/research/substitution-validation-2026-10-10/results/quits/lower.dem",
+      "file_sha256": "e59becf3e6a225329393c973a8d3e52599f29d96ba98953cbd09678a9869e030",
+      "structural": {
+        "sha256": "ac1e8b5e03f831dc698f8014398dd01ee420ad1e23bfc67441b1f31c042e678a",
+        "rows": 1332,
+        "targets": 7065,
+        "certificate_bytes": 94458
+      },
+      "full_rows": 1332,
+      "structural_certificate_ns": 10485100,
+      "full_snapshot_ns": 9249400
+    }
+  },
+  "structural_certificate_equal": true,
+  "full_artifacts_equal": false,
+  "property": "DEM target structure and instruction kinds are invariant while probabilities may vary",
+  "proof_condition": "producer emits identical flattened instruction kinds/targets; probability arguments are not branch predicates or target generators",
+  "strong_baseline": "full DEM snapshot including probabilities; same structural projection and ordinary cache",
+  "algorithmic_speedup_claimed": false
+}

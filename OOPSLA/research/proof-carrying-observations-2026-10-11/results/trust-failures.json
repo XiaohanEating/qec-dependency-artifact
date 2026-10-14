@@ -1,0 +1,10 @@
+{
+  "missing_producer_hash": false,
+  "missing_consumer_hash": false,
+  "stale_snapshot": false,
+  "missing_relation": false,
+  "binding_hash_changed": false,
+  "wrong_type": false,
+  "alias_mutation": false,
+  "snapshot_changed": false
+}

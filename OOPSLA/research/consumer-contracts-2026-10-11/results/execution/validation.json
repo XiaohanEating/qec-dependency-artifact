@@ -1,0 +1,1752 @@
+{
+  "environment": {
+    "python": "3.11.17 (main, Oct  9 2026, 15:19:27) [MSC v.1944 64 bit (AMD64)]",
+    "stim": "1.16.0",
+    "quits": "site-packages/quits/__init__.py",
+    "ldpc": "site-packages/ldpc/__init__.py",
+    "native_converter_sha256": "182701ee2028d0b43832bf78c66718f3f7183f4cc767cddac4bf31c57cac6ff4"
+  },
+  "scope": "restricted DEM fold and column-reindex plans; controlled consumer rules, one native decoder adapter",
+  "source_manifest": {
+    "OOPSLA\\research\\consumer-contracts-2026-10-11\\src\\run_validation.py": "9ffc5f8b560719c9a4003d8d5995b5bc26a78e8820e46d1b9b372067484b609d",
+    "OOPSLA\\research\\consumer-contracts-2026-10-11\\src\\consumer_contracts\\__init__.py": "b39eef246512dd960ac7a61cb7b6c8528d4d45ab01fcdcc0d76a4a57b3cd34a0",
+    "OOPSLA\\research\\consumer-contracts-2026-10-11\\src\\consumer_contracts\\model.py": "d7fc9f20349262baa859721bfa47ea211576360cb154d84e6fa27a74de72b82a",
+    "OOPSLA\\research\\consumer-contracts-2026-10-11\\src\\consumer_contracts\\producer.py": "931d4906916f5a146fca129f3066fb294f70d620825b97b469cf5614f132181e",
+    "OOPSLA\\research\\consumer-contracts-2026-10-11\\src\\consumer_contracts\\checker.py": "c1ad9af4d0262afb3b715d5104eb82fcd851c2e5ba338ddc099752c7d529acb5",
+    "OOPSLA\\research\\consumer-contracts-2026-10-11\\src\\consumer_contracts\\consumers.py": "89a58bbfcb823ba9eccc6373b40bc221feca0f2e50d44a1f443e670e9927eb77",
+    "OOPSLA\\research\\consumer-contracts-2026-10-11\\src\\consumer_contracts\\baselines.py": "49e0eed6a998336f1c4fe89275a1ff5d7c96c9bfdc27c60e2f3a7ab88ee5f7e8",
+    "OOPSLA\\research\\consumer-contracts-2026-10-11\\src\\consumer_contracts\\frontend.py": "d7ffbbabb06bee315f0fa7db63baa211a11a53ff8afd76facbe9a50670053c11",
+    "OOPSLA\\research\\consumer-contracts-2026-10-11\\tests\\test_relations.py": "f5a6763937b080518b5f589f36f654686729c257264eb08d6ab333593b276228"
+  },
+  "cases": {
+    "normal-reverse": {
+      "source": "OOPSLA\\research\\substitution-validation-2026-10-10\\results\\quits\\normal.dem",
+      "source_sha256": "d100edde09a641cf7c41f8eafbdf46f3d98d22ad744b0822385a5c2bad3558b5",
+      "phase": "development",
+      "permutation": "reverse",
+      "shape_h": [
+        144,
+        1152
+      ],
+      "shape_l": [
+        12,
+        1152
+      ],
+      "old_snapshot": "7c0ca1bcbc31f587029b16a574d91229aacdf837877c7b48ab312959f97e399e",
+      "new_snapshot": "1ff222c54409c10873a796ad337e933fbbab4a01073c2dcb29faeaa0974fbffa",
+      "artifact_changed": true,
+      "producer_relation": {
+        "status": "accepted",
+        "reason": "H, L and priors transported by the same bijection"
+      },
+      "consumer_results": {
+        "detector-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "14420f94fc6119075ddeb5f46a073c15b6ed1e8f45081e69c6da84d9b82d9cab",
+          "new_hash": "14420f94fc6119075ddeb5f46a073c15b6ed1e8f45081e69c6da84d9b82d9cab",
+          "automatic_frontend": {
+            "lowered": {
+              "status": "accepted",
+              "field": "h",
+              "source_sha256": "2bac65c8947466024769690b57be20086d83c142e81aaff4433f9702ea2c2862",
+              "reason": "translated to binary linear observer"
+            },
+            "proof": {
+              "status": "generated",
+              "rule": "binary-matvec-coordinate-transport-v1",
+              "field": "h",
+              "consumer_source_sha256": "2bac65c8947466024769690b57be20086d83c142e81aaff4433f9702ea2c2862",
+              "fault_transport": true
+            },
+            "check_status": "accepted"
+          }
+        },
+        "logical-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "a232223078e1b35a460edb9301a5eff105e7d5bd215fe0ef15638faa2e00c492",
+          "new_hash": "a232223078e1b35a460edb9301a5eff105e7d5bd215fe0ef15638faa2e00c492",
+          "automatic_frontend": {
+            "lowered": {
+              "status": "accepted",
+              "field": "logical",
+              "source_sha256": "b312877997441c1f74775502b87b33c3759cebb88a6b01fed208ce3d7ef34f76",
+              "reason": "translated to binary linear observer"
+            },
+            "proof": {
+              "status": "generated",
+              "rule": "binary-matvec-coordinate-transport-v1",
+              "field": "logical",
+              "consumer_source_sha256": "b312877997441c1f74775502b87b33c3759cebb88a6b01fed208ce3d7ef34f76",
+              "fault_transport": true
+            },
+            "check_status": "accepted"
+          }
+        },
+        "weighted-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "fe052cae3b5d488ff93e365b5ac98b71c259bcb5d90b80a81703893ee6e2ec1c",
+          "new_hash": "fe052cae3b5d488ff93e365b5ac98b71c259bcb5d90b80a81703893ee6e2ec1c"
+        },
+        "probability-range": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "permutation preserves range predicate"
+          },
+          "independent_recompute_equal": true
+        },
+        "raw-priors-by-column": {
+          "verdict": {
+            "status": "revalidate",
+            "reason": "positional prior observation changed"
+          },
+          "equal": false
+        },
+        "logical-input-not-transported": {
+          "verdict": {
+            "status": "rejected",
+            "reason": "fault input transport omitted"
+          },
+          "differing_bits": 281
+        },
+        "unmodelled-python-consumer": {
+          "verdict": {
+            "status": "unknown",
+            "reason": "consumer outside closed rule language"
+          }
+        },
+        "direct-native-decoder": {
+          "verdict": {
+            "status": "unknown",
+            "reason": "native heuristic equivariance not proved"
+          }
+        },
+        "canonical-native-decoder": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "canonical decoder coordinate boundary required"
+          },
+          "independent_recompute_equal": true
+        }
+      },
+      "full_response_audit": {
+        "detector_signatures_with_multiple_logical_labels": 0,
+        "full_response_fault_columns": 1152,
+        "native_detector_only_columns": 1152,
+        "converter_joint_semantics_require_full_response": true
+      },
+      "second_path_composed_plan": {
+        "relation_accepted": true,
+        "direct_artifact_equal": true,
+        "logical_observation_equal": true,
+        "additional_consumer_rules": 0,
+        "operation_count": 2,
+        "materialization_count": 1
+      },
+      "attacks": {
+        "false_h": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "false_logical": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "false_priors": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "missing_evidence": {
+          "status": "unknown",
+          "reason": "missing permutation evidence"
+        },
+        "stale_binding": {
+          "status": "rejected",
+          "reason": "snapshot binding mismatch"
+        },
+        "incomplete_transport": {
+          "status": "rejected",
+          "reason": "incomplete field transport"
+        }
+      },
+      "native_decoder": {
+        "executed": true,
+        "shots": 16,
+        "input_source": "quits/decoder-evidence.npz:detectors[:16]",
+        "consumer": "ldpc.BpOsdDecoder.decode with explicit coordinate boundary",
+        "max_iter": 2,
+        "osd_method": "OSD_0",
+        "scaling": 0.625,
+        "first_native_execution_ns": 36334200,
+        "canonical_transport_equal": true,
+        "direct_native_differing_predictions": 6,
+        "direct_native_differing_faults_after_transport": 26,
+        "scientific_accuracy_or_native_equivariance_claimed": false
+      },
+      "timings": {
+        "parse_and_lossless_fold": {
+          "repeats": 9,
+          "samples_ns": [
+            15839800,
+            15401900,
+            15940000,
+            15816500,
+            15704300,
+            15362100,
+            15855600,
+            15894200,
+            15303100
+          ],
+          "median_ns": 15816500
+        },
+        "producer_artifact_and_evidence": {
+          "repeats": 9,
+          "samples_ns": [
+            424600,
+            360000,
+            358400,
+            356100,
+            339600,
+            342400,
+            342500,
+            341700,
+            341300
+          ],
+          "median_ns": 342500
+        },
+        "independent_relation_check": {
+          "repeats": 9,
+          "samples_ns": [
+            451400,
+            454800,
+            448900,
+            432800,
+            433600,
+            430100,
+            431800,
+            432100,
+            461300
+          ],
+          "median_ns": 433600
+        },
+        "eight_consumer_obligations_only": {
+          "repeats": 9,
+          "samples_ns": [
+            2800,
+            2400,
+            2300,
+            2400,
+            2200,
+            2200,
+            2300,
+            2300,
+            2100
+          ],
+          "median_ns": 2300
+        },
+        "ordinary_relational_assertion": {
+          "repeats": 9,
+          "samples_ns": [
+            211400,
+            211300,
+            211400,
+            211100,
+            215000,
+            211100,
+            208600,
+            212800,
+            207900
+          ],
+          "median_ns": 211300
+        },
+        "ordinary_full_boundary_relation_and_input": {
+          "repeats": 9,
+          "samples_ns": [
+            524000,
+            534700,
+            526600,
+            528600,
+            527400,
+            532200,
+            520100,
+            651100,
+            638900
+          ],
+          "median_ns": 528600
+        },
+        "proposed_relation_and_input": {
+          "repeats": 9,
+          "samples_ns": [
+            506600,
+            547700,
+            503700,
+            521600,
+            506100,
+            504100,
+            494900,
+            558200,
+            528900
+          ],
+          "median_ns": 506600
+        },
+        "canonical_projection_comparison": {
+          "repeats": 9,
+          "samples_ns": [
+            304100,
+            296900,
+            289900,
+            285800,
+            290900,
+            284000,
+            305600,
+            285300,
+            280000
+          ],
+          "median_ns": 289900
+        },
+        "semantic_stamp_new_construction": {
+          "repeats": 9,
+          "samples_ns": [
+            376800,
+            371500,
+            377100,
+            369200,
+            371500,
+            374500,
+            366500,
+            369900,
+            374700
+          ],
+          "median_ns": 371500
+        },
+        "semantic_stamp_cached_comparison": {
+          "repeats": 9,
+          "samples_ns": [
+            200,
+            200,
+            100,
+            100,
+            100,
+            100,
+            300,
+            200,
+            100
+          ],
+          "median_ns": 100
+        },
+        "recompute_three_numerical_consumers": {
+          "repeats": 9,
+          "samples_ns": [
+            3463800,
+            3497700,
+            3454900,
+            3506400,
+            3457000,
+            3286600,
+            3233900,
+            3309100,
+            3450100
+          ],
+          "median_ns": 3454900
+        },
+        "runtime_input_domain_check": {
+          "repeats": 9,
+          "samples_ns": [
+            14100,
+            7400,
+            7000,
+            7500,
+            7500,
+            7600,
+            7900,
+            7400,
+            7400
+          ],
+          "median_ns": 7500
+        },
+        "two_consumer_frontend_and_evidence_generation": {
+          "repeats": 9,
+          "samples_ns": [
+            575500,
+            515500,
+            464400,
+            583200,
+            595000,
+            378900,
+            572900,
+            362900,
+            358600
+          ],
+          "median_ns": 515500
+        },
+        "two_consumer_source_and_proof_checks": {
+          "repeats": 9,
+          "samples_ns": [
+            2258200,
+            2015700,
+            1898000,
+            2251800,
+            2258400,
+            2013100,
+            1892700,
+            1919100,
+            1877300
+          ],
+          "median_ns": 2013100
+        },
+        "two_stage_plan_normalized_materialization": {
+          "repeats": 9,
+          "samples_ns": [
+            442400,
+            424200,
+            412500,
+            415800,
+            410100,
+            418600,
+            414500,
+            497400,
+            459100
+          ],
+          "median_ns": 418600
+        },
+        "two_stage_direct_materialization_no_evidence": {
+          "repeats": 9,
+          "samples_ns": [
+            384100,
+            387000,
+            384500,
+            374700,
+            396800,
+            386400,
+            380500,
+            380500,
+            387700
+          ],
+          "median_ns": 384500
+        },
+        "canonical_native_full_execution": {
+          "repeats": 5,
+          "samples_ns": [
+            37460500,
+            36644700,
+            36991400,
+            36938500,
+            37087300
+          ],
+          "median_ns": 36991400
+        }
+      },
+      "first_parse_ns": 16491300,
+      "first_artifact_and_evidence_ns": 518200,
+      "per_case_relation_or_consumer_code_changes": 0,
+      "per_case_input_annotations": [
+        "source path",
+        "permutation plan"
+      ],
+      "ordinary_assertion_relation_equal": true,
+      "canonical_projection_relation_equal": true,
+      "semantic_stamp_relation_equal": true
+    },
+    "lower-rotate": {
+      "source": "OOPSLA\\research\\substitution-validation-2026-10-10\\results\\quits\\lower.dem",
+      "source_sha256": "e59becf3e6a225329393c973a8d3e52599f29d96ba98953cbd09678a9869e030",
+      "phase": "post-rule-check",
+      "permutation": "rotate",
+      "shape_h": [
+        144,
+        1152
+      ],
+      "shape_l": [
+        12,
+        1152
+      ],
+      "old_snapshot": "d4c7f6a806b0decccd2fac5a9901b1f6153305868d7e8d5e0393adb6cb98d29e",
+      "new_snapshot": "523e0e24bff5b42e71dd704af2b50b7884beda46fb192e205d507524f8867355",
+      "artifact_changed": true,
+      "producer_relation": {
+        "status": "accepted",
+        "reason": "H, L and priors transported by the same bijection"
+      },
+      "consumer_results": {
+        "detector-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "14420f94fc6119075ddeb5f46a073c15b6ed1e8f45081e69c6da84d9b82d9cab",
+          "new_hash": "14420f94fc6119075ddeb5f46a073c15b6ed1e8f45081e69c6da84d9b82d9cab",
+          "automatic_frontend": {
+            "lowered": {
+              "status": "accepted",
+              "field": "h",
+              "source_sha256": "2bac65c8947466024769690b57be20086d83c142e81aaff4433f9702ea2c2862",
+              "reason": "translated to binary linear observer"
+            },
+            "proof": {
+              "status": "generated",
+              "rule": "binary-matvec-coordinate-transport-v1",
+              "field": "h",
+              "consumer_source_sha256": "2bac65c8947466024769690b57be20086d83c142e81aaff4433f9702ea2c2862",
+              "fault_transport": true
+            },
+            "check_status": "accepted"
+          }
+        },
+        "logical-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "a232223078e1b35a460edb9301a5eff105e7d5bd215fe0ef15638faa2e00c492",
+          "new_hash": "a232223078e1b35a460edb9301a5eff105e7d5bd215fe0ef15638faa2e00c492",
+          "automatic_frontend": {
+            "lowered": {
+              "status": "accepted",
+              "field": "logical",
+              "source_sha256": "b312877997441c1f74775502b87b33c3759cebb88a6b01fed208ce3d7ef34f76",
+              "reason": "translated to binary linear observer"
+            },
+            "proof": {
+              "status": "generated",
+              "rule": "binary-matvec-coordinate-transport-v1",
+              "field": "logical",
+              "consumer_source_sha256": "b312877997441c1f74775502b87b33c3759cebb88a6b01fed208ce3d7ef34f76",
+              "fault_transport": true
+            },
+            "check_status": "accepted"
+          }
+        },
+        "weighted-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "9e84435d4029369744fa56fae7b3175e5214a95e3ef626a4c3b9c22794c4dd9f",
+          "new_hash": "9e84435d4029369744fa56fae7b3175e5214a95e3ef626a4c3b9c22794c4dd9f"
+        },
+        "probability-range": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "permutation preserves range predicate"
+          },
+          "independent_recompute_equal": true
+        },
+        "raw-priors-by-column": {
+          "verdict": {
+            "status": "revalidate",
+            "reason": "positional prior observation changed"
+          },
+          "equal": false
+        },
+        "logical-input-not-transported": {
+          "verdict": {
+            "status": "rejected",
+            "reason": "fault input transport omitted"
+          },
+          "differing_bits": 275
+        },
+        "unmodelled-python-consumer": {
+          "verdict": {
+            "status": "unknown",
+            "reason": "consumer outside closed rule language"
+          }
+        },
+        "direct-native-decoder": {
+          "verdict": {
+            "status": "unknown",
+            "reason": "native heuristic equivariance not proved"
+          }
+        },
+        "canonical-native-decoder": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "canonical decoder coordinate boundary required"
+          },
+          "independent_recompute_equal": true
+        }
+      },
+      "full_response_audit": {
+        "detector_signatures_with_multiple_logical_labels": 0,
+        "full_response_fault_columns": 1152,
+        "native_detector_only_columns": 1152,
+        "converter_joint_semantics_require_full_response": true
+      },
+      "second_path_composed_plan": {
+        "relation_accepted": true,
+        "direct_artifact_equal": true,
+        "logical_observation_equal": true,
+        "additional_consumer_rules": 0,
+        "operation_count": 2,
+        "materialization_count": 1
+      },
+      "attacks": {
+        "false_h": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "false_logical": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "false_priors": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "missing_evidence": {
+          "status": "unknown",
+          "reason": "missing permutation evidence"
+        },
+        "stale_binding": {
+          "status": "rejected",
+          "reason": "snapshot binding mismatch"
+        },
+        "incomplete_transport": {
+          "status": "rejected",
+          "reason": "incomplete field transport"
+        }
+      },
+      "native_decoder": {
+        "executed": true,
+        "shots": 16,
+        "input_source": "quits/decoder-evidence.npz:detectors[:16]",
+        "consumer": "ldpc.BpOsdDecoder.decode with explicit coordinate boundary",
+        "max_iter": 2,
+        "osd_method": "OSD_0",
+        "scaling": 0.625,
+        "first_native_execution_ns": 34914400,
+        "canonical_transport_equal": true,
+        "direct_native_differing_predictions": 33,
+        "direct_native_differing_faults_after_transport": 120,
+        "scientific_accuracy_or_native_equivariance_claimed": false
+      },
+      "timings": {
+        "parse_and_lossless_fold": {
+          "repeats": 9,
+          "samples_ns": [
+            15549900,
+            15575600,
+            15827000,
+            15790800,
+            15941900,
+            16220600,
+            16135700,
+            15898200,
+            16030500
+          ],
+          "median_ns": 15898200
+        },
+        "producer_artifact_and_evidence": {
+          "repeats": 9,
+          "samples_ns": [
+            361200,
+            353200,
+            352400,
+            365200,
+            354400,
+            356000,
+            358000,
+            356300,
+            358800
+          ],
+          "median_ns": 356300
+        },
+        "independent_relation_check": {
+          "repeats": 9,
+          "samples_ns": [
+            452100,
+            447500,
+            445300,
+            450600,
+            448300,
+            443200,
+            445700,
+            448700,
+            448700
+          ],
+          "median_ns": 448300
+        },
+        "eight_consumer_obligations_only": {
+          "repeats": 9,
+          "samples_ns": [
+            2700,
+            2300,
+            2200,
+            2200,
+            2200,
+            2200,
+            2200,
+            2200,
+            2200
+          ],
+          "median_ns": 2200
+        },
+        "ordinary_relational_assertion": {
+          "repeats": 9,
+          "samples_ns": [
+            209600,
+            208600,
+            208900,
+            209500,
+            210900,
+            209800,
+            208600,
+            210700,
+            209700
+          ],
+          "median_ns": 209600
+        },
+        "ordinary_full_boundary_relation_and_input": {
+          "repeats": 9,
+          "samples_ns": [
+            517100,
+            513800,
+            515200,
+            517500,
+            520500,
+            511500,
+            516800,
+            517900,
+            512500
+          ],
+          "median_ns": 516800
+        },
+        "proposed_relation_and_input": {
+          "repeats": 9,
+          "samples_ns": [
+            515100,
+            512200,
+            519400,
+            513900,
+            513500,
+            519400,
+            518400,
+            523200,
+            519100
+          ],
+          "median_ns": 518400
+        },
+        "canonical_projection_comparison": {
+          "repeats": 9,
+          "samples_ns": [
+            409000,
+            364500,
+            290600,
+            344700,
+            346500,
+            289900,
+            290800,
+            315800,
+            295200
+          ],
+          "median_ns": 315800
+        },
+        "semantic_stamp_new_construction": {
+          "repeats": 9,
+          "samples_ns": [
+            365900,
+            360100,
+            361600,
+            369900,
+            369400,
+            368600,
+            363400,
+            365200,
+            369000
+          ],
+          "median_ns": 365900
+        },
+        "semantic_stamp_cached_comparison": {
+          "repeats": 9,
+          "samples_ns": [
+            200,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            200,
+            100
+          ],
+          "median_ns": 100
+        },
+        "recompute_three_numerical_consumers": {
+          "repeats": 9,
+          "samples_ns": [
+            3558500,
+            3575300,
+            3374100,
+            3406200,
+            3367500,
+            3379400,
+            3573900,
+            3579000,
+            3512700
+          ],
+          "median_ns": 3512700
+        },
+        "runtime_input_domain_check": {
+          "repeats": 9,
+          "samples_ns": [
+            8000,
+            7500,
+            7700,
+            7500,
+            7300,
+            7300,
+            7600,
+            7300,
+            7600
+          ],
+          "median_ns": 7500
+        },
+        "two_consumer_frontend_and_evidence_generation": {
+          "repeats": 9,
+          "samples_ns": [
+            402300,
+            333000,
+            312400,
+            320600,
+            315600,
+            302500,
+            313600,
+            309400,
+            317800
+          ],
+          "median_ns": 315600
+        },
+        "two_consumer_source_and_proof_checks": {
+          "repeats": 9,
+          "samples_ns": [
+            2130600,
+            1934000,
+            1903400,
+            1855300,
+            1889100,
+            1836900,
+            1849000,
+            2180200,
+            2168800
+          ],
+          "median_ns": 1903400
+        },
+        "two_stage_plan_normalized_materialization": {
+          "repeats": 9,
+          "samples_ns": [
+            454400,
+            445700,
+            437200,
+            438100,
+            523300,
+            441100,
+            436500,
+            436800,
+            448300
+          ],
+          "median_ns": 441100
+        },
+        "two_stage_direct_materialization_no_evidence": {
+          "repeats": 9,
+          "samples_ns": [
+            379900,
+            377500,
+            380100,
+            379400,
+            379100,
+            381900,
+            380900,
+            380700,
+            382400
+          ],
+          "median_ns": 380100
+        },
+        "canonical_native_full_execution": {
+          "repeats": 5,
+          "samples_ns": [
+            35253500,
+            34831500,
+            34829200,
+            34963000,
+            34611600
+          ],
+          "median_ns": 34831500
+        }
+      },
+      "first_parse_ns": 16333700,
+      "first_artifact_and_evidence_ns": 462000,
+      "per_case_relation_or_consumer_code_changes": 0,
+      "per_case_input_annotations": [
+        "source path",
+        "permutation plan"
+      ],
+      "ordinary_assertion_relation_equal": true,
+      "canonical_projection_relation_equal": true,
+      "semantic_stamp_relation_equal": true
+    },
+    "stress-shuffle": {
+      "source": "OOPSLA\\research\\substitution-validation-2026-10-10\\results\\quits\\stress.dem",
+      "source_sha256": "54b6f5e968fd99817a51c09c37390efc5ab618b44e6aeb605f645c3011abc47f",
+      "phase": "post-rule-check",
+      "permutation": "shuffle",
+      "shape_h": [
+        144,
+        1152
+      ],
+      "shape_l": [
+        12,
+        1152
+      ],
+      "old_snapshot": "708ed7d2db64cdfdf391115b3f2b4147aa8b4e8c1b7791a7ec6963d31a857f7b",
+      "new_snapshot": "af5c34cbeebe51cecd98b52f6cb583d9a2eb1f79b19c2c5ee43eb054551de65f",
+      "artifact_changed": true,
+      "producer_relation": {
+        "status": "accepted",
+        "reason": "H, L and priors transported by the same bijection"
+      },
+      "consumer_results": {
+        "detector-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "14420f94fc6119075ddeb5f46a073c15b6ed1e8f45081e69c6da84d9b82d9cab",
+          "new_hash": "14420f94fc6119075ddeb5f46a073c15b6ed1e8f45081e69c6da84d9b82d9cab",
+          "automatic_frontend": {
+            "lowered": {
+              "status": "accepted",
+              "field": "h",
+              "source_sha256": "2bac65c8947466024769690b57be20086d83c142e81aaff4433f9702ea2c2862",
+              "reason": "translated to binary linear observer"
+            },
+            "proof": {
+              "status": "generated",
+              "rule": "binary-matvec-coordinate-transport-v1",
+              "field": "h",
+              "consumer_source_sha256": "2bac65c8947466024769690b57be20086d83c142e81aaff4433f9702ea2c2862",
+              "fault_transport": true
+            },
+            "check_status": "accepted"
+          }
+        },
+        "logical-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "a232223078e1b35a460edb9301a5eff105e7d5bd215fe0ef15638faa2e00c492",
+          "new_hash": "a232223078e1b35a460edb9301a5eff105e7d5bd215fe0ef15638faa2e00c492",
+          "automatic_frontend": {
+            "lowered": {
+              "status": "accepted",
+              "field": "logical",
+              "source_sha256": "b312877997441c1f74775502b87b33c3759cebb88a6b01fed208ce3d7ef34f76",
+              "reason": "translated to binary linear observer"
+            },
+            "proof": {
+              "status": "generated",
+              "rule": "binary-matvec-coordinate-transport-v1",
+              "field": "logical",
+              "consumer_source_sha256": "b312877997441c1f74775502b87b33c3759cebb88a6b01fed208ce3d7ef34f76",
+              "fault_transport": true
+            },
+            "check_status": "accepted"
+          }
+        },
+        "weighted-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "c42f65804593e7d44a08f82a748d7e9f5d17d72e1d0fd364514a8eac4bdde646",
+          "new_hash": "c42f65804593e7d44a08f82a748d7e9f5d17d72e1d0fd364514a8eac4bdde646"
+        },
+        "probability-range": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "permutation preserves range predicate"
+          },
+          "independent_recompute_equal": true
+        },
+        "raw-priors-by-column": {
+          "verdict": {
+            "status": "revalidate",
+            "reason": "positional prior observation changed"
+          },
+          "equal": false
+        },
+        "logical-input-not-transported": {
+          "verdict": {
+            "status": "rejected",
+            "reason": "fault input transport omitted"
+          },
+          "differing_bits": 272
+        },
+        "unmodelled-python-consumer": {
+          "verdict": {
+            "status": "unknown",
+            "reason": "consumer outside closed rule language"
+          }
+        },
+        "direct-native-decoder": {
+          "verdict": {
+            "status": "unknown",
+            "reason": "native heuristic equivariance not proved"
+          }
+        },
+        "canonical-native-decoder": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "canonical decoder coordinate boundary required"
+          },
+          "independent_recompute_equal": true
+        }
+      },
+      "full_response_audit": {
+        "detector_signatures_with_multiple_logical_labels": 0,
+        "full_response_fault_columns": 1152,
+        "native_detector_only_columns": 1152,
+        "converter_joint_semantics_require_full_response": true
+      },
+      "second_path_composed_plan": {
+        "relation_accepted": true,
+        "direct_artifact_equal": true,
+        "logical_observation_equal": true,
+        "additional_consumer_rules": 0,
+        "operation_count": 2,
+        "materialization_count": 1
+      },
+      "attacks": {
+        "false_h": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "false_logical": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "false_priors": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "missing_evidence": {
+          "status": "unknown",
+          "reason": "missing permutation evidence"
+        },
+        "stale_binding": {
+          "status": "rejected",
+          "reason": "snapshot binding mismatch"
+        },
+        "incomplete_transport": {
+          "status": "rejected",
+          "reason": "incomplete field transport"
+        }
+      },
+      "native_decoder": {
+        "executed": true,
+        "shots": 16,
+        "input_source": "quits/decoder-evidence.npz:detectors[:16]",
+        "consumer": "ldpc.BpOsdDecoder.decode with explicit coordinate boundary",
+        "max_iter": 2,
+        "osd_method": "OSD_0",
+        "scaling": 0.625,
+        "first_native_execution_ns": 30430000,
+        "canonical_transport_equal": true,
+        "direct_native_differing_predictions": 7,
+        "direct_native_differing_faults_after_transport": 44,
+        "scientific_accuracy_or_native_equivariance_claimed": false
+      },
+      "timings": {
+        "parse_and_lossless_fold": {
+          "repeats": 9,
+          "samples_ns": [
+            16106500,
+            16228300,
+            15999700,
+            15919400,
+            16071100,
+            15991600,
+            16224400,
+            16102000,
+            16351900
+          ],
+          "median_ns": 16102000
+        },
+        "producer_artifact_and_evidence": {
+          "repeats": 9,
+          "samples_ns": [
+            439700,
+            379600,
+            413100,
+            374200,
+            370100,
+            375500,
+            404100,
+            371900,
+            383200
+          ],
+          "median_ns": 379600
+        },
+        "independent_relation_check": {
+          "repeats": 9,
+          "samples_ns": [
+            557700,
+            548400,
+            530800,
+            528100,
+            527100,
+            540600,
+            530200,
+            538100,
+            516400
+          ],
+          "median_ns": 530800
+        },
+        "eight_consumer_obligations_only": {
+          "repeats": 9,
+          "samples_ns": [
+            2600,
+            2400,
+            2400,
+            2400,
+            2300,
+            2400,
+            2400,
+            2300,
+            2300
+          ],
+          "median_ns": 2400
+        },
+        "ordinary_relational_assertion": {
+          "repeats": 9,
+          "samples_ns": [
+            262000,
+            260600,
+            295800,
+            268300,
+            265600,
+            264800,
+            261600,
+            256900,
+            255700
+          ],
+          "median_ns": 262000
+        },
+        "ordinary_full_boundary_relation_and_input": {
+          "repeats": 9,
+          "samples_ns": [
+            588600,
+            553600,
+            712300,
+            654700,
+            581500,
+            639900,
+            599500,
+            555200,
+            547100
+          ],
+          "median_ns": 588600
+        },
+        "proposed_relation_and_input": {
+          "repeats": 9,
+          "samples_ns": [
+            543800,
+            549000,
+            568000,
+            558100,
+            532600,
+            542300,
+            527800,
+            555900,
+            569100
+          ],
+          "median_ns": 549000
+        },
+        "canonical_projection_comparison": {
+          "repeats": 9,
+          "samples_ns": [
+            307500,
+            308900,
+            360100,
+            310200,
+            310300,
+            309800,
+            310800,
+            325100,
+            316500
+          ],
+          "median_ns": 310300
+        },
+        "semantic_stamp_new_construction": {
+          "repeats": 9,
+          "samples_ns": [
+            387600,
+            389200,
+            382300,
+            398400,
+            389800,
+            392900,
+            517900,
+            404000,
+            375500
+          ],
+          "median_ns": 389800
+        },
+        "semantic_stamp_cached_comparison": {
+          "repeats": 9,
+          "samples_ns": [
+            200,
+            200,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "median_ns": 100
+        },
+        "recompute_three_numerical_consumers": {
+          "repeats": 9,
+          "samples_ns": [
+            3477900,
+            3572200,
+            3415300,
+            3611600,
+            3280100,
+            3333900,
+            3347300,
+            3429000,
+            3541500
+          ],
+          "median_ns": 3429000
+        },
+        "runtime_input_domain_check": {
+          "repeats": 9,
+          "samples_ns": [
+            7500,
+            6800,
+            6900,
+            7100,
+            7100,
+            7100,
+            7100,
+            7000,
+            7000
+          ],
+          "median_ns": 7100
+        },
+        "two_consumer_frontend_and_evidence_generation": {
+          "repeats": 9,
+          "samples_ns": [
+            365300,
+            294400,
+            284100,
+            284300,
+            283000,
+            282800,
+            281600,
+            307800,
+            284700
+          ],
+          "median_ns": 284300
+        },
+        "two_consumer_source_and_proof_checks": {
+          "repeats": 9,
+          "samples_ns": [
+            2089700,
+            2089200,
+            2247100,
+            2389800,
+            2096900,
+            1982700,
+            2121200,
+            2050600,
+            2062700
+          ],
+          "median_ns": 2089700
+        },
+        "two_stage_plan_normalized_materialization": {
+          "repeats": 9,
+          "samples_ns": [
+            509400,
+            500800,
+            504000,
+            514400,
+            635000,
+            526400,
+            507600,
+            569700,
+            521200
+          ],
+          "median_ns": 514400
+        },
+        "two_stage_direct_materialization_no_evidence": {
+          "repeats": 9,
+          "samples_ns": [
+            397700,
+            396800,
+            396200,
+            393400,
+            388700,
+            379800,
+            379900,
+            370600,
+            368800
+          ],
+          "median_ns": 388700
+        },
+        "canonical_native_full_execution": {
+          "repeats": 5,
+          "samples_ns": [
+            31200600,
+            31678400,
+            31429600,
+            31180000,
+            30866300
+          ],
+          "median_ns": 31200600
+        }
+      },
+      "first_parse_ns": 16299500,
+      "first_artifact_and_evidence_ns": 478200,
+      "per_case_relation_or_consumer_code_changes": 0,
+      "per_case_input_annotations": [
+        "source path",
+        "permutation plan"
+      ],
+      "ordinary_assertion_relation_equal": true,
+      "canonical_projection_relation_equal": true,
+      "semantic_stamp_relation_equal": true
+    },
+    "qecc-reverse": {
+      "source": "OOPSLA\\research\\substitution-validation-2026-10-10\\results\\qecc\\baseline.dem",
+      "source_sha256": "69d38233f7536e412d230a63d1d849701fe664f15d10435e8b533c386baae212",
+      "phase": "post-rule-check",
+      "permutation": "reverse",
+      "shape_h": [
+        225,
+        1923
+      ],
+      "shape_l": [
+        8,
+        1923
+      ],
+      "old_snapshot": "17ee0116251953dbc7eea4663df17579be622214c1f22bda97becf2515f40a5e",
+      "new_snapshot": "878045bc12fbd7ecce5dd7f0f04089475c5107575b776df8a990a4b7e5e669c6",
+      "artifact_changed": true,
+      "producer_relation": {
+        "status": "accepted",
+        "reason": "H, L and priors transported by the same bijection"
+      },
+      "consumer_results": {
+        "detector-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "c8c0bd4458f1696ab5a8f31cb67f5156e569dd3e1f8b894d69d32889c88f339e",
+          "new_hash": "c8c0bd4458f1696ab5a8f31cb67f5156e569dd3e1f8b894d69d32889c88f339e",
+          "automatic_frontend": {
+            "lowered": {
+              "status": "accepted",
+              "field": "h",
+              "source_sha256": "2bac65c8947466024769690b57be20086d83c142e81aaff4433f9702ea2c2862",
+              "reason": "translated to binary linear observer"
+            },
+            "proof": {
+              "status": "generated",
+              "rule": "binary-matvec-coordinate-transport-v1",
+              "field": "h",
+              "consumer_source_sha256": "2bac65c8947466024769690b57be20086d83c142e81aaff4433f9702ea2c2862",
+              "fault_transport": true
+            },
+            "check_status": "accepted"
+          }
+        },
+        "logical-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "76f917910ed28354123e7999c3c49429743a7526b5b19c1491eb0ad83e649ac1",
+          "new_hash": "76f917910ed28354123e7999c3c49429743a7526b5b19c1491eb0ad83e649ac1",
+          "automatic_frontend": {
+            "lowered": {
+              "status": "accepted",
+              "field": "logical",
+              "source_sha256": "b312877997441c1f74775502b87b33c3759cebb88a6b01fed208ce3d7ef34f76",
+              "reason": "translated to binary linear observer"
+            },
+            "proof": {
+              "status": "generated",
+              "rule": "binary-matvec-coordinate-transport-v1",
+              "field": "logical",
+              "consumer_source_sha256": "b312877997441c1f74775502b87b33c3759cebb88a6b01fed208ce3d7ef34f76",
+              "fault_transport": true
+            },
+            "check_status": "accepted"
+          }
+        },
+        "weighted-action": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "same map and input coordinate bijection"
+          },
+          "independent_recompute_equal": true,
+          "old_hash": "e080472436bf3b3be3ce1fdecae946f26c5435db35713372b40bd7ebaa782892",
+          "new_hash": "e080472436bf3b3be3ce1fdecae946f26c5435db35713372b40bd7ebaa782892"
+        },
+        "probability-range": {
+          "verdict": {
+            "status": "accepted",
+            "reason": "permutation preserves range predicate"
+          },
+          "independent_recompute_equal": true
+        },
+        "raw-priors-by-column": {
+          "verdict": {
+            "status": "revalidate",
+            "reason": "positional prior observation changed"
+          },
+          "equal": false
+        },
+        "logical-input-not-transported": {
+          "verdict": {
+            "status": "rejected",
+            "reason": "fault input transport omitted"
+          },
+          "differing_bits": 188
+        },
+        "unmodelled-python-consumer": {
+          "verdict": {
+            "status": "unknown",
+            "reason": "consumer outside closed rule language"
+          }
+        },
+        "direct-native-decoder": {
+          "verdict": {
+            "status": "unknown",
+            "reason": "native heuristic equivariance not proved"
+          }
+        }
+      },
+      "full_response_audit": {
+        "detector_signatures_with_multiple_logical_labels": 0,
+        "full_response_fault_columns": 1923,
+        "native_detector_only_columns": 1923,
+        "converter_joint_semantics_require_full_response": true
+      },
+      "second_path_composed_plan": {
+        "relation_accepted": true,
+        "direct_artifact_equal": true,
+        "logical_observation_equal": true,
+        "additional_consumer_rules": 0,
+        "operation_count": 2,
+        "materialization_count": 1
+      },
+      "attacks": {
+        "false_h": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "false_logical": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "false_priors": {
+          "status": "rejected",
+          "reason": "declared coordinate relation is false"
+        },
+        "missing_evidence": {
+          "status": "unknown",
+          "reason": "missing permutation evidence"
+        },
+        "stale_binding": {
+          "status": "rejected",
+          "reason": "snapshot binding mismatch"
+        },
+        "incomplete_transport": {
+          "status": "rejected",
+          "reason": "incomplete field transport"
+        }
+      },
+      "native_decoder": {
+        "executed": false
+      },
+      "timings": {
+        "parse_and_lossless_fold": {
+          "repeats": 9,
+          "samples_ns": [
+            85396700,
+            122914100,
+            85972200,
+            68243700,
+            66799500,
+            67723900,
+            58591000,
+            73459900,
+            46777100
+          ],
+          "median_ns": 68243700
+        },
+        "producer_artifact_and_evidence": {
+          "repeats": 9,
+          "samples_ns": [
+            1546300,
+            1089700,
+            1077200,
+            1109500,
+            1085600,
+            1141000,
+            1081200,
+            1084700,
+            4449600
+          ],
+          "median_ns": 1089700
+        },
+        "independent_relation_check": {
+          "repeats": 9,
+          "samples_ns": [
+            1517500,
+            1540900,
+            1491400,
+            1486800,
+            1491800,
+            1488500,
+            1473500,
+            4722200,
+            2268900
+          ],
+          "median_ns": 1491800
+        },
+        "eight_consumer_obligations_only": {
+          "repeats": 9,
+          "samples_ns": [
+            4300,
+            3700,
+            3500,
+            3400,
+            3400,
+            3400,
+            3500,
+            3900,
+            3400
+          ],
+          "median_ns": 3500
+        },
+        "ordinary_relational_assertion": {
+          "repeats": 9,
+          "samples_ns": [
+            813900,
+            790800,
+            798200,
+            759600,
+            740300,
+            743300,
+            736900,
+            735700,
+            742300
+          ],
+          "median_ns": 743300
+        },
+        "ordinary_full_boundary_relation_and_input": {
+          "repeats": 9,
+          "samples_ns": [
+            6795600,
+            1853100,
+            1669900,
+            1687500,
+            4502000,
+            2396000,
+            1760000,
+            1741700,
+            2228400
+          ],
+          "median_ns": 1853100
+        },
+        "proposed_relation_and_input": {
+          "repeats": 9,
+          "samples_ns": [
+            1643200,
+            4099100,
+            1692300,
+            9872300,
+            2183200,
+            1687600,
+            1755300,
+            2892100,
+            4453600
+          ],
+          "median_ns": 2183200
+        },
+        "canonical_projection_comparison": {
+          "repeats": 9,
+          "samples_ns": [
+            1054300,
+            1553600,
+            1056200,
+            1114100,
+            1029400,
+            1028800,
+            1488900,
+            6155800,
+            1326700
+          ],
+          "median_ns": 1114100
+        },
+        "semantic_stamp_new_construction": {
+          "repeats": 9,
+          "samples_ns": [
+            1445400,
+            1310300,
+            1192700,
+            1169100,
+            1978800,
+            1265400,
+            4688100,
+            1259600,
+            1182600
+          ],
+          "median_ns": 1265400
+        },
+        "semantic_stamp_cached_comparison": {
+          "repeats": 9,
+          "samples_ns": [
+            300,
+            300,
+            200,
+            300,
+            200,
+            200,
+            100,
+            200,
+            100
+          ],
+          "median_ns": 200
+        },
+        "recompute_three_numerical_consumers": {
+          "repeats": 9,
+          "samples_ns": [
+            19956700,
+            20456200,
+            19660700,
+            32689600,
+            28542900,
+            21948800,
+            20319400,
+            20917300,
+            19613400
+          ],
+          "median_ns": 20456200
+        },
+        "runtime_input_domain_check": {
+          "repeats": 9,
+          "samples_ns": [
+            26300,
+            23300,
+            22900,
+            22900,
+            22800,
+            22700,
+            22800,
+            22600,
+            22400
+          ],
+          "median_ns": 22800
+        },
+        "two_consumer_frontend_and_evidence_generation": {
+          "repeats": 9,
+          "samples_ns": [
+            924500,
+            907000,
+            2082300,
+            1063100,
+            1001300,
+            1305600,
+            913800,
+            4432000,
+            863600
+          ],
+          "median_ns": 1001300
+        },
+        "two_consumer_source_and_proof_checks": {
+          "repeats": 9,
+          "samples_ns": [
+            6183800,
+            5941100,
+            8188700,
+            5552000,
+            7747800,
+            6012800,
+            5282000,
+            8861600,
+            6548500
+          ],
+          "median_ns": 6183800
+        },
+        "two_stage_plan_normalized_materialization": {
+          "repeats": 9,
+          "samples_ns": [
+            1389800,
+            1839500,
+            1971800,
+            1399900,
+            1472400,
+            1357300,
+            2352400,
+            2244100,
+            1856200
+          ],
+          "median_ns": 1839500
+        },
+        "two_stage_direct_materialization_no_evidence": {
+          "repeats": 9,
+          "samples_ns": [
+            1704400,
+            1495900,
+            1720000,
+            1441800,
+            1372000,
+            1425500,
+            1431800,
+            2587000,
+            1757100
+          ],
+          "median_ns": 1495900
+        }
+      },
+      "first_parse_ns": 25365100,
+      "first_artifact_and_evidence_ns": 1056000,
+      "per_case_relation_or_consumer_code_changes": 0,
+      "per_case_input_annotations": [
+        "source path",
+        "permutation plan"
+      ],
+      "ordinary_assertion_relation_equal": true,
+      "canonical_projection_relation_equal": true,
+      "semantic_stamp_relation_equal": true
+    }
+  },
+  "heldout_note": "Cases selected before this run; source rules unchanged across cases. Same author, known corpus, not external blind evaluation.",
+  "novel_algorithm_or_unique_expressiveness_established": false
+}

@@ -1,0 +1,52 @@
+{
+  "quits": {
+    "proof": {
+      "accepted": true,
+      "rule": "ordered_first_label_xor_fold",
+      "reason": "exact native transition syntax",
+      "premises": [
+        "ordered target sequence preserved",
+        "first observable retained",
+        "same detector count and observable count",
+        "all error p in (0,1/2)",
+        "fixed built-ins and caller-owned dictionaries/lists"
+      ]
+    },
+    "generation_check_ns": 1448200,
+    "source_sha256": "182701ee2028d0b43832bf78c66718f3f7183f4cc767cddac4bf31c57cac6ff4"
+  },
+  "qecc": {
+    "proof": {
+      "accepted": true,
+      "rule": "mod_two_bilinear",
+      "reason": "exact native transition syntax",
+      "premises": [
+        "fixed integer ndarray semantics",
+        "same n and array length",
+        "no object dtype",
+        "x and xprime agree modulo 2",
+        "z and zprime agree modulo 2"
+      ]
+    },
+    "generation_check_ns": 5902100,
+    "source_sha256": "ae19021db9e49d82127dee531b626fe6f80507a48f198fa87c9f915b4d1ac1db",
+    "native_function": "commute",
+    "actual_Hx_shape": [
+      45,
+      90
+    ],
+    "actual_output_equal": true,
+    "actual_input_changed": true,
+    "old_output": 0,
+    "new_output": 0
+  },
+  "rejections": {
+    "probability_control": true,
+    "wrong_modulus": true
+  },
+  "polynomial_identity_checked": true,
+  "input_enumerations": 0,
+  "source_to_rule": "exact AST rule recognition; not a generic Python prover",
+  "producer_relation": "event target/order identity or modulo-two input relation still separately established",
+  "novel_general_rule_established": false
+}

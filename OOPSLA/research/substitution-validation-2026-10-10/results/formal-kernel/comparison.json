@@ -1,0 +1,130 @@
+{
+  "environment": {
+    "python": "3.11.17 (main, Oct  9 2026, 15:19:27) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "environment/python",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "hash_seed": "0",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "stim": "1.16.0",
+      "ldpc": "2.4.1",
+      "qldpc": "0.4.1",
+      "quits": "1.2.0",
+      "galois": "0.4.11",
+      "pytest": "9.1.1"
+    }
+  },
+  "records": {
+    "probability_only": {
+      "accepted": true,
+      "reason": "finite concrete relation checked",
+      "witnesses": [],
+      "input_count": 9,
+      "check_ns": 34500
+    },
+    "structure_branch": {
+      "accepted": false,
+      "reason": "finite concrete relation checked",
+      "witnesses": [
+        {
+          "env": {
+            "structure": 0,
+            "probability": 1
+          },
+          "old": {
+            "structure": 1,
+            "probability": 1
+          },
+          "new": {
+            "structure": 2,
+            "probability": 2
+          }
+        },
+        {
+          "env": {
+            "structure": 0,
+            "probability": 2
+          },
+          "old": {
+            "structure": 1,
+            "probability": 1
+          },
+          "new": {
+            "structure": 2,
+            "probability": 2
+          }
+        },
+        {
+          "env": {
+            "structure": 1,
+            "probability": 1
+          },
+          "old": {
+            "structure": 1,
+            "probability": 1
+          },
+          "new": {
+            "structure": 2,
+            "probability": 2
+          }
+        },
+        {
+          "env": {
+            "structure": 1,
+            "probability": 2
+          },
+          "old": {
+            "structure": 1,
+            "probability": 1
+          },
+          "new": {
+            "structure": 2,
+            "probability": 2
+          }
+        },
+        {
+          "env": {
+            "structure": 2,
+            "probability": 1
+          },
+          "old": {
+            "structure": 1,
+            "probability": 1
+          },
+          "new": {
+            "structure": 2,
+            "probability": 2
+          }
+        },
+        {
+          "env": {
+            "structure": 2,
+            "probability": 2
+          },
+          "old": {
+            "structure": 1,
+            "probability": 1
+          },
+          "new": {
+            "structure": 2,
+            "probability": 2
+          }
+        }
+      ],
+      "input_count": 9,
+      "check_ns": 23900
+    },
+    "unsupported": {
+      "accepted": false,
+      "reason": "unsupported statement",
+      "witnesses": [],
+      "check_ns": 5400
+    }
+  },
+  "language": "finite immutable label programs",
+  "input_count": 9,
+  "generator_and_checker_separated": true,
+  "arbitrary_python_soundness_claimed": false,
+  "real_quits_certificate_import": "adapter only; unknown source summaries rejected"
+}

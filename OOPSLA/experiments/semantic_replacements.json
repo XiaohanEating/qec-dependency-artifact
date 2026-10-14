@@ -1,0 +1,396 @@
+{
+  "metadata": {
+    "description": "semantically different component substitutions, measured with confidence intervals",
+    "date": "2026-10-12",
+    "shots": 12000,
+    "num_rounds": 2,
+    "window": 3,
+    "overlap": 1,
+    "sampler_seed": 7,
+    "statistics": "Wilson 95% per rate; two-proportion z per comparison on both the per-logical-bit and any-observable scales",
+    "agreement_check": {
+      "shots": 24,
+      "seed": 7,
+      "official_ler": 0.1111111111111111,
+      "injected_ler": 0.1111111111111111,
+      "bitwise_identical": true,
+      "differing_entries": 0,
+      "total_entries": 288
+    }
+  },
+  "substitutions": [
+    {
+      "dimension": "code",
+      "families": {
+        "BB": {
+          "n_physical_qubits": 72,
+          "n_logical_qubits": 12,
+          "n_detectors": 144,
+          "rate": {
+            "label": "BB/zxcoloration/SD6",
+            "errors": 19825,
+            "shots": 144000,
+            "rate": 0.13767361111111112,
+            "wilson95_low": 0.13590365094682277,
+            "wilson95_high": 0.13946290217502644,
+            "per_logical_qubit_rate": 0.13767361111111112
+          }
+        },
+        "HGP": {
+          "n_physical_qubits": 13,
+          "n_logical_qubits": 1,
+          "n_detectors": 24,
+          "rate": {
+            "label": "HGP/zxcoloration/SD6",
+            "errors": 254,
+            "shots": 12000,
+            "rate": 0.021166666666666667,
+            "wilson95_low": 0.01874039829907841,
+            "wilson95_high": 0.023899406681399855,
+            "per_logical_qubit_rate": 0.021166666666666667
+          }
+        },
+        "QLP": {
+          "n_physical_qubits": 120,
+          "n_logical_qubits": 5,
+          "n_detectors": 192,
+          "rate": {
+            "label": "QLP/zxcoloration/SD6",
+            "errors": 6902,
+            "shots": 60000,
+            "rate": 0.11503333333333333,
+            "wilson95_low": 0.11250495961538458,
+            "wilson95_high": 0.11761099834868528,
+            "per_logical_qubit_rate": 0.11503333333333333
+          }
+        }
+      },
+      "artifact_changed": true,
+      "artifacts_changed": [
+        "code_matrices",
+        "stim_circuit",
+        "detector_error_model"
+      ],
+      "structure_changed": true,
+      "rate": null,
+      "rate_separable": null,
+      "comparability_note": "the three families have different distances and logical-qubit counts, so their rates are not comparable as a substitution measurement; a like-for-like comparison needs a fixed distance, which this subject does not expose"
+    },
+    {
+      "dimension": "extractor",
+      "base_spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "num_rounds": 2
+      },
+      "alt_spec": {
+        "code": "BB",
+        "extractor": "custom",
+        "arch": "transversal",
+        "noise": "SD6",
+        "num_rounds": 2
+      },
+      "artifact_changed": true,
+      "artifacts_changed": [
+        "detector_error_model",
+        "stim_circuit"
+      ],
+      "structure_changed": true,
+      "rate": {
+        "base": {
+          "label": "base",
+          "errors": 19839,
+          "shots": 144000,
+          "rate": 0.13777083333333334,
+          "wilson95_low": 0.13600034270830272,
+          "wilson95_high": 0.13956064967097423,
+          "per_logical_qubit_rate": 0.13777083333333334,
+          "any_observable_rate": 0.4681666666666667,
+          "any_observable_errors": 5618
+        },
+        "alt": {
+          "label": "alt",
+          "errors": 20809,
+          "shots": 144000,
+          "rate": 0.14450694444444445,
+          "wilson95_low": 0.14270041199881492,
+          "wilson95_high": 0.14633244321652925,
+          "per_logical_qubit_rate": 0.14450694444444445,
+          "any_observable_rate": 0.4725,
+          "any_observable_errors": 5670
+        },
+        "intervals_overlap": false,
+        "two_proportion_test": {
+          "rate_a": 0.13777083333333334,
+          "rate_b": 0.14450694444444445,
+          "absolute_difference": -0.006736111111111109,
+          "relative_difference": -0.04661444567254552,
+          "z": -5.191473889377352,
+          "p_value": 2.0863584975748867e-07,
+          "significant_at_95": true
+        },
+        "two_proportion_test_per_bit": {
+          "rate_a": 0.13777083333333334,
+          "rate_b": 0.14450694444444445,
+          "absolute_difference": -0.006736111111111109,
+          "relative_difference": -0.04661444567254552,
+          "z": -5.191473889377352,
+          "p_value": 2.0863584975748867e-07,
+          "significant_at_95": true
+        },
+        "two_proportion_test_any_observable": {
+          "rate_a": 0.4681666666666667,
+          "rate_b": 0.4725,
+          "absolute_difference": -0.0043333333333333,
+          "relative_difference": -0.009171075837742435,
+          "z": -0.6725019098206688,
+          "p_value": 0.501264224703682,
+          "significant_at_95": false
+        },
+        "rate_separable": true,
+        "rate_separable_any_observable": false
+      },
+      "comparability_note": null
+    },
+    {
+      "dimension": "arch",
+      "base_spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "num_rounds": 2
+      },
+      "alt_spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "toric",
+        "noise": "SD6",
+        "num_rounds": 2
+      },
+      "artifact_changed": false,
+      "artifacts_changed": [],
+      "structure_changed": false,
+      "rate": {
+        "base": {
+          "label": "base",
+          "errors": 19829,
+          "shots": 144000,
+          "rate": 0.1377013888888889,
+          "wilson95_low": 0.13593127713395675,
+          "wilson95_high": 0.1394908300614432,
+          "per_logical_qubit_rate": 0.1377013888888889,
+          "any_observable_rate": 0.4683333333333333,
+          "any_observable_errors": 5620
+        },
+        "alt": {
+          "label": "alt",
+          "errors": 19835,
+          "shots": 144000,
+          "rate": 0.13774305555555555,
+          "wilson95_low": 0.1359727164603092,
+          "wilson95_high": 0.13953272184541696,
+          "per_logical_qubit_rate": 0.13774305555555555,
+          "any_observable_rate": 0.4681666666666667,
+          "any_observable_errors": 5618
+        },
+        "intervals_overlap": true,
+        "two_proportion_test": {
+          "rate_a": 0.1377013888888889,
+          "rate_b": 0.13774305555555555,
+          "absolute_difference": -4.166666666666208e-05,
+          "relative_difference": -0.00030249558860596617,
+          "z": -0.03244362692787705,
+          "p_value": 0.9741182715275699,
+          "significant_at_95": false
+        },
+        "two_proportion_test_per_bit": {
+          "rate_a": 0.1377013888888889,
+          "rate_b": 0.13774305555555555,
+          "absolute_difference": -4.166666666666208e-05,
+          "relative_difference": -0.00030249558860596617,
+          "z": -0.03244362692787705,
+          "p_value": 0.9741182715275699,
+          "significant_at_95": false
+        },
+        "two_proportion_test_any_observable": {
+          "rate_a": 0.4683333333333333,
+          "rate_b": 0.4681666666666667,
+          "absolute_difference": 0.0001666666666666483,
+          "relative_difference": 0.00035599857600565675,
+          "z": 0.025872103056713194,
+          "p_value": 0.9793593511316858,
+          "significant_at_95": false
+        },
+        "rate_separable": false,
+        "rate_separable_any_observable": false
+      },
+      "comparability_note": "the layout changes but the circuit does not: ZXColorationBuilder constructs its own TransversalLayout internally, so the arch coordinate does not reach the artifact"
+    },
+    {
+      "dimension": "noise",
+      "base_spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "num_rounds": 2
+      },
+      "alt_spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SI1000",
+        "num_rounds": 2
+      },
+      "artifact_changed": true,
+      "artifacts_changed": [
+        "detector_error_model",
+        "stim_circuit"
+      ],
+      "structure_changed": false,
+      "rate": {
+        "base": {
+          "label": "base",
+          "errors": 19826,
+          "shots": 144000,
+          "rate": 0.13768055555555556,
+          "wilson95_low": 0.13591055749132328,
+          "wilson95_high": 0.13946988414891362,
+          "per_logical_qubit_rate": 0.13768055555555556,
+          "any_observable_rate": 0.4681666666666667,
+          "any_observable_errors": 5618
+        },
+        "alt": {
+          "label": "alt",
+          "errors": 4594,
+          "shots": 144000,
+          "rate": 0.03190277777777778,
+          "wilson95_low": 0.03100749466482135,
+          "wilson95_high": 0.032823034893997335,
+          "per_logical_qubit_rate": 0.03190277777777778,
+          "any_observable_rate": 0.11783333333333333,
+          "any_observable_errors": 1414
+        },
+        "intervals_overlap": false,
+        "two_proportion_test": {
+          "rate_a": 0.13768055555555556,
+          "rate_b": 0.03190277777777778,
+          "absolute_difference": 0.10577777777777778,
+          "relative_difference": 3.315629081410535,
+          "z": 101.88825358701912,
+          "p_value": 0.0,
+          "significant_at_95": true
+        },
+        "two_proportion_test_per_bit": {
+          "rate_a": 0.13768055555555556,
+          "rate_b": 0.03190277777777778,
+          "absolute_difference": 0.10577777777777778,
+          "relative_difference": 3.315629081410535,
+          "z": 101.88825358701912,
+          "p_value": 0.0,
+          "significant_at_95": true
+        },
+        "two_proportion_test_any_observable": {
+          "rate_a": 0.4681666666666667,
+          "rate_b": 0.11783333333333333,
+          "absolute_difference": 0.35033333333333333,
+          "relative_difference": 2.973125884016973,
+          "z": 59.62296501252611,
+          "p_value": 0.0,
+          "significant_at_95": true
+        },
+        "rate_separable": true,
+        "rate_separable_any_observable": true
+      },
+      "comparability_note": "the noise coordinate is baked into the circuit: changing it changes the circuit text and the detector error model, which is the audit's third observation (extractor reads noise)"
+    },
+    {
+      "dimension": "decoder",
+      "base_spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "num_rounds": 2
+      },
+      "alt_spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "num_rounds": 2,
+        "decoder": "BP-LSD"
+      },
+      "artifact_changed": false,
+      "artifacts_changed": [],
+      "structure_changed": false,
+      "rate": {
+        "base": {
+          "label": "BP-OSD",
+          "errors": 19820,
+          "shots": 144000,
+          "rate": 0.1376388888888889,
+          "wilson95_low": 0.1358691182471547,
+          "wilson95_high": 0.13942799228275599,
+          "per_logical_qubit_rate": 0.1376388888888889,
+          "any_observable_rate": 0.4681666666666667,
+          "any_observable_errors": 5618
+        },
+        "alt": {
+          "label": "BP-LSD",
+          "errors": 19849,
+          "shots": 144000,
+          "rate": 0.13784027777777777,
+          "wilson95_low": 0.13606940843472978,
+          "wilson95_high": 0.1396304691284241,
+          "per_logical_qubit_rate": 0.13784027777777777,
+          "any_observable_rate": 0.46825,
+          "any_observable_errors": 5619
+        },
+        "intervals_overlap": true,
+        "two_proportion_test": {
+          "rate_a": 0.1376388888888889,
+          "rate_b": 0.13784027777777777,
+          "absolute_difference": -0.00020138888888887596,
+          "relative_difference": -0.0014610307824070804,
+          "z": -0.1568025592572786,
+          "p_value": 0.8754004558088284,
+          "significant_at_95": false
+        },
+        "two_proportion_test_per_bit": {
+          "rate_a": 0.1376388888888889,
+          "rate_b": 0.13784027777777777,
+          "absolute_difference": -0.00020138888888887596,
+          "relative_difference": -0.0014610307824070804,
+          "z": -0.1568025592572786,
+          "p_value": 0.8754004558088284,
+          "significant_at_95": false
+        },
+        "two_proportion_test_any_observable": {
+          "rate_a": 0.4681666666666667,
+          "rate_b": 0.46825,
+          "absolute_difference": -8.333333333332416e-05,
+          "relative_difference": -0.0001779676098949795,
+          "z": -0.012936120304414643,
+          "p_value": 0.989678757198203,
+          "significant_at_95": false
+        },
+        "rate_separable": false,
+        "rate_separable_any_observable": false
+      },
+      "comparability_note": "both decoders run on identical circuits and identical sampled syndromes; the only difference is the inner decoder class"
+    }
+  ],
+  "summary": {
+    "n_substitutions": 5,
+    "n_artifact_changed": 3,
+    "n_with_rate_comparison": 4,
+    "n_rate_separable": 2,
+    "n_rate_separable_any_observable": 1,
+    "verdict": "artifact changes and rate changes are different questions: 3 of 5 substitutions change an artifact, but only 2 of 4 comparable rate comparisons separate (per-logical-bit scale; 1 separate on the any-observable scale)",
+    "interpretation": "an artifact-level substitution is not automatically a rate-level substitution. The noise coordinate changes both, because it is baked into the circuit. The decoder substitution changes no artifact and no rate, because the decoder's task is unchanged. The extractor substitution is scale-dependent: it changes the circuit and moves the per-logical-bit rate (the two extraction schedules distribute the same physical errors differently across the 12 observables), while the any-observable failure rate is unchanged. A study that substitutes a decoder and reports 'no significant difference' is reporting a real property of the substitution, not a null result about the software."
+  }
+}

@@ -1,0 +1,2354 @@
+{
+  "metadata": {
+    "description": "declarative checking vs real QEC re-computation practices (Gap 6), de-circularised",
+    "date": "2026-10-12",
+    "steps": 12,
+    "shots": 64,
+    "sampler_seed": 7,
+    "num_rounds": 2,
+    "baseline_spec": {
+      "code": "BB",
+      "extractor": "zxcoloration",
+      "arch": "transversal",
+      "noise": "SD6",
+      "decoder": "BP-OSD"
+    },
+    "noise_cycle": [
+      "SI1000",
+      "SD6-0.1x",
+      "SD6"
+    ],
+    "ground_truth_wall_s": 1.83,
+    "pythonhashseed": "0 via main() self re-exec (QUITS circuit text is hash-seed dependent; metrics are not)",
+    "calibration_seconds_per_build": {
+      "code": 0.015,
+      "noise": 0.0,
+      "extractor": 0.1213,
+      "decoder": 0.0944,
+      "arch": 0.0001,
+      "shots": 64
+    },
+    "read_sets_used": {
+      "code": [
+        "code"
+      ],
+      "extractor": [
+        "code",
+        "extractor",
+        "noise"
+      ],
+      "noise": [
+        "noise"
+      ],
+      "decoder": [
+        "decoder"
+      ],
+      "arch": [
+        "arch"
+      ],
+      "source": "semantics.READ_SETS_FROM_SOURCE (experiments/extract_read_sets.py; extractor->noise is H3)"
+    },
+    "assembly_model_sources": {
+      "source_faithful": {
+        "baseline": true,
+        "builder": "semantics.make_source_faithful_assembly()",
+        "read_sets": "auto-extracted from the pinned QUITS tree by experiments/extract_read_sets.py (READ_SETS_FROM_SOURCE)",
+        "edges": "auto-derived: ARTIFACT_READS_FROM_SOURCE minus self-loops (ASSEMBLY_EDGES_FROM_SOURCE): extractor <- code, arch <- code, decoder <- (code, extractor)",
+        "faithfulness": "faithful by construction (AST-extracted), cross-validated against the dynamic measurements in experiments/dynamic_impact.json",
+        "note": "the published baseline since 2026-10-09 (decisions 2 and 4)",
+        "_baseline_dimensions": [
+          "code",
+          "extractor",
+          "arch",
+          "noise",
+          "decoder"
+        ]
+      },
+      "_baseline": "source_faithful"
+    }
+  },
+  "methodology": {
+    "anti_circularity": "The previous version of this experiment defined the checker's prediction as 'recompute everything that could be affected' and reported 0 misses by construction.  Here ground truth (byte-level artifact fingerprints per step) is measured independently on the pinned QUITS tree; each strategy's rebuild set is predicted from declared information only \u2014 for the checker, the declared read sets R(c) and the artifact-DAG edges via semantics.coordinate_impact \u2014 and scored against ground truth only afterwards.  predict_checker/predict_config_diff/predict_logbook/predict_declarative_naive/predict_declarative_omniscient take specs (plus the logged intent), never the fingerprint table; this is enforced by their signatures and locked by experiments/test_practice_comparison.py.  The omniscient declarative variant uses the same declared-information channel as the checker (the source-faithful read sets), never the measured fingerprints \u2014 it models a user whose declarations happen to be perfect, not a peek at the answer.",
+    "declarative_vs_config_diff": "config_diff and declarative_naive are NOT the same practice. config_diff has no declarations at all: it diffs the spec file and rebuilds the artifacts of whatever dimension changed, so (i) it cannot attach different dependencies to different artifacts of one component and (ii) it knows nothing about artifact-file wiring, missing e.g. the decoder's consumption of the circuit.  declarative_naive declares per-artifact dependencies and the pipeline-visible file edges, and make's cascade closes exactly those pipeline-level misses.  What no declaration at the pipeline interface can express is a coordinate read hidden INSIDE a component call \u2014 extractor -> noise (H3) enters build_circuit as a parameter value, not as a file, so the file DAG has no edge for it and every declarative-build user, however honest, keeps the extractor's circuit/DEM/predictions stale on noise-only steps.  declarative_omniscient is the upper bound in which the declared coordinate sets are the true ones: it reaches the checker's prediction, showing the checker's information content equals perfect declarations.",
+    "declarative_naive_declaration_sets": {
+      "coordinate_decls": {
+        "code_matrices": [
+          "code"
+        ],
+        "noise_model": [
+          "noise"
+        ],
+        "stim_circuit": [
+          "extractor"
+        ],
+        "detector_error_model": [
+          "extractor"
+        ],
+        "decoder_predictions": [
+          "decoder"
+        ],
+        "layout_positions": [
+          "arch"
+        ]
+      },
+      "file_edges": {
+        "code": [],
+        "noise": [],
+        "extractor": [
+          "code"
+        ],
+        "arch": [
+          "code"
+        ],
+        "decoder": [
+          "code",
+          "extractor"
+        ]
+      },
+      "omitted_hidden_read": "extractor -> noise (H3): inside build_circuit, not a pipeline file"
+    },
+    "artifacts": [
+      "code_matrices",
+      "noise_model",
+      "stim_circuit",
+      "detector_error_model",
+      "decoder_predictions",
+      "layout_positions"
+    ],
+    "component_artifacts": {
+      "code": [
+        "code_matrices"
+      ],
+      "noise": [
+        "noise_model"
+      ],
+      "extractor": [
+        "stim_circuit",
+        "detector_error_model"
+      ],
+      "decoder": [
+        "decoder_predictions"
+      ],
+      "arch": [
+        "layout_positions"
+      ]
+    },
+    "metrics": {
+      "missed": "artifact changed by ground truth but not rebuilt (the dangerous case: stale artifact in use)",
+      "over_rebuilds": "artifact rebuilt but byte-identical (wasted compute, not incorrect)",
+      "builds": "total artifact rebuilds (cost proxy)",
+      "wall_clock_est_s": "builds x calibration seconds per build kind"
+    },
+    "strategies": {
+      "full_rerun": "rebuild every artifact at every step (cost baseline)",
+      "config_diff": "'git diff the config': rebuild only artifacts of dimensions whose declared spec value changed; runtime reads invisible; no per-artifact declarations at all (pure spec-file diff)",
+      "declarative_naive": "make/snakemake practice, honest user: per-artifact declarations binding each artifact to its nominal component coordinate + pipeline-visible artifact-file edges (ASSEMBLY_EDGES_FROM_SOURCE) + make-style cascade; the runtime read extractor->noise (H3) happens inside build_circuit, has no file edge, and is therefore un-declarable",
+      "declarative_omniscient": "same declaration mechanism, but declared coordinate sets are the true impact closure (extractor->noise included): the upper bound of what any declarative-build user can reach",
+      "logbook": "manual lab notebook: rebuild only the intent dimension's artifacts; all cross-dimension staleness missed",
+      "checker": "our tool: declared read sets R(c) + artifact-DAG cone (coordinate_impact on the source-faithful assembly); prediction uses no ground truth"
+    },
+    "reproducibility": "Ground truth is byte-level, so every step must decode reproducibly.  The SD6-10x noise setting is excluded from the log because at that saturated operating point both QUITS decoders give different outputs on identical inputs across calls (unseeded randomness inside ldpc's OSD/LSD tie-breaking); SD6 / SI1000 / SD6-0.1x are verified deterministic for both decoders on every code family used.",
+    "expected_outcome": "checker misses 0 on the QUITS model because R(extractor) already contains noise (H3); config_diff, logbook and declarative_naive miss the extractor's circuit/DEM/predictions on every noise-only step \u2014 the measured blind spot of both the git-diff practice and (identically, on those steps) the honest declarative-build practice, since the extractor->noise read is not declarable at the file interface.  declarative_naive still closes every miss caused by pipeline-visible coupling (its file edges catch the decoder's consumption of the circuit and the layout's consumption of the code), so it strictly improves on config_diff on the extractor-swap and code-port steps while paying almost nothing in over-rebuilds.  declarative_omniscient matches the checker's prediction: perfect declarations = the checker's information content."
+  },
+  "sequence": [
+    {
+      "step": 0,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "intent": null,
+      "changed_dimensions": [],
+      "note": "baseline run"
+    },
+    {
+      "step": 1,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SI1000",
+        "decoder": "BP-OSD"
+      },
+      "intent": "noise",
+      "changed_dimensions": [
+        "noise"
+      ],
+      "note": "noise model sweep"
+    },
+    {
+      "step": 2,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6-0.1x",
+        "decoder": "BP-OSD"
+      },
+      "intent": "noise",
+      "changed_dimensions": [
+        "noise"
+      ],
+      "note": "noise model sweep"
+    },
+    {
+      "step": 3,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "intent": "noise",
+      "changed_dimensions": [
+        "noise"
+      ],
+      "note": "noise model sweep"
+    },
+    {
+      "step": 4,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SI1000",
+        "decoder": "BP-OSD"
+      },
+      "intent": "noise",
+      "changed_dimensions": [
+        "noise"
+      ],
+      "note": "noise model sweep"
+    },
+    {
+      "step": 5,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "intent": "decoder",
+      "changed_dimensions": [
+        "decoder"
+      ],
+      "note": "decoder swap"
+    },
+    {
+      "step": 6,
+      "spec": {
+        "code": "BB",
+        "extractor": "custom",
+        "arch": "transversal",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "intent": "extractor",
+      "changed_dimensions": [
+        "extractor"
+      ],
+      "note": "extraction schedule swap"
+    },
+    {
+      "step": 7,
+      "spec": {
+        "code": "BB",
+        "extractor": "custom",
+        "arch": "transversal",
+        "noise": "SD6-0.1x",
+        "decoder": "BP-LSD"
+      },
+      "intent": "noise",
+      "changed_dimensions": [
+        "noise"
+      ],
+      "note": "noise model sweep"
+    },
+    {
+      "step": 8,
+      "spec": {
+        "code": "BB",
+        "extractor": "custom",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-LSD"
+      },
+      "intent": "noise",
+      "changed_dimensions": [
+        "noise"
+      ],
+      "note": "noise model sweep"
+    },
+    {
+      "step": 9,
+      "spec": {
+        "code": "HGP",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-LSD"
+      },
+      "intent": "code",
+      "changed_dimensions": [
+        "code",
+        "extractor"
+      ],
+      "note": "code family change; extractor reset to zxcoloration (H1: custom is not in HgpCode.supported_strategies)"
+    },
+    {
+      "step": 10,
+      "spec": {
+        "code": "HGP",
+        "extractor": "zxcoloration",
+        "arch": "toric",
+        "noise": "SD6",
+        "decoder": "BP-LSD"
+      },
+      "intent": "arch",
+      "changed_dimensions": [
+        "arch"
+      ],
+      "note": "architecture swap (QUITS build does not route arch into the circuit products -- expected to change only the layout artifact)"
+    },
+    {
+      "step": 11,
+      "spec": {
+        "code": "HGP",
+        "extractor": "zxcoloration",
+        "arch": "toric",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "intent": "noise",
+      "changed_dimensions": [
+        "noise"
+      ],
+      "note": "noise model sweep"
+    }
+  ],
+  "ground_truth": [
+    {
+      "step": 0,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "changed": {
+        "code_matrices": true,
+        "noise_model": true,
+        "stim_circuit": true,
+        "detector_error_model": true,
+        "decoder_predictions": true,
+        "layout_positions": true
+      },
+      "fingerprints": {
+        "code_matrices": "a96ffde5947253e7",
+        "noise_model": "12ac9c9f8fb6bfcd",
+        "stim_circuit": "1c97770338298ecc",
+        "detector_error_model": "c30481d1c3f51eba",
+        "decoder_predictions": "e72b5b0bff8a4a8c",
+        "layout_positions": "7eea8f35f6274366"
+      }
+    },
+    {
+      "step": 1,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SI1000",
+        "decoder": "BP-OSD"
+      },
+      "changed": {
+        "code_matrices": false,
+        "noise_model": true,
+        "stim_circuit": true,
+        "detector_error_model": true,
+        "decoder_predictions": true,
+        "layout_positions": false
+      },
+      "fingerprints": {
+        "code_matrices": "a96ffde5947253e7",
+        "noise_model": "c01dce058c3df913",
+        "stim_circuit": "d5e28d9ebee631eb",
+        "detector_error_model": "47746c3f813b39f8",
+        "decoder_predictions": "2348d5e8092dbf06",
+        "layout_positions": "7eea8f35f6274366"
+      }
+    },
+    {
+      "step": 2,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6-0.1x",
+        "decoder": "BP-OSD"
+      },
+      "changed": {
+        "code_matrices": false,
+        "noise_model": true,
+        "stim_circuit": true,
+        "detector_error_model": true,
+        "decoder_predictions": true,
+        "layout_positions": false
+      },
+      "fingerprints": {
+        "code_matrices": "a96ffde5947253e7",
+        "noise_model": "267ef173496bdfb5",
+        "stim_circuit": "566ecf7434ced177",
+        "detector_error_model": "63a6bdbe5aebf062",
+        "decoder_predictions": "318e3064561b1272",
+        "layout_positions": "7eea8f35f6274366"
+      }
+    },
+    {
+      "step": 3,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "changed": {
+        "code_matrices": false,
+        "noise_model": true,
+        "stim_circuit": true,
+        "detector_error_model": true,
+        "decoder_predictions": true,
+        "layout_positions": false
+      },
+      "fingerprints": {
+        "code_matrices": "a96ffde5947253e7",
+        "noise_model": "12ac9c9f8fb6bfcd",
+        "stim_circuit": "1c97770338298ecc",
+        "detector_error_model": "c30481d1c3f51eba",
+        "decoder_predictions": "e72b5b0bff8a4a8c",
+        "layout_positions": "7eea8f35f6274366"
+      }
+    },
+    {
+      "step": 4,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SI1000",
+        "decoder": "BP-OSD"
+      },
+      "changed": {
+        "code_matrices": false,
+        "noise_model": true,
+        "stim_circuit": true,
+        "detector_error_model": true,
+        "decoder_predictions": true,
+        "layout_positions": false
+      },
+      "fingerprints": {
+        "code_matrices": "a96ffde5947253e7",
+        "noise_model": "c01dce058c3df913",
+        "stim_circuit": "d5e28d9ebee631eb",
+        "detector_error_model": "47746c3f813b39f8",
+        "decoder_predictions": "2348d5e8092dbf06",
+        "layout_positions": "7eea8f35f6274366"
+      }
+    },
+    {
+      "step": 5,
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "changed": {
+        "code_matrices": false,
+        "noise_model": false,
+        "stim_circuit": false,
+        "detector_error_model": false,
+        "decoder_predictions": false,
+        "layout_positions": false
+      },
+      "fingerprints": {
+        "code_matrices": "a96ffde5947253e7",
+        "noise_model": "c01dce058c3df913",
+        "stim_circuit": "d5e28d9ebee631eb",
+        "detector_error_model": "47746c3f813b39f8",
+        "decoder_predictions": "2348d5e8092dbf06",
+        "layout_positions": "7eea8f35f6274366"
+      }
+    },
+    {
+      "step": 6,
+      "spec": {
+        "code": "BB",
+        "extractor": "custom",
+        "arch": "transversal",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "changed": {
+        "code_matrices": false,
+        "noise_model": false,
+        "stim_circuit": true,
+        "detector_error_model": true,
+        "decoder_predictions": true,
+        "layout_positions": false
+      },
+      "fingerprints": {
+        "code_matrices": "a96ffde5947253e7",
+        "noise_model": "c01dce058c3df913",
+        "stim_circuit": "87ff55c2ccaf29a6",
+        "detector_error_model": "5fdb88b66453fe05",
+        "decoder_predictions": "7add2bfae6d9a111",
+        "layout_positions": "7eea8f35f6274366"
+      }
+    },
+    {
+      "step": 7,
+      "spec": {
+        "code": "BB",
+        "extractor": "custom",
+        "arch": "transversal",
+        "noise": "SD6-0.1x",
+        "decoder": "BP-LSD"
+      },
+      "changed": {
+        "code_matrices": false,
+        "noise_model": true,
+        "stim_circuit": true,
+        "detector_error_model": true,
+        "decoder_predictions": true,
+        "layout_positions": false
+      },
+      "fingerprints": {
+        "code_matrices": "a96ffde5947253e7",
+        "noise_model": "267ef173496bdfb5",
+        "stim_circuit": "ebe6bd74e00d2aad",
+        "detector_error_model": "f5abbbaa3681284c",
+        "decoder_predictions": "d84beac814410765",
+        "layout_positions": "7eea8f35f6274366"
+      }
+    },
+    {
+      "step": 8,
+      "spec": {
+        "code": "BB",
+        "extractor": "custom",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-LSD"
+      },
+      "changed": {
+        "code_matrices": false,
+        "noise_model": true,
+        "stim_circuit": true,
+        "detector_error_model": true,
+        "decoder_predictions": true,
+        "layout_positions": false
+      },
+      "fingerprints": {
+        "code_matrices": "a96ffde5947253e7",
+        "noise_model": "12ac9c9f8fb6bfcd",
+        "stim_circuit": "56206dd6e8127a04",
+        "detector_error_model": "44ced8a9ccdb0ef0",
+        "decoder_predictions": "2a2eb6f42f22683a",
+        "layout_positions": "7eea8f35f6274366"
+      }
+    },
+    {
+      "step": 9,
+      "spec": {
+        "code": "HGP",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-LSD"
+      },
+      "changed": {
+        "code_matrices": true,
+        "noise_model": false,
+        "stim_circuit": true,
+        "detector_error_model": true,
+        "decoder_predictions": true,
+        "layout_positions": true
+      },
+      "fingerprints": {
+        "code_matrices": "477e13b89c2e7845",
+        "noise_model": "12ac9c9f8fb6bfcd",
+        "stim_circuit": "00cd3b32658410e9",
+        "detector_error_model": "7351db9da4066674",
+        "decoder_predictions": "5341e6b2646979a7",
+        "layout_positions": "e61ab9fdbe7aea30"
+      }
+    },
+    {
+      "step": 10,
+      "spec": {
+        "code": "HGP",
+        "extractor": "zxcoloration",
+        "arch": "toric",
+        "noise": "SD6",
+        "decoder": "BP-LSD"
+      },
+      "changed": {
+        "code_matrices": false,
+        "noise_model": false,
+        "stim_circuit": false,
+        "detector_error_model": false,
+        "decoder_predictions": false,
+        "layout_positions": true
+      },
+      "fingerprints": {
+        "code_matrices": "477e13b89c2e7845",
+        "noise_model": "12ac9c9f8fb6bfcd",
+        "stim_circuit": "00cd3b32658410e9",
+        "detector_error_model": "7351db9da4066674",
+        "decoder_predictions": "5341e6b2646979a7",
+        "layout_positions": "a0219c6589330573"
+      }
+    },
+    {
+      "step": 11,
+      "spec": {
+        "code": "HGP",
+        "extractor": "zxcoloration",
+        "arch": "toric",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "changed": {
+        "code_matrices": false,
+        "noise_model": true,
+        "stim_circuit": true,
+        "detector_error_model": true,
+        "decoder_predictions": true,
+        "layout_positions": false
+      },
+      "fingerprints": {
+        "code_matrices": "477e13b89c2e7845",
+        "noise_model": "c01dce058c3df913",
+        "stim_circuit": "c0c335d7428e4fda",
+        "detector_error_model": "dadd7b6c0c82c122",
+        "decoder_predictions": "71538c468dd35402",
+        "layout_positions": "a0219c6589330573"
+      }
+    }
+  ],
+  "strategies": {
+    "full_rerun": {
+      "strategy": "full_rerun",
+      "totals": {
+        "missed": 0,
+        "over_rebuilds": 29,
+        "builds": 72,
+        "wall_clock_est_s": 2.77
+      },
+      "per_step": [
+        {
+          "step": 0,
+          "intent": null,
+          "changed_dimensions": [],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 1,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "code_matrices",
+            "layout_positions"
+          ],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 2,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "code_matrices",
+            "layout_positions"
+          ],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 3,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "code_matrices",
+            "layout_positions"
+          ],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 4,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "code_matrices",
+            "layout_positions"
+          ],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 5,
+          "intent": "decoder",
+          "changed_dimensions": [
+            "decoder"
+          ],
+          "changed_artifacts": [],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 6,
+          "intent": "extractor",
+          "changed_dimensions": [
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "code_matrices",
+            "layout_positions",
+            "noise_model"
+          ],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 7,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "code_matrices",
+            "layout_positions"
+          ],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 8,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "code_matrices",
+            "layout_positions"
+          ],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 9,
+          "intent": "code",
+          "changed_dimensions": [
+            "code",
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "noise_model"
+          ],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 10,
+          "intent": "arch",
+          "changed_dimensions": [
+            "arch"
+          ],
+          "changed_artifacts": [
+            "layout_positions"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 11,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "code_matrices",
+            "layout_positions"
+          ],
+          "wall_clock_est_s": 0.2308
+        }
+      ],
+      "miss_rate": 0.0
+    },
+    "config_diff": {
+      "strategy": "config_diff",
+      "totals": {
+        "missed": 24,
+        "over_rebuilds": 1,
+        "builds": 20,
+        "wall_clock_est_s": 0.583
+      },
+      "per_step": [
+        {
+          "step": 0,
+          "intent": null,
+          "changed_dimensions": [],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 1,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 2,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 3,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 4,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 5,
+          "intent": "decoder",
+          "changed_dimensions": [
+            "decoder"
+          ],
+          "changed_artifacts": [],
+          "rebuilt": [
+            "decoder_predictions"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "decoder_predictions"
+          ],
+          "wall_clock_est_s": 0.0944
+        },
+        {
+          "step": 6,
+          "intent": "extractor",
+          "changed_dimensions": [
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "missed": [
+            "decoder_predictions"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.1213
+        },
+        {
+          "step": 7,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 8,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 9,
+          "intent": "code",
+          "changed_dimensions": [
+            "code",
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "layout_positions"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.1363
+        },
+        {
+          "step": 10,
+          "intent": "arch",
+          "changed_dimensions": [
+            "arch"
+          ],
+          "changed_artifacts": [
+            "layout_positions"
+          ],
+          "rebuilt": [
+            "layout_positions"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0001
+        },
+        {
+          "step": 11,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        }
+      ],
+      "miss_rate": 0.5581
+    },
+    "declarative_naive": {
+      "strategy": "declarative_naive",
+      "totals": {
+        "missed": 21,
+        "over_rebuilds": 1,
+        "builds": 23,
+        "wall_clock_est_s": 0.772
+      },
+      "per_step": [
+        {
+          "step": 0,
+          "intent": null,
+          "changed_dimensions": [],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 1,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 2,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 3,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 4,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 5,
+          "intent": "decoder",
+          "changed_dimensions": [
+            "decoder"
+          ],
+          "changed_artifacts": [],
+          "rebuilt": [
+            "decoder_predictions"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "decoder_predictions"
+          ],
+          "wall_clock_est_s": 0.0944
+        },
+        {
+          "step": 6,
+          "intent": "extractor",
+          "changed_dimensions": [
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 7,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 8,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 9,
+          "intent": "code",
+          "changed_dimensions": [
+            "code",
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 10,
+          "intent": "arch",
+          "changed_dimensions": [
+            "arch"
+          ],
+          "changed_artifacts": [
+            "layout_positions"
+          ],
+          "rebuilt": [
+            "layout_positions"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0001
+        },
+        {
+          "step": 11,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        }
+      ],
+      "miss_rate": 0.4884
+    },
+    "declarative_omniscient": {
+      "strategy": "declarative_omniscient",
+      "totals": {
+        "missed": 0,
+        "over_rebuilds": 1,
+        "builds": 44,
+        "wall_clock_est_s": 2.282
+      },
+      "per_step": [
+        {
+          "step": 0,
+          "intent": null,
+          "changed_dimensions": [],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 1,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 2,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 3,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 4,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 5,
+          "intent": "decoder",
+          "changed_dimensions": [
+            "decoder"
+          ],
+          "changed_artifacts": [],
+          "rebuilt": [
+            "decoder_predictions"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "decoder_predictions"
+          ],
+          "wall_clock_est_s": 0.0944
+        },
+        {
+          "step": 6,
+          "intent": "extractor",
+          "changed_dimensions": [
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 7,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 8,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 9,
+          "intent": "code",
+          "changed_dimensions": [
+            "code",
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 10,
+          "intent": "arch",
+          "changed_dimensions": [
+            "arch"
+          ],
+          "changed_artifacts": [
+            "layout_positions"
+          ],
+          "rebuilt": [
+            "layout_positions"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0001
+        },
+        {
+          "step": 11,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        }
+      ],
+      "miss_rate": 0.0
+    },
+    "logbook": {
+      "strategy": "logbook",
+      "totals": {
+        "missed": 26,
+        "over_rebuilds": 1,
+        "builds": 18,
+        "wall_clock_est_s": 0.462
+      },
+      "per_step": [
+        {
+          "step": 0,
+          "intent": null,
+          "changed_dimensions": [],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 1,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 2,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 3,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 4,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 5,
+          "intent": "decoder",
+          "changed_dimensions": [
+            "decoder"
+          ],
+          "changed_artifacts": [],
+          "rebuilt": [
+            "decoder_predictions"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "decoder_predictions"
+          ],
+          "wall_clock_est_s": 0.0944
+        },
+        {
+          "step": 6,
+          "intent": "extractor",
+          "changed_dimensions": [
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "missed": [
+            "decoder_predictions"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.1213
+        },
+        {
+          "step": 7,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 8,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        },
+        {
+          "step": 9,
+          "intent": "code",
+          "changed_dimensions": [
+            "code",
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.015
+        },
+        {
+          "step": 10,
+          "intent": "arch",
+          "changed_dimensions": [
+            "arch"
+          ],
+          "changed_artifacts": [
+            "layout_positions"
+          ],
+          "rebuilt": [
+            "layout_positions"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0001
+        },
+        {
+          "step": 11,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "noise_model"
+          ],
+          "missed": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0
+        }
+      ],
+      "miss_rate": 0.6047
+    },
+    "checker": {
+      "strategy": "checker",
+      "totals": {
+        "missed": 0,
+        "over_rebuilds": 1,
+        "builds": 44,
+        "wall_clock_est_s": 2.282
+      },
+      "per_step": [
+        {
+          "step": 0,
+          "intent": null,
+          "changed_dimensions": [],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 1,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 2,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 3,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 4,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 5,
+          "intent": "decoder",
+          "changed_dimensions": [
+            "decoder"
+          ],
+          "changed_artifacts": [],
+          "rebuilt": [
+            "decoder_predictions"
+          ],
+          "missed": [],
+          "over_rebuilds": [
+            "decoder_predictions"
+          ],
+          "wall_clock_est_s": 0.0944
+        },
+        {
+          "step": 6,
+          "intent": "extractor",
+          "changed_dimensions": [
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 7,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 8,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        },
+        {
+          "step": 9,
+          "intent": "code",
+          "changed_dimensions": [
+            "code",
+            "extractor"
+          ],
+          "changed_artifacts": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "code_matrices",
+            "decoder_predictions",
+            "detector_error_model",
+            "layout_positions",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2308
+        },
+        {
+          "step": 10,
+          "intent": "arch",
+          "changed_dimensions": [
+            "arch"
+          ],
+          "changed_artifacts": [
+            "layout_positions"
+          ],
+          "rebuilt": [
+            "layout_positions"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.0001
+        },
+        {
+          "step": 11,
+          "intent": "noise",
+          "changed_dimensions": [
+            "noise"
+          ],
+          "changed_artifacts": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "rebuilt": [
+            "decoder_predictions",
+            "detector_error_model",
+            "noise_model",
+            "stim_circuit"
+          ],
+          "missed": [],
+          "over_rebuilds": [],
+          "wall_clock_est_s": 0.2157
+        }
+      ],
+      "miss_rate": 0.0
+    }
+  },
+  "summary": {
+    "total_changed_artifact_steps": 43,
+    "miss_rates": {
+      "full_rerun": 0.0,
+      "config_diff": 0.5581,
+      "declarative_naive": 0.4884,
+      "declarative_omniscient": 0.0,
+      "logbook": 0.6047,
+      "checker": 0.0
+    }
+  }
+}

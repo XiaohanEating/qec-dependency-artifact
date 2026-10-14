@@ -1,0 +1,127 @@
+{
+  "index": 5,
+  "domain": {
+    "code": [
+      "BB",
+      "HGP",
+      "QLP"
+    ],
+    "extractor": [
+      "zxcoloration"
+    ],
+    "arch": [
+      "free"
+    ],
+    "noise": [
+      "SD6",
+      "SI1000"
+    ],
+    "decoder": [
+      "BP-OSD"
+    ]
+  },
+  "specifications": 6,
+  "producer_reports": {
+    "code": {
+      "declared_reads": [
+        "code"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure"
+    },
+    "extractor": {
+      "declared_reads": [
+        "code",
+        "extractor",
+        "noise"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure"
+    },
+    "arch": {
+      "declared_reads": [
+        "arch"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure"
+    },
+    "noise": {
+      "declared_reads": [
+        "noise"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure"
+    },
+    "decoder": {
+      "declared_reads": [
+        "decoder"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure"
+    }
+  },
+  "omitted_noise_control": {
+    "declared_reads": [
+      "code",
+      "extractor"
+    ],
+    "observed_extensions": [
+      "noise"
+    ],
+    "observed_reads_subset_declared": false,
+    "verdict": "impure (hidden reads)"
+  },
+  "source_s": 0.9654485999926692,
+  "generation_s": 6.027844299998833,
+  "checking_s": 0.013383199999225326,
+  "staged_total_s": 7.006676099990727,
+  "repeated_predictions_equal": {
+    "BB/zxcoloration/free/SD6/BP-OSD": true,
+    "BB/zxcoloration/free/SI1000/BP-OSD": true,
+    "HGP/zxcoloration/free/SD6/BP-OSD": true,
+    "HGP/zxcoloration/free/SI1000/BP-OSD": true,
+    "QLP/zxcoloration/free/SD6/BP-OSD": true,
+    "QLP/zxcoloration/free/SI1000/BP-OSD": true
+  },
+  "native_path_control": {
+    "shots": 16,
+    "seed": 7,
+    "official_ler": 0.07291666666666667,
+    "injected_ler": 0.07291666666666667,
+    "bitwise_identical": true,
+    "differing_entries": 0,
+    "total_entries": 192
+  },
+  "manual_inputs": {
+    "producer_packages": 6,
+    "entry_search_patterns": 16,
+    "cross_package_exceptions": 1,
+    "coordinate_carriers": 3,
+    "artifact_aliases": 14,
+    "generic_name_exclusions": 1,
+    "equality_code_lines": 14,
+    "historical_person_hours": null
+  },
+  "evidence_sha256": {
+    "evidence-05\\00.dem": "d100edde09a641cf7c41f8eafbdf46f3d98d22ad744b0822385a5c2bad3558b5",
+    "evidence-05\\00.stim": "10d185f55190af346c38966a6fb2c638a8c2e2b3fcd56130f3c3d1d2a5ee019b",
+    "evidence-05\\01.dem": "e59becf3e6a225329393c973a8d3e52599f29d96ba98953cbd09678a9869e030",
+    "evidence-05\\01.stim": "da5f3952b7f2d95916729a6c660504e2bed0a1746e9e8ffa537e9bc301a644cf",
+    "evidence-05\\02.dem": "b77be432d97d33bb70aca640a814a031ed77dc8a69caf424c5b4e1e5840728e9",
+    "evidence-05\\02.stim": "a4dd940b1a0f64e2a688dca777f601753256706ac6764fd783b79ef056e66d39",
+    "evidence-05\\03.dem": "8ba6fa6cea42667077be7f159e478215a286efc00f4e293c7c81c99d1675454d",
+    "evidence-05\\03.stim": "b770c79657312e8c681ff7c2f7145ec81566e44fccf2a084f5352b3bc8ab58b7",
+    "evidence-05\\04.dem": "e3b13e1ae4ad2d7dd104a2c894ed9c7b92e7eda6cbb3426fbcd9e44e72c5545a",
+    "evidence-05\\04.stim": "359d2083385738388492361ad8261b2e67c7c471ca30a8f5cc64c17d7ae1543a",
+    "evidence-05\\05.dem": "7dbcf3c4264d1a57e63e448795ec75de19aacd1b2faab5dc91e03b60e3b63b12",
+    "evidence-05\\05.stim": "2384e094b2e35a14225631c459fa9c5293c1a57768a909a7a9d747d3790032ff",
+    "evidence-05\\arrays.npz": "fd708f7c56abb14e8a37a9f8995e90083d366211d941ee86f7ca8b5121a71561",
+    "evidence-05\\source-recovery.json": "3ff7b02622a837597fe900eb2f752448d16ef75ad4efca31812db61a2ddf62d4"
+  },
+  "process_wall_s": 16.58287339999515
+}

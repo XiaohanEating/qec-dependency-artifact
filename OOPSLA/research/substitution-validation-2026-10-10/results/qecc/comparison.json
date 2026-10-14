@@ -1,0 +1,1528 @@
+{
+  "environment": {
+    "python": "3.11.17 (main, Oct  9 2026, 15:19:27) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "environment/python",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "hash_seed": "0",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "stim": "1.16.0",
+      "ldpc": "2.4.1",
+      "qldpc": "0.4.1",
+      "quits": "1.2.0",
+      "galois": "0.4.11",
+      "pytest": "9.1.1"
+    }
+  },
+  "source": "third_party/qecc_routing-4ef18121c39492414b85ff36b3a61c83f9ebf95f/src_py/bivariate-bicycle/general.py",
+  "source_sha256": "ae19021db9e49d82127dee531b626fe6f80507a48f198fa87c9f915b4d1ac1db",
+  "loaded_definition_lines": 440,
+  "driver_excluded": "lr_time = 5 and following million-shot loop",
+  "rounds": 5,
+  "seed": 2026,
+  "noise_change": {
+    "idle_error": [
+      0.0002,
+      0.0004
+    ],
+    "full_circuit_changed": true,
+    "ideal_circuit_equal": true,
+    "dem_changed": true,
+    "schema_equal": true,
+    "observable_definition_equal": true
+  },
+  "routing_change": {
+    "lr_time": [
+      5,
+      4
+    ],
+    "circuit_changed": true,
+    "schema_before": {
+      "detectors": 225,
+      "observables": 8,
+      "measurements": 628
+    },
+    "schema_after": {
+      "detectors": 225,
+      "observables": 8,
+      "measurements": 628
+    }
+  },
+  "baselines": [
+    {
+      "mode": "graph",
+      "recomputed": [
+        "measurement_schema",
+        "schema_contract",
+        "ideal_behavior",
+        "observable_definition"
+      ],
+      "producer_runs": 3,
+      "contract_runs": 1,
+      "certificate_comparisons": 0,
+      "actions": [
+        {
+          "node": "measurement_schema",
+          "contract": false,
+          "output_equal": true,
+          "reads": [
+            [
+              "circuit",
+              [
+                "schema"
+              ]
+            ]
+          ]
+        },
+        {
+          "node": "schema_contract",
+          "contract": true,
+          "output_equal": true,
+          "reads": [
+            [
+              "measurement_schema",
+              [
+                "detectors"
+              ]
+            ]
+          ]
+        },
+        {
+          "node": "ideal_behavior",
+          "contract": false,
+          "output_equal": true,
+          "reads": [
+            [
+              "circuit",
+              [
+                "noise_free"
+              ]
+            ]
+          ]
+        },
+        {
+          "node": "observable_definition",
+          "contract": false,
+          "output_equal": true,
+          "reads": [
+            [
+              "circuit",
+              [
+                "observables"
+              ]
+            ]
+          ]
+        }
+      ],
+      "equals_full_recompute": true
+    },
+    {
+      "mode": "whole",
+      "recomputed": [
+        "measurement_schema",
+        "ideal_behavior",
+        "observable_definition"
+      ],
+      "producer_runs": 3,
+      "contract_runs": 0,
+      "certificate_comparisons": 4,
+      "actions": [
+        {
+          "node": "measurement_schema",
+          "contract": false,
+          "output_equal": true,
+          "reads": [
+            [
+              "circuit",
+              [
+                "schema"
+              ]
+            ]
+          ]
+        },
+        {
+          "node": "ideal_behavior",
+          "contract": false,
+          "output_equal": true,
+          "reads": [
+            [
+              "circuit",
+              [
+                "noise_free"
+              ]
+            ]
+          ]
+        },
+        {
+          "node": "observable_definition",
+          "contract": false,
+          "output_equal": true,
+          "reads": [
+            [
+              "circuit",
+              [
+                "observables"
+              ]
+            ]
+          ]
+        }
+      ],
+      "equals_full_recompute": true
+    },
+    {
+      "mode": "fields",
+      "recomputed": [],
+      "producer_runs": 0,
+      "contract_runs": 0,
+      "certificate_comparisons": 4,
+      "actions": [],
+      "equals_full_recompute": true
+    },
+    {
+      "mode": "contracts",
+      "recomputed": [],
+      "producer_runs": 0,
+      "contract_runs": 0,
+      "certificate_comparisons": 4,
+      "actions": [],
+      "equals_full_recompute": true
+    },
+    {
+      "mode": "proposed",
+      "recomputed": [],
+      "producer_runs": 0,
+      "contract_runs": 0,
+      "certificate_comparisons": 4,
+      "actions": [],
+      "equals_full_recompute": true
+    }
+  ],
+  "actual_source_reads": [
+    {
+      "name": "code",
+      "line": 47,
+      "executed_line": false,
+      "text": "ell = code[0]"
+    },
+    {
+      "name": "code",
+      "line": 48,
+      "executed_line": false,
+      "text": "m = code[1]"
+    },
+    {
+      "name": "qbts",
+      "line": 153,
+      "executed_line": true,
+      "text": "p, q = qbts"
+    },
+    {
+      "name": "code",
+      "line": 157,
+      "executed_line": false,
+      "text": "emb_m, emb_ell, A_ind, B_ind = code"
+    },
+    {
+      "name": "ell",
+      "line": 50,
+      "executed_line": false,
+      "text": "x = np.kron(cyclic_shift_matrix(ell), np.eye(m))"
+    },
+    {
+      "name": "m",
+      "line": 50,
+      "executed_line": false,
+      "text": "x = np.kron(cyclic_shift_matrix(ell), np.eye(m))"
+    },
+    {
+      "name": "ell",
+      "line": 51,
+      "executed_line": false,
+      "text": "y = np.kron(np.eye(ell), cyclic_shift_matrix(m))"
+    },
+    {
+      "name": "m",
+      "line": 51,
+      "executed_line": false,
+      "text": "y = np.kron(np.eye(ell), cyclic_shift_matrix(m))"
+    },
+    {
+      "name": "code",
+      "line": 53,
+      "executed_line": false,
+      "text": "A1 = matrix_power(x, code[2])"
+    },
+    {
+      "name": "code",
+      "line": 54,
+      "executed_line": false,
+      "text": "A2 = matrix_power(y, code[3])"
+    },
+    {
+      "name": "code",
+      "line": 55,
+      "executed_line": false,
+      "text": "A3 = matrix_power(y, code[4])"
+    },
+    {
+      "name": "code",
+      "line": 58,
+      "executed_line": false,
+      "text": "B1 = matrix_power(y, code[5])"
+    },
+    {
+      "name": "code",
+      "line": 59,
+      "executed_line": false,
+      "text": "B2 = matrix_power(x, code[6])"
+    },
+    {
+      "name": "code",
+      "line": 60,
+      "executed_line": false,
+      "text": "B3 = matrix_power(x, code[7])"
+    },
+    {
+      "name": "Hz",
+      "line": 67,
+      "executed_line": false,
+      "text": "arr = GF(Hz.T)"
+    },
+    {
+      "name": "Hx",
+      "line": 141,
+      "executed_line": true,
+      "text": "Gx, col_Gx = par2gen(Hx)"
+    },
+    {
+      "name": "Hz",
+      "line": 142,
+      "executed_line": true,
+      "text": "Gz, col_Gz = par2gen(Hz)"
+    },
+    {
+      "name": "m",
+      "line": 228,
+      "executed_line": false,
+      "text": "for i in range(m*ell):"
+    },
+    {
+      "name": "ell",
+      "line": 228,
+      "executed_line": false,
+      "text": "for i in range(m*ell):"
+    },
+    {
+      "name": "qbts",
+      "line": 229,
+      "executed_line": false,
+      "text": "gen_qbts = qbts[np.where(Hx[i])[0]]"
+    },
+    {
+      "name": "m",
+      "line": 231,
+      "executed_line": false,
+      "text": "for i in range(m*ell):"
+    },
+    {
+      "name": "ell",
+      "line": 231,
+      "executed_line": false,
+      "text": "for i in range(m*ell):"
+    },
+    {
+      "name": "qbts",
+      "line": 232,
+      "executed_line": false,
+      "text": "gen_qbts = qbts[np.where(Hz[i])[0]]"
+    },
+    {
+      "name": "m",
+      "line": 240,
+      "executed_line": false,
+      "text": "z_check_succ_probs = np.ones(m*ell)"
+    },
+    {
+      "name": "ell",
+      "line": 240,
+      "executed_line": false,
+      "text": "z_check_succ_probs = np.ones(m*ell)"
+    },
+    {
+      "name": "m",
+      "line": 241,
+      "executed_line": false,
+      "text": "x_check_succ_probs = np.ones(m*ell)"
+    },
+    {
+      "name": "ell",
+      "line": 241,
+      "executed_line": false,
+      "text": "x_check_succ_probs = np.ones(m*ell)"
+    },
+    {
+      "name": "qbts",
+      "line": 244,
+      "executed_line": false,
+      "text": "gen_qbts = qbts[np.where(Hx[i])[0]]"
+    },
+    {
+      "name": "qbts",
+      "line": 256,
+      "executed_line": false,
+      "text": "gen_qbts = qbts[np.where(Hz[i])[0]]"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 302,
+      "executed_line": true,
+      "text": "c += measure_z_checks(sr_z_checks, 0, scale=False)"
+    },
+    {
+      "name": "lr_z_checks",
+      "line": 303,
+      "executed_line": true,
+      "text": "c += measure_z_checks(lr_z_checks, 0, scale=False)"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 304,
+      "executed_line": true,
+      "text": "c += measure_x_checks(sr_x_checks, 0, scale=False)"
+    },
+    {
+      "name": "lr_x_checks",
+      "line": 305,
+      "executed_line": true,
+      "text": "c += measure_x_checks(lr_x_checks, 0, scale=False)"
+    },
+    {
+      "name": "Hx",
+      "line": 140,
+      "executed_line": true,
+      "text": "n = Hx.shape[1]"
+    },
+    {
+      "name": "code",
+      "line": 204,
+      "executed_line": false,
+      "text": "lattice = embed_code((code[8],code[9],code[10],code[11]), 0)"
+    },
+    {
+      "name": "code",
+      "line": 204,
+      "executed_line": false,
+      "text": "lattice = embed_code((code[8],code[9],code[10],code[11]), 0)"
+    },
+    {
+      "name": "code",
+      "line": 204,
+      "executed_line": false,
+      "text": "lattice = embed_code((code[8],code[9],code[10],code[11]), 0)"
+    },
+    {
+      "name": "code",
+      "line": 204,
+      "executed_line": false,
+      "text": "lattice = embed_code((code[8],code[9],code[10],code[11]), 0)"
+    },
+    {
+      "name": "lr_x_checks",
+      "line": 248,
+      "executed_line": false,
+      "text": "lr_x_checks = np.append(lr_x_checks, i)"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 250,
+      "executed_line": false,
+      "text": "sr_x_checks = np.append(sr_x_checks, i)"
+    },
+    {
+      "name": "x_check_succ_probs",
+      "line": 253,
+      "executed_line": false,
+      "text": "x_check_succ_probs[i] *= probs[manhattan([x_check, qbt])+1]"
+    },
+    {
+      "name": "probs",
+      "line": 253,
+      "executed_line": false,
+      "text": "x_check_succ_probs[i] *= probs[manhattan([x_check, qbt])+1]"
+    },
+    {
+      "name": "lr_z_checks",
+      "line": 260,
+      "executed_line": false,
+      "text": "lr_z_checks = np.append(lr_z_checks, i)"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 262,
+      "executed_line": false,
+      "text": "sr_z_checks = np.append(sr_z_checks, i)"
+    },
+    {
+      "name": "z_check_succ_probs",
+      "line": 265,
+      "executed_line": false,
+      "text": "z_check_succ_probs[i] *= probs[manhattan([z_check, qbt])+1]"
+    },
+    {
+      "name": "probs",
+      "line": 265,
+      "executed_line": false,
+      "text": "z_check_succ_probs[i] *= probs[manhattan([z_check, qbt])+1]"
+    },
+    {
+      "name": "lr_x_checks",
+      "line": 267,
+      "executed_line": false,
+      "text": "adv = sum(np.array(x_rs)[lr_x_checks]) / sum(x_rs)"
+    },
+    {
+      "name": "qbts",
+      "line": 275,
+      "executed_line": true,
+      "text": "gen_qbts = qbts[np.where(Hx[x])[0]]"
+    },
+    {
+      "name": "qbts",
+      "line": 290,
+      "executed_line": true,
+      "text": "gen_qbts = qbts[np.where(Hz[z])[0]]"
+    },
+    {
+      "name": "lr_z_checks",
+      "line": 320,
+      "executed_line": true,
+      "text": "self.route_confirmation_z[lr_z_checks] = 0"
+    },
+    {
+      "name": "lr_x_checks",
+      "line": 322,
+      "executed_line": true,
+      "text": "self.route_confirmation_x[lr_x_checks] = 0"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 355,
+      "executed_line": true,
+      "text": "curr_sr_z_checks = sr_z_checks[self.route_confirmation_z[sr_z_checks]==1]"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 356,
+      "executed_line": true,
+      "text": "curr_sr_x_checks = sr_x_checks[self.route_confirmation_x[sr_x_checks]==1]"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 366,
+      "executed_line": true,
+      "text": "for i, z_check in enumerate(sr_z_checks):"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 371,
+      "executed_line": true,
+      "text": "for i, x_check in enumerate(sr_x_checks):"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 379,
+      "executed_line": true,
+      "text": "curr_sr_z_checks = sr_z_checks[self.route_confirmation_z[sr_z_checks]==1]"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 380,
+      "executed_line": true,
+      "text": "curr_sr_x_checks = sr_x_checks[self.route_confirmation_x[sr_x_checks]==1]"
+    },
+    {
+      "name": "lr_z_checks",
+      "line": 381,
+      "executed_line": true,
+      "text": "curr_lr_z_checks = lr_z_checks[self.route_confirmation_z[lr_z_checks]==1]"
+    },
+    {
+      "name": "lr_x_checks",
+      "line": 382,
+      "executed_line": true,
+      "text": "curr_lr_x_checks = lr_x_checks[self.route_confirmation_x[lr_x_checks]==1]"
+    },
+    {
+      "name": "all_qbts",
+      "line": 212,
+      "executed_line": false,
+      "text": "all_qbts[(i,j)] = int(lattice[i][j][1:])"
+    },
+    {
+      "name": "qbts",
+      "line": 213,
+      "executed_line": false,
+      "text": "qbts[int(lattice[i][j][1:])] = (i, j)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 220,
+      "executed_line": false,
+      "text": "all_qbts[(i,j)] = int(lattice[i][j][1:]) + 2*m*ell"
+    },
+    {
+      "name": "all_qbts",
+      "line": 272,
+      "executed_line": true,
+      "text": "c.append(\"H\", [all_qbts[x_checks[x_check]] for x_check in checks])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 273,
+      "executed_line": true,
+      "text": "c.append(\"DEPOLARIZE1\", [all_qbts[x_checks[x_check]] for x_check in checks], p/10)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 283,
+      "executed_line": true,
+      "text": "c.append(\"H\", [all_qbts[x_checks[x_check]] for x_check in checks])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 284,
+      "executed_line": true,
+      "text": "c.append(\"DEPOLARIZE1\", [all_qbts[x_checks[x_check]] for x_check in checks], p/10)"
+    },
+    {
+      "name": "m",
+      "line": 316,
+      "executed_line": true,
+      "text": "self.curr_meas_z = np.zeros(m*ell, dtype=int)"
+    },
+    {
+      "name": "ell",
+      "line": 316,
+      "executed_line": true,
+      "text": "self.curr_meas_z = np.zeros(m*ell, dtype=int)"
+    },
+    {
+      "name": "m",
+      "line": 317,
+      "executed_line": true,
+      "text": "self.curr_meas_x = np.zeros(m*ell, dtype=int)"
+    },
+    {
+      "name": "ell",
+      "line": 317,
+      "executed_line": true,
+      "text": "self.curr_meas_x = np.zeros(m*ell, dtype=int)"
+    },
+    {
+      "name": "m",
+      "line": 319,
+      "executed_line": true,
+      "text": "self.route_confirmation_z = np.ones(m*ell, dtype=int)"
+    },
+    {
+      "name": "ell",
+      "line": 319,
+      "executed_line": true,
+      "text": "self.route_confirmation_z = np.ones(m*ell, dtype=int)"
+    },
+    {
+      "name": "m",
+      "line": 321,
+      "executed_line": true,
+      "text": "self.route_confirmation_x = np.ones(m*ell, dtype=int)"
+    },
+    {
+      "name": "ell",
+      "line": 321,
+      "executed_line": true,
+      "text": "self.route_confirmation_x = np.ones(m*ell, dtype=int)"
+    },
+    {
+      "name": "m",
+      "line": 323,
+      "executed_line": true,
+      "text": "self.detector_history = np.zeros(m*ell)"
+    },
+    {
+      "name": "ell",
+      "line": 323,
+      "executed_line": true,
+      "text": "self.detector_history = np.zeros(m*ell)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 326,
+      "executed_line": true,
+      "text": "for key, value in all_qbts.items():"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 386,
+      "executed_line": true,
+      "text": "all_z_checks = np.concatenate([sr_z_checks, lr_z_checks])"
+    },
+    {
+      "name": "lr_z_checks",
+      "line": 386,
+      "executed_line": true,
+      "text": "all_z_checks = np.concatenate([sr_z_checks, lr_z_checks])"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 387,
+      "executed_line": true,
+      "text": "all_x_checks = np.concatenate([sr_x_checks, lr_x_checks])"
+    },
+    {
+      "name": "lr_x_checks",
+      "line": 387,
+      "executed_line": true,
+      "text": "all_x_checks = np.concatenate([sr_x_checks, lr_x_checks])"
+    },
+    {
+      "name": "m",
+      "line": 431,
+      "executed_line": true,
+      "text": "self.route_confirmation_z = np.ones(m*ell)"
+    },
+    {
+      "name": "ell",
+      "line": 431,
+      "executed_line": true,
+      "text": "self.route_confirmation_z = np.ones(m*ell)"
+    },
+    {
+      "name": "m",
+      "line": 432,
+      "executed_line": true,
+      "text": "self.route_confirmation_x = np.ones(m*ell)"
+    },
+    {
+      "name": "ell",
+      "line": 432,
+      "executed_line": true,
+      "text": "self.route_confirmation_x = np.ones(m*ell)"
+    },
+    {
+      "name": "Hz",
+      "line": 68,
+      "executed_line": false,
+      "text": "k = 2 * (Hz.T.shape[1] - matrix_rank(arr))"
+    },
+    {
+      "name": "ell",
+      "line": 208,
+      "executed_line": false,
+      "text": "qbts = np.array([None for i in range(2*m*ell)])"
+    },
+    {
+      "name": "m",
+      "line": 214,
+      "executed_line": false,
+      "text": "x_checks = np.array([None for i in range(m*ell)])"
+    },
+    {
+      "name": "ell",
+      "line": 214,
+      "executed_line": false,
+      "text": "x_checks = np.array([None for i in range(m*ell)])"
+    },
+    {
+      "name": "m",
+      "line": 215,
+      "executed_line": false,
+      "text": "z_checks = np.array([None for i in range(m*ell)])"
+    },
+    {
+      "name": "ell",
+      "line": 215,
+      "executed_line": false,
+      "text": "z_checks = np.array([None for i in range(m*ell)])"
+    },
+    {
+      "name": "ell",
+      "line": 220,
+      "executed_line": false,
+      "text": "all_qbts[(i,j)] = int(lattice[i][j][1:]) + 2*m*ell"
+    },
+    {
+      "name": "all_qbts",
+      "line": 223,
+      "executed_line": false,
+      "text": "all_qbts[(i,j)] = int(lattice[i][j][1:]) + 2*m*ell"
+    },
+    {
+      "name": "Hx",
+      "line": 229,
+      "executed_line": false,
+      "text": "gen_qbts = qbts[np.where(Hx[i])[0]]"
+    },
+    {
+      "name": "Hz",
+      "line": 232,
+      "executed_line": false,
+      "text": "gen_qbts = qbts[np.where(Hz[i])[0]]"
+    },
+    {
+      "name": "Hx",
+      "line": 244,
+      "executed_line": false,
+      "text": "gen_qbts = qbts[np.where(Hx[i])[0]]"
+    },
+    {
+      "name": "Hz",
+      "line": 256,
+      "executed_line": false,
+      "text": "gen_qbts = qbts[np.where(Hz[i])[0]]"
+    },
+    {
+      "name": "all_qbts",
+      "line": 277,
+      "executed_line": true,
+      "text": "path_qbts = [all_qbts[x_checks[x]], all_qbts[qbt]]"
+    },
+    {
+      "name": "all_qbts",
+      "line": 277,
+      "executed_line": true,
+      "text": "path_qbts = [all_qbts[x_checks[x]], all_qbts[qbt]]"
+    },
+    {
+      "name": "all_qbts",
+      "line": 292,
+      "executed_line": true,
+      "text": "path_qbts = [all_qbts[qbt], all_qbts[z_checks[z]]]"
+    },
+    {
+      "name": "all_qbts",
+      "line": 292,
+      "executed_line": true,
+      "text": "path_qbts = [all_qbts[qbt], all_qbts[z_checks[z]]]"
+    },
+    {
+      "name": "m",
+      "line": 314,
+      "executed_line": true,
+      "text": "self.prev_meas_z = np.arange(1, m*ell+1, dtype=int)"
+    },
+    {
+      "name": "ell",
+      "line": 314,
+      "executed_line": true,
+      "text": "self.prev_meas_z = np.arange(1, m*ell+1, dtype=int)"
+    },
+    {
+      "name": "m",
+      "line": 315,
+      "executed_line": true,
+      "text": "self.prev_meas_x = np.arange(m*ell+1, 2*m*ell+1,  dtype=int)"
+    },
+    {
+      "name": "ell",
+      "line": 315,
+      "executed_line": true,
+      "text": "self.prev_meas_x = np.arange(m*ell+1, 2*m*ell+1,  dtype=int)"
+    },
+    {
+      "name": "ell",
+      "line": 315,
+      "executed_line": true,
+      "text": "self.prev_meas_x = np.arange(m*ell+1, 2*m*ell+1,  dtype=int)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 333,
+      "executed_line": true,
+      "text": "self.c.append(\"MR\", [all_qbts[z_check] for z_check in z_checks])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 334,
+      "executed_line": true,
+      "text": "self.c.append(\"MR\", [all_qbts[x_check] for x_check in x_checks])"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 355,
+      "executed_line": true,
+      "text": "curr_sr_z_checks = sr_z_checks[self.route_confirmation_z[sr_z_checks]==1]"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 356,
+      "executed_line": true,
+      "text": "curr_sr_x_checks = sr_x_checks[self.route_confirmation_x[sr_x_checks]==1]"
+    },
+    {
+      "name": "all_qbts",
+      "line": 364,
+      "executed_line": true,
+      "text": "self.c.append(\"M\", all_qbts[z_checks[z_check]])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 367,
+      "executed_line": true,
+      "text": "self.c.append(\"R\", all_qbts[z_checks[z_check]])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 369,
+      "executed_line": true,
+      "text": "self.c.append(\"M\", all_qbts[x_checks[x_check]])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 372,
+      "executed_line": true,
+      "text": "self.c.append(\"R\", all_qbts[x_checks[x_check]])"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 379,
+      "executed_line": true,
+      "text": "curr_sr_z_checks = sr_z_checks[self.route_confirmation_z[sr_z_checks]==1]"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 380,
+      "executed_line": true,
+      "text": "curr_sr_x_checks = sr_x_checks[self.route_confirmation_x[sr_x_checks]==1]"
+    },
+    {
+      "name": "lr_z_checks",
+      "line": 381,
+      "executed_line": true,
+      "text": "curr_lr_z_checks = lr_z_checks[self.route_confirmation_z[lr_z_checks]==1]"
+    },
+    {
+      "name": "lr_x_checks",
+      "line": 382,
+      "executed_line": true,
+      "text": "curr_lr_x_checks = lr_x_checks[self.route_confirmation_x[lr_x_checks]==1]"
+    },
+    {
+      "name": "all_qbts",
+      "line": 396,
+      "executed_line": true,
+      "text": "self.c.append(\"M\", all_qbts[z_checks[z_check]])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 399,
+      "executed_line": true,
+      "text": "self.c.append(\"R\", all_qbts[z_checks[z_check]])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 401,
+      "executed_line": true,
+      "text": "self.c.append(\"M\", all_qbts[x_checks[x_check]])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 404,
+      "executed_line": true,
+      "text": "self.c.append(\"R\", all_qbts[x_checks[x_check]])"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 415,
+      "executed_line": true,
+      "text": "self.route_confirmation_z[sr_z_checks] = [1 if np.random.random() < z_check_succ_probs[z] else 0 for z in sr_z_checks]"
+    },
+    {
+      "name": "lr_z_checks",
+      "line": 416,
+      "executed_line": true,
+      "text": "self.route_confirmation_z[lr_z_checks] = [1 if np.random.random() < z_check_succ_probs[z] else 0 for z in lr_z_checks]"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 417,
+      "executed_line": true,
+      "text": "self.route_confirmation_x[sr_x_checks] = [1 if np.random.random() < x_check_succ_probs[x] else 0 for x in sr_x_checks]"
+    },
+    {
+      "name": "lr_x_checks",
+      "line": 418,
+      "executed_line": true,
+      "text": "self.route_confirmation_x[lr_x_checks] = [1 if np.random.random() < x_check_succ_probs[x] else 0 for x in lr_x_checks]"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 423,
+      "executed_line": true,
+      "text": "self.route_confirmation_z[sr_z_checks] = [1 if np.random.random() < z_check_succ_probs[z] else 0 for z in sr_z_checks]"
+    },
+    {
+      "name": "lr_z_checks",
+      "line": 424,
+      "executed_line": true,
+      "text": "self.route_confirmation_z[lr_z_checks] = 0"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 425,
+      "executed_line": true,
+      "text": "self.route_confirmation_x[sr_x_checks] = [1 if np.random.random() < x_check_succ_probs[x] else 0 for x in sr_x_checks]"
+    },
+    {
+      "name": "lr_x_checks",
+      "line": 426,
+      "executed_line": true,
+      "text": "self.route_confirmation_x[lr_x_checks] = 0"
+    },
+    {
+      "name": "all_qbts",
+      "line": 437,
+      "executed_line": true,
+      "text": "self.c.append(\"M\",[all_qbts[qbt] for qbt in qbts[::-1]])"
+    },
+    {
+      "name": "m",
+      "line": 208,
+      "executed_line": false,
+      "text": "qbts = np.array([None for i in range(2*m*ell)])"
+    },
+    {
+      "name": "m",
+      "line": 220,
+      "executed_line": false,
+      "text": "all_qbts[(i,j)] = int(lattice[i][j][1:]) + 2*m*ell"
+    },
+    {
+      "name": "ell",
+      "line": 223,
+      "executed_line": false,
+      "text": "all_qbts[(i,j)] = int(lattice[i][j][1:]) + 2*m*ell"
+    },
+    {
+      "name": "Hx",
+      "line": 275,
+      "executed_line": true,
+      "text": "gen_qbts = qbts[np.where(Hx[x])[0]]"
+    },
+    {
+      "name": "Hz",
+      "line": 290,
+      "executed_line": true,
+      "text": "gen_qbts = qbts[np.where(Hz[z])[0]]"
+    },
+    {
+      "name": "m",
+      "line": 315,
+      "executed_line": true,
+      "text": "self.prev_meas_x = np.arange(m*ell+1, 2*m*ell+1,  dtype=int)"
+    },
+    {
+      "name": "ell",
+      "line": 328,
+      "executed_line": true,
+      "text": "self.c.append(\"QUBIT_COORDS\", value+(4*m*ell), (key[0],key[1],1))"
+    },
+    {
+      "name": "ell",
+      "line": 330,
+      "executed_line": true,
+      "text": "self.c.append(\"R\", [qbt+(4*m*ell) for qbt in all_qbts.values()])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 360,
+      "executed_line": true,
+      "text": "if with_synd_noise: self.c.append(\"X_ERROR\", [all_qbts[z_checks[z_check]] for z_check in curr_sr_z_checks], 0.001)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 361,
+      "executed_line": true,
+      "text": "if with_synd_noise: self.c.append(\"X_ERROR\", [all_qbts[x_checks[x_check]] for x_check in curr_sr_x_checks], 0.001)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 374,
+      "executed_line": true,
+      "text": "if with_synd_noise: self.c.append(\"X_ERROR\", [all_qbts[z_checks[z_check]] for z_check in sr_z_checks], 0.001/10)"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 374,
+      "executed_line": true,
+      "text": "if with_synd_noise: self.c.append(\"X_ERROR\", [all_qbts[z_checks[z_check]] for z_check in sr_z_checks], 0.001/10)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 375,
+      "executed_line": true,
+      "text": "if with_synd_noise: self.c.append(\"X_ERROR\", [all_qbts[x_checks[x_check]] for x_check in sr_x_checks], 0.001/10)"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 375,
+      "executed_line": true,
+      "text": "if with_synd_noise: self.c.append(\"X_ERROR\", [all_qbts[x_checks[x_check]] for x_check in sr_x_checks], 0.001/10)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 392,
+      "executed_line": true,
+      "text": "if with_synd_noise: self.c.append(\"X_ERROR\", [all_qbts[z_checks[z_check]] for z_check in curr_z_checks], 0.001)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 393,
+      "executed_line": true,
+      "text": "if with_synd_noise: self.c.append(\"X_ERROR\", [all_qbts[x_checks[x_check]] for x_check in curr_x_checks], 0.001)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 406,
+      "executed_line": true,
+      "text": "if with_synd_noise: self.c.append(\"X_ERROR\", [all_qbts[z_checks[z_check]] for z_check in all_z_checks], 0.001/10)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 407,
+      "executed_line": true,
+      "text": "if with_synd_noise: self.c.append(\"X_ERROR\", [all_qbts[x_checks[x_check]] for x_check in all_x_checks], 0.001/10)"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 415,
+      "executed_line": true,
+      "text": "self.route_confirmation_z[sr_z_checks] = [1 if np.random.random() < z_check_succ_probs[z] else 0 for z in sr_z_checks]"
+    },
+    {
+      "name": "lr_z_checks",
+      "line": 416,
+      "executed_line": true,
+      "text": "self.route_confirmation_z[lr_z_checks] = [1 if np.random.random() < z_check_succ_probs[z] else 0 for z in lr_z_checks]"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 417,
+      "executed_line": true,
+      "text": "self.route_confirmation_x[sr_x_checks] = [1 if np.random.random() < x_check_succ_probs[x] else 0 for x in sr_x_checks]"
+    },
+    {
+      "name": "lr_x_checks",
+      "line": 418,
+      "executed_line": true,
+      "text": "self.route_confirmation_x[lr_x_checks] = [1 if np.random.random() < x_check_succ_probs[x] else 0 for x in lr_x_checks]"
+    },
+    {
+      "name": "sr_z_checks",
+      "line": 423,
+      "executed_line": true,
+      "text": "self.route_confirmation_z[sr_z_checks] = [1 if np.random.random() < z_check_succ_probs[z] else 0 for z in sr_z_checks]"
+    },
+    {
+      "name": "sr_x_checks",
+      "line": 425,
+      "executed_line": true,
+      "text": "self.route_confirmation_x[sr_x_checks] = [1 if np.random.random() < x_check_succ_probs[x] else 0 for x in sr_x_checks]"
+    },
+    {
+      "name": "qbts",
+      "line": 437,
+      "executed_line": true,
+      "text": "self.c.append(\"M\",[all_qbts[qbt] for qbt in qbts[::-1]])"
+    },
+    {
+      "name": "m",
+      "line": 223,
+      "executed_line": false,
+      "text": "all_qbts[(i,j)] = int(lattice[i][j][1:]) + 2*m*ell"
+    },
+    {
+      "name": "m",
+      "line": 224,
+      "executed_line": false,
+      "text": "z_checks[int(lattice[i][j][1:])-(m*ell)] = (i, j)"
+    },
+    {
+      "name": "ell",
+      "line": 224,
+      "executed_line": false,
+      "text": "z_checks[int(lattice[i][j][1:])-(m*ell)] = (i, j)"
+    },
+    {
+      "name": "muls001",
+      "line": 280,
+      "executed_line": true,
+      "text": "c.append(\"DEPOLARIZE2\", path_qbts, p*muls001[manhattan([x_checks[x], qbt])+1])"
+    },
+    {
+      "name": "muls001",
+      "line": 295,
+      "executed_line": true,
+      "text": "c.append(\"DEPOLARIZE2\", path_qbts, p*muls001[manhattan([qbt, z_checks[z]])+1])"
+    },
+    {
+      "name": "m",
+      "line": 328,
+      "executed_line": true,
+      "text": "self.c.append(\"QUBIT_COORDS\", value+(4*m*ell), (key[0],key[1],1))"
+    },
+    {
+      "name": "all_qbts",
+      "line": 329,
+      "executed_line": true,
+      "text": "self.c.append(\"R\", [qbt for qbt in all_qbts.values()])"
+    },
+    {
+      "name": "m",
+      "line": 330,
+      "executed_line": true,
+      "text": "self.c.append(\"R\", [qbt+(4*m*ell) for qbt in all_qbts.values()])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 330,
+      "executed_line": true,
+      "text": "self.c.append(\"R\", [qbt+(4*m*ell) for qbt in all_qbts.values()])"
+    },
+    {
+      "name": "all_qbts",
+      "line": 414,
+      "executed_line": true,
+      "text": "self.c.append(\"DEPOLARIZE1\", [all_qbts[qbt] for qbt in qbts], 0.001+2*(code[12]+code[13])*idle_error)"
+    },
+    {
+      "name": "qbts",
+      "line": 414,
+      "executed_line": true,
+      "text": "self.c.append(\"DEPOLARIZE1\", [all_qbts[qbt] for qbt in qbts], 0.001+2*(code[12]+code[13])*idle_error)"
+    },
+    {
+      "name": "idle_error",
+      "line": 414,
+      "executed_line": true,
+      "text": "self.c.append(\"DEPOLARIZE1\", [all_qbts[qbt] for qbt in qbts], 0.001+2*(code[12]+code[13])*idle_error)"
+    },
+    {
+      "name": "all_qbts",
+      "line": 422,
+      "executed_line": true,
+      "text": "self.c.append(\"DEPOLARIZE1\", [all_qbts[qbt] for qbt in qbts], 0.001+2*code[12]*idle_error)"
+    },
+    {
+      "name": "qbts",
+      "line": 422,
+      "executed_line": true,
+      "text": "self.c.append(\"DEPOLARIZE1\", [all_qbts[qbt] for qbt in qbts], 0.001+2*code[12]*idle_error)"
+    },
+    {
+      "name": "idle_error",
+      "line": 422,
+      "executed_line": true,
+      "text": "self.c.append(\"DEPOLARIZE1\", [all_qbts[qbt] for qbt in qbts], 0.001+2*code[12]*idle_error)"
+    },
+    {
+      "name": "m",
+      "line": 198,
+      "executed_line": false,
+      "text": "lattice[i][j] = f\"z{int(lattice[i][j][1:]) + m*ell}\""
+    },
+    {
+      "name": "ell",
+      "line": 198,
+      "executed_line": false,
+      "text": "lattice[i][j] = f\"z{int(lattice[i][j][1:]) + m*ell}\""
+    },
+    {
+      "name": "z_check_succ_probs",
+      "line": 415,
+      "executed_line": true,
+      "text": "self.route_confirmation_z[sr_z_checks] = [1 if np.random.random() < z_check_succ_probs[z] else 0 for z in sr_z_checks]"
+    },
+    {
+      "name": "z_check_succ_probs",
+      "line": 416,
+      "executed_line": true,
+      "text": "self.route_confirmation_z[lr_z_checks] = [1 if np.random.random() < z_check_succ_probs[z] else 0 for z in lr_z_checks]"
+    },
+    {
+      "name": "x_check_succ_probs",
+      "line": 417,
+      "executed_line": true,
+      "text": "self.route_confirmation_x[sr_x_checks] = [1 if np.random.random() < x_check_succ_probs[x] else 0 for x in sr_x_checks]"
+    },
+    {
+      "name": "x_check_succ_probs",
+      "line": 418,
+      "executed_line": true,
+      "text": "self.route_confirmation_x[lr_x_checks] = [1 if np.random.random() < x_check_succ_probs[x] else 0 for x in lr_x_checks]"
+    },
+    {
+      "name": "z_check_succ_probs",
+      "line": 423,
+      "executed_line": true,
+      "text": "self.route_confirmation_z[sr_z_checks] = [1 if np.random.random() < z_check_succ_probs[z] else 0 for z in sr_z_checks]"
+    },
+    {
+      "name": "x_check_succ_probs",
+      "line": 425,
+      "executed_line": true,
+      "text": "self.route_confirmation_x[sr_x_checks] = [1 if np.random.random() < x_check_succ_probs[x] else 0 for x in sr_x_checks]"
+    },
+    {
+      "name": "m",
+      "line": 200,
+      "executed_line": false,
+      "text": "lattice[i][j] = f\"r{int(lattice[i][j][1:]) + m*ell}\""
+    },
+    {
+      "name": "ell",
+      "line": 200,
+      "executed_line": false,
+      "text": "lattice[i][j] = f\"r{int(lattice[i][j][1:]) + m*ell}\""
+    },
+    {
+      "name": "code",
+      "line": 422,
+      "executed_line": true,
+      "text": "self.c.append(\"DEPOLARIZE1\", [all_qbts[qbt] for qbt in qbts], 0.001+2*code[12]*idle_error)"
+    },
+    {
+      "name": "code",
+      "line": 414,
+      "executed_line": true,
+      "text": "self.c.append(\"DEPOLARIZE1\", [all_qbts[qbt] for qbt in qbts], 0.001+2*(code[12]+code[13])*idle_error)"
+    },
+    {
+      "name": "code",
+      "line": 414,
+      "executed_line": true,
+      "text": "self.c.append(\"DEPOLARIZE1\", [all_qbts[qbt] for qbt in qbts], 0.001+2*(code[12]+code[13])*idle_error)"
+    },
+    {
+      "name": "m",
+      "line": 192,
+      "executed_line": false,
+      "text": "lattice[(i+1)%(2*emb_m)][j] = f\"{get_nbr((i+1)%(2*emb_m), j)}{np.where(tmp_A @ np.eye(m*ell)[curr_ind])[0][0]}\""
+    },
+    {
+      "name": "ell",
+      "line": 192,
+      "executed_line": false,
+      "text": "lattice[(i+1)%(2*emb_m)][j] = f\"{get_nbr((i+1)%(2*emb_m), j)}{np.where(tmp_A @ np.eye(m*ell)[curr_ind])[0][0]}\""
+    },
+    {
+      "name": "m",
+      "line": 193,
+      "executed_line": false,
+      "text": "lattice[i][(j+1)%(2*emb_ell)] = f\"{get_nbr(i, (j+1)%(2*emb_ell))}{np.where(tmp_B @ np.eye(m*ell)[curr_ind])[0][0]}\""
+    },
+    {
+      "name": "ell",
+      "line": 193,
+      "executed_line": false,
+      "text": "lattice[i][(j+1)%(2*emb_ell)] = f\"{get_nbr(i, (j+1)%(2*emb_ell))}{np.where(tmp_B @ np.eye(m*ell)[curr_ind])[0][0]}\""
+    }
+  ],
+  "executed_source_lines": [
+    74,
+    75,
+    76,
+    78,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    88,
+    89,
+    91,
+    92,
+    93,
+    95,
+    98,
+    102,
+    103,
+    104,
+    105,
+    106,
+    110,
+    111,
+    112,
+    113,
+    114,
+    116,
+    117,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    126,
+    127,
+    128,
+    129,
+    130,
+    132,
+    133,
+    134,
+    136,
+    140,
+    141,
+    142,
+    143,
+    145,
+    146,
+    148,
+    149,
+    153,
+    154,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    280,
+    282,
+    283,
+    284,
+    285,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295,
+    297,
+    298,
+    301,
+    302,
+    303,
+    304,
+    305,
+    306,
+    311,
+    312,
+    314,
+    315,
+    316,
+    317,
+    319,
+    320,
+    321,
+    322,
+    323,
+    325,
+    326,
+    327,
+    328,
+    329,
+    330,
+    332,
+    333,
+    334,
+    337,
+    338,
+    339,
+    340,
+    341,
+    342,
+    343,
+    344,
+    349,
+    350,
+    351,
+    352,
+    355,
+    356,
+    357,
+    358,
+    360,
+    361,
+    363,
+    364,
+    365,
+    366,
+    367,
+    368,
+    369,
+    370,
+    371,
+    372,
+    374,
+    375,
+    379,
+    380,
+    381,
+    382,
+    384,
+    385,
+    386,
+    387,
+    389,
+    390,
+    392,
+    393,
+    395,
+    396,
+    397,
+    398,
+    399,
+    400,
+    401,
+    402,
+    403,
+    404,
+    406,
+    407,
+    411,
+    412,
+    413,
+    414,
+    415,
+    416,
+    417,
+    418,
+    419,
+    420,
+    422,
+    423,
+    424,
+    425,
+    426,
+    427,
+    428,
+    429,
+    431,
+    432,
+    433,
+    434,
+    435,
+    437,
+    438
+  ],
+  "read_detection_boundary": "AST global loads on executed lines; this is source-level evidence, not a complete interprocedural runtime read certificate",
+  "cpp_reuse": {
+    "executable": "external-native-build/experiments/b2_qecc_routing_build/b2_routing.exe",
+    "exe_sha256": "9e0eecf1aeaae285b9f69ce971b292d1e30da35c2936625ad73fafec2194aba5",
+    "instance": "external-native-build/experiments/b2_qecc_routing_build/bb72_x_grouped.instance.txt",
+    "returncode": 3221225781,
+    "stdout": "",
+    "stderr": "",
+    "status": "missing native runtime dependencies; no routing result claimed"
+  },
+  "novel_guarantee_gap": false
+}

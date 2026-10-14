@@ -1,0 +1,77 @@
+{
+  "systems": {
+    "qecc": {
+      "source": "OOPSLA/research/substitution-validation-2026-10-10/src/run_qecc.py",
+      "sha256": "1743340081d9883c6dbb715abf80fd1adf98a3b707b1bb96ba43b81ed0f9a495",
+      "lowering_ns": 1557900,
+      "consumers": [
+        {
+          "consumer": "measurement_schema",
+          "status": "conditional_proof",
+          "generation_ns": 3800,
+          "checking_ns": 11400,
+          "preconditions": "reader.read obeys literal path semantics; scalar_gt takes fixed scalar data; producer relations separately established"
+        },
+        {
+          "consumer": "schema_contract",
+          "status": "conditional_proof",
+          "generation_ns": 5900,
+          "checking_ns": 15300,
+          "preconditions": "reader.read obeys literal path semantics; scalar_gt takes fixed scalar data; producer relations separately established"
+        },
+        {
+          "consumer": "ideal_behavior",
+          "status": "conditional_proof",
+          "generation_ns": 1800,
+          "checking_ns": 6000,
+          "preconditions": "reader.read obeys literal path semantics; scalar_gt takes fixed scalar data; producer relations separately established"
+        },
+        {
+          "consumer": "observable_definition",
+          "status": "conditional_proof",
+          "generation_ns": 1300,
+          "checking_ns": 5600,
+          "preconditions": "reader.read obeys literal path semantics; scalar_gt takes fixed scalar data; producer relations separately established"
+        }
+      ]
+    },
+    "quits": {
+      "source": "OOPSLA/research/substitution-validation-2026-10-10/src/run_quits.py",
+      "sha256": "714f8d7ab1cb764091e19173b72140dec1f12783d7065320dc9ff5552a76ce1f",
+      "lowering_ns": 1274000,
+      "consumers": [
+        {
+          "consumer": "transport",
+          "status": "unknown",
+          "reason": "named function requires separately validated lowering"
+        },
+        {
+          "consumer": "transport_contract",
+          "status": "unknown",
+          "reason": "named function requires separately validated lowering"
+        },
+        {
+          "consumer": "prior_contract",
+          "status": "unknown",
+          "reason": "named function requires separately validated lowering"
+        },
+        {
+          "consumer": "schema_contract",
+          "status": "unknown",
+          "reason": "named function requires separately validated lowering"
+        },
+        {
+          "consumer": "dimensions",
+          "status": "conditional_proof",
+          "generation_ns": 3900,
+          "checking_ns": 10800,
+          "preconditions": "reader.read obeys literal path semantics; scalar_gt takes fixed scalar data; producer relations separately established"
+        }
+      ]
+    }
+  },
+  "input_enumerations": 0,
+  "baseline": "ordinary symbolic semantic-stamp baseline shares same relation generator/checker and pays identical costs; dynamic-read baseline reads same literal paths but cannot discard changed guard without additional proof",
+  "producer_relations_are_explicit_assumptions": true,
+  "complete_automatic_python_soundness_established": false
+}

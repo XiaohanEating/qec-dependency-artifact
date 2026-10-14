@@ -1,0 +1,63 @@
+{
+  "nested_alias": {
+    "result": {
+      "output_dependencies": [
+        [],
+        [],
+        []
+      ],
+      "probability_independent_structure": true,
+      "branches": [],
+      "calls": [],
+      "abstract_heap_locations": 2
+    },
+    "accepted": true
+  },
+  "swapped_keywords": {
+    "result": {
+      "output_dependencies": [
+        [
+          "structure"
+        ],
+        [
+          "structure"
+        ],
+        [
+          "structure"
+        ]
+      ],
+      "probability_independent_structure": true,
+      "branches": [],
+      "calls": [
+        "select"
+      ],
+      "abstract_heap_locations": 1
+    },
+    "accepted": true
+  },
+  "dynamic_caller_scope": {
+    "result": {
+      "output_dependencies": [
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ]
+      ],
+      "probability_independent_structure": false,
+      "branches": [],
+      "calls": [
+        "leak"
+      ],
+      "abstract_heap_locations": 1
+    },
+    "accepted": false
+  }
+}

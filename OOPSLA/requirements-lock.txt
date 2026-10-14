@@ -1,0 +1,85 @@
+# OOPSLA artifact — pinned dependency versions
+#
+# Based on the reference environment recorded on 2026-10-08. The release was
+# checked on Windows with Python 3.11.17 on 2026-10-14; beliefmatching 0.1.1
+# was added for the external decoder tests. Historical outputs include other
+# Python/package versions; see ../REPRODUCIBILITY.md and each output's metadata.
+#
+# Install with:
+#     python -m pip install -r requirements-lock.txt
+# or, preferably, with the conda environment (recommended, pins the interpreter):
+#     conda env create -f environment.yml && conda activate oopsla-quits
+#
+# Python: 3.11.17 (CPython, win_amd64)
+#
+# NOTE on `quits`: the *pinned reference tree* under ../../third_party/
+# quits-0f36b8c5a9b81d6b7be0cef2c81c61b5850c0452 is the ground truth for every
+# measurement in experiments/quant_evidence.py.  It is NOT installed as a
+# package; quant_evidence.py puts that tree's `src/` first on sys.path and
+# asserts the imported module comes from there.  The `quits==1.2.0` wheel below
+# also supports the installed-wheel versus pinned-source comparison tests.
+#
+# NOTE on `pip`: the reference environment's pip is a conda-managed build
+# installed from a temporary local path, so it is listed here by its resolved
+# version (26.2.1) rather than by path.
+
+# --- interpreter -------------------------------------------------------------
+# python == 3.11.17
+
+# --- direct dependencies of this artifact ------------------------------------
+numpy==2.4.6
+scipy==1.17.1
+stim==1.16.0
+ldpc==2.4.1
+qldpc==0.4.1
+quits==1.2.0
+pytest==9.1.1
+beliefmatching==0.1.1
+
+# --- full resolved environment (`pip freeze --all`) ---------------------------
+cffi==2.1.1
+clarabel==0.11.1
+cloudpickle==3.1.2
+colorama==0.4.6
+contourpy==1.3.3
+cvxpy==1.9.3
+cycler==0.12.1
+diskcache==5.6.3
+fonttools==4.66.1
+galois==0.4.11
+highspy==1.15.1
+iniconfig==2.3.1
+Jinja2==3.1.6
+joblib==1.6.0
+kiwisolver==1.5.1
+llvmlite==0.50.0
+MarkupSafe==3.0.4
+matplotlib==3.11.2
+mpmath==1.3.0
+networkx==3.6.1
+numba==0.68.0
+osqp==1.1.3
+packaging==26.3
+pandas==3.0.6
+pillow==12.3.0
+platformdirs==4.12.4
+pluggy==1.6.0
+PuLP==3.3.2
+pycparser==3.0
+Pygments==2.21.0
+PyMatching==2.4.0
+pyparsing==3.3.3
+pyperclip==1.11.0
+python-dateutil==2.9.0.post0
+qdldl==0.1.9.post1
+scs==3.3.1
+setuptools==83.0.0
+sinter==1.16.0
+six==1.17.0
+sparsediffpy==0.6.1
+sympy==1.14.0
+tqdm==4.70.1
+typing_extensions==4.16.0
+tzdata==2026.5
+wheel==0.47.0
+pip==26.2.1

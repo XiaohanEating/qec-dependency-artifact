@@ -1,0 +1,128 @@
+{
+  "environment": {
+    "python": "3.11.17 (main, Oct  9 2026, 15:19:27) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "environment/python",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "hash_seed": "0",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "stim": "1.16.0",
+      "ldpc": "2.4.1",
+      "qldpc": "0.4.1",
+      "quits": "1.2.0",
+      "galois": "0.4.11",
+      "pytest": "9.1.1"
+    }
+  },
+  "source_dem_sha256": "d100edde09a641cf7c41f8eafbdf46f3d98d22ad744b0822385a5c2bad3558b5",
+  "converter_sha256": "182701ee2028d0b43832bf78c66718f3f7183f4cc767cddac4bf31c57cac6ff4",
+  "initial_certificate_construction_ns": 12551200,
+  "initial_source_analysis_ns": 2147700,
+  "instruction_rows": 1332,
+  "fault_columns": 1152,
+  "real_dem_probabilities_changed": true,
+  "real_check_matrix_equal": true,
+  "real_observable_matrix_equal": true,
+  "real_priors_changed": true,
+  "new_priors_in_open_zero_half": true,
+  "new_dem_postproduction_certificate_scans": 0,
+  "construction_condition_checks": 1296,
+  "failing_probability_branch_changes_real_matrix": true,
+  "rejected_factors": [
+    "0",
+    "-1",
+    "nan",
+    "2"
+  ],
+  "timings": {
+    "full_recompute": {
+      "samples_ns": [
+        20112000,
+        19712100,
+        19187600,
+        19138700,
+        19242300,
+        19307900,
+        19238900,
+        19061600,
+        19356800
+      ],
+      "median_ns": 19242300,
+      "includes_replacement_production": true,
+      "matrix_conversion_runs": 1,
+      "postproduction_dem_scans": 1
+    },
+    "field_snapshot": {
+      "samples_ns": [
+        19649900,
+        19398300,
+        20174000,
+        30173100,
+        19904300,
+        19755000,
+        19888500,
+        19932700,
+        19527100
+      ],
+      "median_ns": 19888500,
+      "includes_replacement_production": true,
+      "matrix_conversion_runs": 1,
+      "postproduction_dem_scans": 1
+    },
+    "semantic_projection_scan": {
+      "samples_ns": [
+        30805800,
+        32957000,
+        30629000,
+        30666300,
+        32370200,
+        31745900,
+        30801100,
+        30799200,
+        31052200
+      ],
+      "median_ns": 30805800,
+      "includes_replacement_production": true,
+      "matrix_conversion_runs": 0,
+      "postproduction_dem_scans": 2
+    },
+    "semantic_certificate_cache": {
+      "samples_ns": [
+        8287300,
+        8140100,
+        8138200,
+        8019000,
+        8052900,
+        7931000,
+        7918100,
+        8091800,
+        7988500
+      ],
+      "median_ns": 8052900,
+      "includes_replacement_production": true,
+      "matrix_conversion_runs": 0,
+      "postproduction_dem_scans": 0
+    },
+    "proposed_constructive": {
+      "samples_ns": [
+        8348800,
+        8216900,
+        8183700,
+        7956400,
+        8059700,
+        7895200,
+        7907800,
+        7859700,
+        8022900
+      ],
+      "median_ns": 8022900,
+      "includes_replacement_production": true,
+      "matrix_conversion_runs": 0,
+      "postproduction_dem_scans": 0
+    }
+  },
+  "strong_baseline_same_certificate": true,
+  "independent_algorithm_advantage_over_same_certificate_baseline": false,
+  "trust_boundary": "Immutable records and constructor provenance; Python code can forge Payload objects, so arbitrary/untrusted replacements must use full validation. No cryptographic or hostile-code guarantee."
+}

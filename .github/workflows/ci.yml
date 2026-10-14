@@ -1,0 +1,40 @@
+name: artifact-tests
+
+permissions:
+  contents: read
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONHASHSEED: "0"
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r OOPSLA/requirements-lock.txt
+      - run: python scripts/verify.py
+      - run: python -m pytest OOPSLA/experiments -q
+      - name: Check deterministic formal outputs
+        run: |
+          python OOPSLA/experiments/artifact_invariance.py --out /tmp/regenerated
+          python OOPSLA/experiments/change_locality_matrix.py --out /tmp/regenerated
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'OOPSLA/src')
+          import outdir
+          changed = outdir.drift_report(Path('OOPSLA/experiments'), Path('/tmp/regenerated'))
+          if changed:
+              raise SystemExit(f'Changed formal outputs: {changed}')
+          PY
+      - name: Check consumer relations
+        env:
+          PYTHONPATH: OOPSLA/research/consumer-contracts-2026-10-11/src
+        run: python -m pytest OOPSLA/research/consumer-contracts-2026-10-11/tests -q

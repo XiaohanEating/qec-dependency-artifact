@@ -1,0 +1,424 @@
+{
+  "metadata": {
+    "description": "second subject system (Stim + sinter + PyMatching): same three-question audit as QUITS",
+    "date": "2026-10-12",
+    "quick": false,
+    "subject": "stim/sinter/pymatching",
+    "versions": {
+      "stim": "1.14.0",
+      "sinter": "1.14.0",
+      "pymatching": "2.2.0"
+    },
+    "package_paths": {
+      "stim": "site-packages/stim",
+      "sinter": "site-packages/sinter",
+      "pymatching": "site-packages/pymatching"
+    },
+    "surface_code": "stim.Circuit.generated('surface_code:rotated_memory_z', rounds=3, after_clifford_depolarization=p)",
+    "p_grid": [
+      0.001,
+      0.003,
+      0.01
+    ],
+    "distances": [
+      3,
+      5
+    ],
+    "swap_shots": 2000,
+    "ler_shots": 4000,
+    "sampler_seed": 1234,
+    "statistics": "Wilson 95% interval per rate; two-proportion z-test per comparison (qec_measure)",
+    "environment_notes": [
+      "pymatching.Matching.decode_batch raises 'resize only works on single-segment arrays' (pymatching 2.2.0 + numpy 2.2.6); decoding is a per-shot decode loop instead",
+      "Matching.decode(num_neighbours=...) is a deprecated no-op in PyMatching v2; the decoder-parameter dimension is measured through the matching graph's edge weights",
+      "stim ships as a native extension; its two .py files are launcher shims with no registration logic"
+    ]
+  },
+  "registry_audit": {
+    "question": "Q1: do the packages register/assemble components by name, and can a component depend on hidden state?",
+    "method": "regex scan of installed .py sources (tests and __pycache__ excluded); stim ships as a native extension and has no scannable .py implementation",
+    "packages": {
+      "sinter": {
+        "name_registry": 2,
+        "registry_dispatch": 7,
+        "getattr_dispatch": 2,
+        "auto_discovery": 0,
+        "abc_class": 4,
+        "abstract_method": 4,
+        "protocol_class": 0,
+        "py_files_scanned": 36,
+        "py_files_total": 53
+      },
+      "pymatching": {
+        "name_registry": 0,
+        "registry_dispatch": 0,
+        "getattr_dispatch": 0,
+        "auto_discovery": 0,
+        "abc_class": 0,
+        "abstract_method": 0,
+        "protocol_class": 0,
+        "py_files_scanned": 4,
+        "py_files_total": 4
+      },
+      "stim": {
+        "name_registry": 0,
+        "registry_dispatch": 0,
+        "getattr_dispatch": 0,
+        "auto_discovery": 0,
+        "abc_class": 0,
+        "abstract_method": 0,
+        "protocol_class": 0,
+        "py_files_scanned": 2,
+        "py_files_total": 2
+      }
+    },
+    "counts": {
+      "name_registries": 2,
+      "registry_dispatch_sites": 7,
+      "getattr_dispatch_sites": 2,
+      "auto_discovery_sites": 0,
+      "abc_classes": 4,
+      "abstract_methods": 4,
+      "protocol_classes": 0
+    },
+    "registries_found": [
+      {
+        "file": "site-packages/sinter/_decoding/_decoding_all_built_in_decoders.py",
+        "line": 12,
+        "code": "BUILT_IN_DECODERS: Dict[str, Decoder] = {"
+      },
+      {
+        "file": "site-packages/sinter/_decoding/_decoding_all_built_in_decoders.py",
+        "line": 22,
+        "code": "BUILT_IN_SAMPLERS: Dict[str, Union[Decoder, Sampler]] = {"
+      }
+    ],
+    "evidence": [
+      {
+        "package": "sinter",
+        "pattern": "registry_dispatch",
+        "file": "site-packages/sinter/_collection/_mux_sampler.py",
+        "line": 37,
+        "code": "elif name in BUILT_IN_SAMPLERS:"
+      },
+      {
+        "package": "sinter",
+        "pattern": "registry_dispatch",
+        "file": "site-packages/sinter/_collection/_mux_sampler.py",
+        "line": 38,
+        "code": "sub_sampler = BUILT_IN_SAMPLERS[name]"
+      },
+      {
+        "package": "sinter",
+        "pattern": "registry_dispatch",
+        "file": "site-packages/sinter/_command/_main_collect.py",
+        "line": 246,
+        "code": "if decoder not in BUILT_IN_SAMPLERS and (a.custom_decoders is None or decoder not in a.custom_decoders):"
+      },
+      {
+        "package": "sinter",
+        "pattern": "registry_dispatch",
+        "file": "site-packages/sinter/_command/_main_collect.py",
+        "line": 248,
+        "code": "message += f\"Available built-in decoders and samplers: {sorted(e for e in BUILT_IN_SAMPLERS.keys() if 'internal' not in e)}.\\n\""
+      },
+      {
+        "package": "sinter",
+        "pattern": "getattr_dispatch",
+        "file": "site-packages/sinter/_command/_main_plot.py",
+        "line": 305,
+        "code": "arg_val = getattr(a, arg_name)"
+      },
+      {
+        "package": "sinter",
+        "pattern": "getattr_dispatch",
+        "file": "site-packages/sinter/_command/_main_plot.py",
+        "line": 765,
+        "code": "for file in getattr(args, 'in'):"
+      },
+      {
+        "package": "sinter",
+        "pattern": "registry_dispatch",
+        "file": "site-packages/sinter/_decoding/_decoding.py",
+        "line": 205,
+        "code": "decoder_obj = BUILT_IN_DECODERS.get(decoder)"
+      },
+      {
+        "package": "sinter",
+        "pattern": "name_registry",
+        "file": "site-packages/sinter/_decoding/_decoding_all_built_in_decoders.py",
+        "line": 12,
+        "code": "BUILT_IN_DECODERS: Dict[str, Decoder] = {"
+      },
+      {
+        "package": "sinter",
+        "pattern": "name_registry",
+        "file": "site-packages/sinter/_decoding/_decoding_all_built_in_decoders.py",
+        "line": 22,
+        "code": "BUILT_IN_SAMPLERS: Dict[str, Union[Decoder, Sampler]] = {"
+      },
+      {
+        "package": "sinter",
+        "pattern": "abc_class",
+        "file": "site-packages/sinter/_decoding/_decoding_decoder_class.py",
+        "line": 8,
+        "code": "class CompiledDecoder(metaclass=abc.ABCMeta):"
+      },
+      {
+        "package": "sinter",
+        "pattern": "abstract_method",
+        "file": "site-packages/sinter/_decoding/_decoding_decoder_class.py",
+        "line": 19,
+        "code": "@abc.abstractmethod"
+      },
+      {
+        "package": "sinter",
+        "pattern": "abc_class",
+        "file": "site-packages/sinter/_decoding/_decoding_decoder_class.py",
+        "line": 58,
+        "code": "class Decoder(metaclass=abc.ABCMeta):"
+      },
+      {
+        "package": "sinter",
+        "pattern": "abstract_method",
+        "file": "site-packages/sinter/_decoding/_decoding_decoder_class.py",
+        "line": 98,
+        "code": "@abc.abstractmethod"
+      },
+      {
+        "package": "sinter",
+        "pattern": "abc_class",
+        "file": "site-packages/sinter/_decoding/_sampler.py",
+        "line": 8,
+        "code": "class CompiledSampler(metaclass=abc.ABCMeta):"
+      },
+      {
+        "package": "sinter",
+        "pattern": "abstract_method",
+        "file": "site-packages/sinter/_decoding/_sampler.py",
+        "line": 11,
+        "code": "@abc.abstractmethod"
+      },
+      {
+        "package": "sinter",
+        "pattern": "abc_class",
+        "file": "site-packages/sinter/_decoding/_sampler.py",
+        "line": 54,
+        "code": "class Sampler(metaclass=abc.ABCMeta):"
+      },
+      {
+        "package": "sinter",
+        "pattern": "abstract_method",
+        "file": "site-packages/sinter/_decoding/_sampler.py",
+        "line": 69,
+        "code": "@abc.abstractmethod"
+      },
+      {
+        "package": "sinter",
+        "pattern": "registry_dispatch",
+        "file": "site-packages/sinter/_predict.py",
+        "line": 91,
+        "code": "decode_obj = BUILT_IN_DECODERS.get(decoder)"
+      },
+      {
+        "package": "sinter",
+        "pattern": "registry_dispatch",
+        "file": "site-packages/sinter/_predict.py",
+        "line": 344,
+        "code": "decode_obj = BUILT_IN_DECODERS.get(decoder)"
+      }
+    ],
+    "verdict": "sinter HAS a name-keyed component registry (BUILT_IN_DECODERS / BUILT_IN_SAMPLERS) and explicit ABCs (sinter.Decoder, sinter.CompiledDecoder, sinter.Sampler, sinter.CompiledSampler) — the '0 registries / 0 abstract interfaces' expectation is FALSIFIED for this ecosystem.  What is absent is the QUITS pattern: the registry is closed (built-in only, no entry-point auto-discovery), dispatch is by an explicit string at the call site (decoder='pymatching' in sinter.Task / sinter.collect), and the substitutable component has a stated obligation (the Decoder ABC).  No component reaches around its call site to read ambient configuration: a stim.Circuit is a self-contained immutable artifact with the noise compiled in, the DEM is derived by an explicit circuit.detector_error_model() call, and the decoder is named explicitly.  Hidden cross-component reads — the QUITS core finding — do not exist here."
+  },
+  "swap_impact": {
+    "question": "Q2: does changing one component change the artifact fingerprints, and is every dependency visible at the call site?",
+    "p_grid": [
+      0.001,
+      0.003,
+      0.01
+    ],
+    "rounds": 3,
+    "swap_shots": 2000,
+    "sampler_seed": 1234,
+    "rows": [
+      {
+        "distance": 3,
+        "dimension": "noise_parameter",
+        "component": "stim.Circuit.generated",
+        "before": "after_clifford_depolarization=0.001",
+        "after": "after_clifford_depolarization=0.003",
+        "fingerprint_before": "e554fa6c919ae161833b791e2cacfe863f883258b0b5dc20d7f48a5586f3946a",
+        "fingerprint_after": "762127882be6a246b9f0cc0e0bc5a10c37d17be372ceffb181f16b7af289309b",
+        "changed": true,
+        "detail": {
+          "num_detectors_before": 24,
+          "num_detectors_after": 24,
+          "num_observables_before": 1,
+          "num_observables_after": 1
+        }
+      },
+      {
+        "distance": 3,
+        "dimension": "noise_parameter",
+        "component": "stim.Circuit.generated",
+        "before": "after_clifford_depolarization=0.003",
+        "after": "after_clifford_depolarization=0.01",
+        "fingerprint_before": "762127882be6a246b9f0cc0e0bc5a10c37d17be372ceffb181f16b7af289309b",
+        "fingerprint_after": "89f02e7d657510eadbe3359198452758c121b1ae459433a598a24f02d9040add",
+        "changed": true,
+        "detail": {
+          "num_detectors_before": 24,
+          "num_detectors_after": 24,
+          "num_observables_before": 1,
+          "num_observables_after": 1
+        }
+      },
+      {
+        "distance": 3,
+        "dimension": "export_option",
+        "component": "stim.Circuit.detector_error_model",
+        "before": "decompose_errors=True",
+        "after": "decompose_errors=False",
+        "fingerprint_before": "4b9a97dfac156bc9da0333a2adc5657003288f06ed998e5cdba5d94c6e43d183",
+        "fingerprint_after": "1fb71db9f7ee6de22d6c915d8906881ea0223b078888aa6c311fc0c85dea0ebe",
+        "changed": true,
+        "detail": {
+          "num_errors_decomposed": 285,
+          "num_errors_undecomposed": 218,
+          "structure_identical": false
+        }
+      },
+      {
+        "distance": 3,
+        "dimension": "decoder_prior",
+        "component": "pymatching.Matching edge weights (DEM priors)",
+        "before": "prior from p=0.001",
+        "after": "prior from p=0.01 (10x, same structure)",
+        "fingerprint_before": "d02f2cde8bcefa106147d3e14c53705a1d892045d114528bc3502bd30dab03bb",
+        "fingerprint_after": "d02f2cde8bcefa106147d3e14c53705a1d892045d114528bc3502bd30dab03bb",
+        "changed": false,
+        "detail": {
+          "shots": 2000,
+          "structure_identical": true,
+          "differing_predictions": 0,
+          "total_predictions": 2000,
+          "note": "num_neighbours is a deprecated no-op in PyMatching v2, so the prior dimension is measured through the matching graph weights"
+        }
+      },
+      {
+        "distance": 5,
+        "dimension": "noise_parameter",
+        "component": "stim.Circuit.generated",
+        "before": "after_clifford_depolarization=0.001",
+        "after": "after_clifford_depolarization=0.003",
+        "fingerprint_before": "c970798b2023dc97bbb16d3d7603f836d87a13ec5ab557e04caf99ad37033bc1",
+        "fingerprint_after": "9a523db58422110e4fb3f1cbd8f9f8b6a4b8469eff337acf3982e322fbda8a1d",
+        "changed": true,
+        "detail": {
+          "num_detectors_before": 72,
+          "num_detectors_after": 72,
+          "num_observables_before": 1,
+          "num_observables_after": 1
+        }
+      },
+      {
+        "distance": 5,
+        "dimension": "noise_parameter",
+        "component": "stim.Circuit.generated",
+        "before": "after_clifford_depolarization=0.003",
+        "after": "after_clifford_depolarization=0.01",
+        "fingerprint_before": "9a523db58422110e4fb3f1cbd8f9f8b6a4b8469eff337acf3982e322fbda8a1d",
+        "fingerprint_after": "c31068b830963bd089a187be434780bc2d5a4b62da2e3a34e6689caaedef2047",
+        "changed": true,
+        "detail": {
+          "num_detectors_before": 72,
+          "num_detectors_after": 72,
+          "num_observables_before": 1,
+          "num_observables_after": 1
+        }
+      },
+      {
+        "distance": 5,
+        "dimension": "export_option",
+        "component": "stim.Circuit.detector_error_model",
+        "before": "decompose_errors=True",
+        "after": "decompose_errors=False",
+        "fingerprint_before": "ec72d470394535f6b5f27addc3d5d224ca8fbe220039c62df9437b29cc34be77",
+        "fingerprint_after": "a1b150201af165ef0068ed02ce99635e89a57221be5c8ff0cba7e0222a8c4f32",
+        "changed": true,
+        "detail": {
+          "num_errors_decomposed": 1028,
+          "num_errors_undecomposed": 860,
+          "structure_identical": false
+        }
+      },
+      {
+        "distance": 5,
+        "dimension": "decoder_prior",
+        "component": "pymatching.Matching edge weights (DEM priors)",
+        "before": "prior from p=0.001",
+        "after": "prior from p=0.01 (10x, same structure)",
+        "fingerprint_before": "ee4f61654d1ba48c07e5fde016bddd2a643745963618b2051ae94d37ba758740",
+        "fingerprint_after": "ee4f61654d1ba48c07e5fde016bddd2a643745963618b2051ae94d37ba758740",
+        "changed": false,
+        "detail": {
+          "shots": 2000,
+          "structure_identical": true,
+          "differing_predictions": 0,
+          "total_predictions": 2000,
+          "note": "num_neighbours is a deprecated no-op in PyMatching v2, so the prior dimension is measured through the matching graph weights"
+        }
+      }
+    ],
+    "n_changed": 6,
+    "n_rows": 8,
+    "decoder_prior_note": "the decoder-prior swap did NOT move any prediction at this operating point: shifting every edge weight by the common prior factor (log-odds of a 10x noise rescale) leaves the minimum-weight perfect matching unchanged on every sampled shot.  This mirrors QUITS' stale-DEM finding (BP-OSD is prior-robust at low error rates) and is recorded as an honest negative, not a counterexample to visibility — the priors still enter only through the explicit Matching.from_detector_error_model(dem) call.",
+    "conclusion": "6/8 one-component changes moved the artifact fingerprint.  The noise parameter is compiled into the circuit text (dimension 'noise_parameter') and the export option changes the DEM at fixed circuit ('export_option'); the decoder-prior dimension is an honest negative (see decoder_prior_note).  Every dependency appears at the call site — circuit(p) for noise, detector_error_model(decompose_errors=...) for the DEM, Matching.from_detector_error_model(dem) for the decoder's priors.  No hidden cross-component read was observed; had a fingerprint moved without a corresponding call-site change, it would have been recorded here as a counterexample."
+  },
+  "decoder_ler": {
+    "question": "Q4 (small): does the noise parameter move the logical error rate on the second subject system?",
+    "decoder": "pymatching.Matching.from_detector_error_model(dem, decompose_errors=True), per-shot decode",
+    "shots": 4000,
+    "sampler_seed": 1234,
+    "points": [
+      {
+        "label": "d=3/r=3/p=0.001",
+        "errors": 1,
+        "shots": 4000,
+        "rate": 0.00025,
+        "wilson95_low": 4.4132501957676274e-05,
+        "wilson95_high": 0.0014148310660989595,
+        "distance": 3,
+        "rounds": 3,
+        "noise_parameter": 0.001,
+        "num_detectors": 24,
+        "num_observables": 1
+      },
+      {
+        "label": "d=3/r=3/p=0.003",
+        "errors": 10,
+        "shots": 4000,
+        "rate": 0.0025,
+        "wilson95_low": 0.0013585429450181778,
+        "wilson95_high": 0.004596103128234802,
+        "distance": 3,
+        "rounds": 3,
+        "noise_parameter": 0.003,
+        "num_detectors": 24,
+        "num_observables": 1
+      }
+    ],
+    "two_proportion_test": {
+      "rate_a": 0.00025,
+      "rate_b": 0.0025,
+      "absolute_difference": -0.0022500000000000003,
+      "relative_difference": -0.9000000000000001,
+      "z": -2.7154696287530635,
+      "p_value": 0.006618184643166637,
+      "significant_at_95": true
+    },
+    "intervals_disjoint": false,
+    "direction_consistent": true,
+    "verdict": "noise moves the LER in the same direction as QUITS and the difference is significant at 95%"
+  }
+}

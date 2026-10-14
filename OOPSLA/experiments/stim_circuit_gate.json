@@ -1,0 +1,1924 @@
+{
+  "metadata": {
+    "description": "Real-artifact gate: Theorem 1's verdict, executed on real stim circuits / DEMs",
+    "date": "2026-10-12",
+    "quits_file": "third_party/quits-0f36b8c5a9b81d6b7be0cef2c81c61b5850c0452/src/quits/__init__.py",
+    "quits_version": "1.2.0",
+    "pinned_commit": "0f36b8c5a9b81d6b7be0cef2c81c61b5850c0452",
+    "mode": "default",
+    "num_rounds": 2,
+    "sampler_seed": 7,
+    "num_shots": 16,
+    "window": 3,
+    "overlap": 1,
+    "baseline_assembly": "source_faithful",
+    "semantic_verdicts_from": "experiments/artifact_invariance.run(48)",
+    "assembly_model_sources": {
+      "source_faithful": {
+        "baseline": true,
+        "builder": "semantics.make_source_faithful_assembly()",
+        "read_sets": "auto-extracted from the pinned QUITS tree by experiments/extract_read_sets.py (READ_SETS_FROM_SOURCE)",
+        "edges": "auto-derived: ARTIFACT_READS_FROM_SOURCE minus self-loops (ASSEMBLY_EDGES_FROM_SOURCE): extractor <- code, arch <- code, decoder <- (code, extractor)",
+        "faithfulness": "faithful by construction (AST-extracted), cross-validated against the dynamic measurements in experiments/dynamic_impact.json",
+        "note": "the published baseline since 2026-10-09 (decisions 2 and 4)",
+        "_baseline_dimensions": [
+          "code",
+          "extractor",
+          "arch",
+          "noise",
+          "decoder"
+        ]
+      },
+      "_baseline": "source_faithful"
+    },
+    "alt_implementations": {
+      "code": "the same family constructor, invoked with a different spelling of the construction arguments (BB: power lists vs tuples; HGP/QLP: int vs uint8 base matrices)",
+      "extractor": "the builder is reached directly through the strategy registry (``get_builder``) instead of through ``QldpcCode.build_circuit``'s dispatch, or the default ``CircuitBuildOptions`` is materialised by the caller instead of the callee",
+      "arch": "the layout is constructed with every optional argument spelled out (``TransversalLayout`` explicit defaults, or the concrete ``BbToricLayout`` instead of the ``ToricLayout`` factory)",
+      "noise": "``ErrorModel`` is constructed positionally instead of by keyword",
+      "decoder": "the generic ``sliding_window_circuit_mem`` entry point is called with an explicit inner-decoder class and parameter dicts, instead of the ``sliding_window_bposd_circuit_mem`` convenience wrapper"
+    }
+  },
+  "baselines": [
+    {
+      "config": "BB/free/zxcoloration/SD6/BP-OSD",
+      "stim_circuit_sha256": "1c97770338298ecc",
+      "detector_error_model_sha256": "845e907ae31e425f",
+      "stim_circuit_len_chars": 30992,
+      "code_matrices_sha256": "a96ffde5947253e7",
+      "layout_payload_sha256": "7eea8f35f6274366",
+      "decoder_prediction_sha256": "dcf24f83ab19b4f6",
+      "circuit_call_path": "QldpcCode.build_circuit",
+      "decoder_entry": "sliding_window_bposd_circuit_mem",
+      "code_family": "BbCode",
+      "css_commutes": true,
+      "verify_css_logicals": true,
+      "code_payload": {
+        "family": "BbCode",
+        "hz_shape": [
+          36,
+          72
+        ],
+        "hx_shape": [
+          36,
+          72
+        ],
+        "n_logical": 12,
+        "hz_sha256": "267f345c09710ec0",
+        "hx_sha256": "7ab0973bfd02e399",
+        "lz_sha256": "073b2ae692fc2aa9",
+        "lx_sha256": "299f34317def33b1",
+        "css_commutes": true,
+        "verify_css_logicals": true
+      }
+    },
+    {
+      "config": "BB/free/zxcoloration/SI1000/BP-LSD",
+      "stim_circuit_sha256": "d5e28d9ebee631eb",
+      "detector_error_model_sha256": "1f2379056f13a08b",
+      "stim_circuit_len_chars": 30997,
+      "code_matrices_sha256": "a96ffde5947253e7",
+      "layout_payload_sha256": "7eea8f35f6274366",
+      "decoder_prediction_sha256": "8b591be6240e634e",
+      "circuit_call_path": "QldpcCode.build_circuit",
+      "decoder_entry": "sliding_window_bposd_circuit_mem",
+      "code_family": "BbCode",
+      "css_commutes": true,
+      "verify_css_logicals": true,
+      "code_payload": {
+        "family": "BbCode",
+        "hz_shape": [
+          36,
+          72
+        ],
+        "hx_shape": [
+          36,
+          72
+        ],
+        "n_logical": 12,
+        "hz_sha256": "267f345c09710ec0",
+        "hx_sha256": "7ab0973bfd02e399",
+        "lz_sha256": "073b2ae692fc2aa9",
+        "lx_sha256": "299f34317def33b1",
+        "css_commutes": true,
+        "verify_css_logicals": true
+      }
+    },
+    {
+      "config": "HGP/free/cardinal/SD6/BP-OSD",
+      "stim_circuit_sha256": "99be5bfaee0e2086",
+      "detector_error_model_sha256": "56438c8e4501e55f",
+      "stim_circuit_len_chars": 3127,
+      "code_matrices_sha256": "477e13b89c2e7845",
+      "layout_payload_sha256": "e61ab9fdbe7aea30",
+      "decoder_prediction_sha256": "f5a5fd42d16a2030",
+      "circuit_call_path": "QldpcCode.build_circuit",
+      "decoder_entry": "sliding_window_bposd_circuit_mem",
+      "code_family": "HgpCode",
+      "css_commutes": true,
+      "verify_css_logicals": true,
+      "code_payload": {
+        "family": "HgpCode",
+        "hz_shape": [
+          6,
+          13
+        ],
+        "hx_shape": [
+          6,
+          13
+        ],
+        "n_logical": 1,
+        "hz_sha256": "a465b32178fbab22",
+        "hx_sha256": "fd051226b671ba4c",
+        "lz_sha256": "5066e798a4c40382",
+        "lx_sha256": "2b6a4f06c7755b58",
+        "css_commutes": true,
+        "verify_css_logicals": true
+      }
+    },
+    {
+      "config": "HGP/free/zxcoloration/SI1000/BP-LSD",
+      "stim_circuit_sha256": "c0c335d7428e4fda",
+      "detector_error_model_sha256": "59cdfcb483700003",
+      "stim_circuit_len_chars": 4410,
+      "code_matrices_sha256": "477e13b89c2e7845",
+      "layout_payload_sha256": "e61ab9fdbe7aea30",
+      "decoder_prediction_sha256": "1919c892cf10178d",
+      "circuit_call_path": "QldpcCode.build_circuit",
+      "decoder_entry": "sliding_window_bposd_circuit_mem",
+      "code_family": "HgpCode",
+      "css_commutes": true,
+      "verify_css_logicals": true,
+      "code_payload": {
+        "family": "HgpCode",
+        "hz_shape": [
+          6,
+          13
+        ],
+        "hx_shape": [
+          6,
+          13
+        ],
+        "n_logical": 1,
+        "hz_sha256": "a465b32178fbab22",
+        "hx_sha256": "fd051226b671ba4c",
+        "lz_sha256": "5066e798a4c40382",
+        "lx_sha256": "2b6a4f06c7755b58",
+        "css_commutes": true,
+        "verify_css_logicals": true
+      }
+    },
+    {
+      "config": "QLP/free/cardinal/SD6/BP-OSD",
+      "stim_circuit_sha256": "03fb90b99faba185",
+      "detector_error_model_sha256": "e394289326083578",
+      "stim_circuit_len_chars": 35026,
+      "code_matrices_sha256": "d26741c9ce42a77c",
+      "layout_payload_sha256": "9e05d6b08f05c7ef",
+      "decoder_prediction_sha256": "bbf0e7e2f2fd0c7b",
+      "circuit_call_path": "QldpcCode.build_circuit",
+      "decoder_entry": "sliding_window_bposd_circuit_mem",
+      "code_family": "QlpCode",
+      "css_commutes": true,
+      "verify_css_logicals": true,
+      "code_payload": {
+        "family": "QlpCode",
+        "hz_shape": [
+          48,
+          120
+        ],
+        "hx_shape": [
+          72,
+          120
+        ],
+        "n_logical": 5,
+        "hz_sha256": "e3435b6cabb776b3",
+        "hx_sha256": "70fffed17e138990",
+        "lz_sha256": "752aeb07bab9cc97",
+        "lx_sha256": "e860691c84e83817",
+        "css_commutes": true,
+        "verify_css_logicals": true
+      }
+    },
+    {
+      "config": "QLP/free/zxcoloration/SI1000/BP-LSD",
+      "stim_circuit_sha256": "048363cbec88f710",
+      "detector_error_model_sha256": "da966592ae46b7d9",
+      "stim_circuit_len_chars": 42595,
+      "code_matrices_sha256": "d26741c9ce42a77c",
+      "layout_payload_sha256": "9e05d6b08f05c7ef",
+      "decoder_prediction_sha256": "ccabd170a2161bea",
+      "circuit_call_path": "QldpcCode.build_circuit",
+      "decoder_entry": "sliding_window_bposd_circuit_mem",
+      "code_family": "QlpCode",
+      "css_commutes": true,
+      "verify_css_logicals": true,
+      "code_payload": {
+        "family": "QlpCode",
+        "hz_shape": [
+          48,
+          120
+        ],
+        "hx_shape": [
+          72,
+          120
+        ],
+        "n_logical": 5,
+        "hz_sha256": "e3435b6cabb776b3",
+        "hx_sha256": "70fffed17e138990",
+        "lz_sha256": "752aeb07bab9cc97",
+        "lx_sha256": "e860691c84e83817",
+        "css_commutes": true,
+        "verify_css_logicals": true
+      }
+    }
+  ],
+  "rows": [
+    {
+      "config": "BB/free/zxcoloration/SD6/BP-OSD",
+      "dim": "code",
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "arch",
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "provably_unchanged_nodes": [
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "1c97770338298ecc",
+        "circuit_sha256_after": "1c97770338298ecc",
+        "dem_sha256_baseline": "845e907ae31e425f",
+        "dem_sha256_after": "845e907ae31e425f",
+        "circuit_len_chars": 30992,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the same family constructor, invoked with a different spelling of the construction arguments (BB: power lists vs tuples; HGP/QLP: int vs uint8 base matrices)",
+      "gate_agrees": true
+    },
+    {
+      "config": "BB/free/zxcoloration/SD6/BP-OSD",
+      "dim": "extractor",
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "decoder",
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "1c97770338298ecc",
+        "circuit_sha256_after": "1c97770338298ecc",
+        "dem_sha256_baseline": "845e907ae31e425f",
+        "dem_sha256_after": "845e907ae31e425f",
+        "circuit_len_chars": 30992,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the builder is reached directly through the strategy registry (``get_builder``) instead of through ``QldpcCode.build_circuit``'s dispatch, or the default ``CircuitBuildOptions`` is materialised by the caller instead of the callee",
+      "gate_agrees": true
+    },
+    {
+      "config": "BB/free/zxcoloration/SD6/BP-OSD",
+      "dim": "arch",
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "code",
+          "decoder",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "1c97770338298ecc",
+        "circuit_sha256_after": "1c97770338298ecc",
+        "dem_sha256_baseline": "845e907ae31e425f",
+        "dem_sha256_after": "845e907ae31e425f",
+        "circuit_len_chars": 30992,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the layout is constructed with every optional argument spelled out (``TransversalLayout`` explicit defaults, or the concrete ``BbToricLayout`` instead of the ``ToricLayout`` factory)",
+      "gate_agrees": true
+    },
+    {
+      "config": "BB/free/zxcoloration/SD6/BP-OSD",
+      "dim": "noise",
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "decoder",
+          "extractor"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "1c97770338298ecc",
+        "circuit_sha256_after": "1c97770338298ecc",
+        "dem_sha256_baseline": "845e907ae31e425f",
+        "dem_sha256_after": "845e907ae31e425f",
+        "circuit_len_chars": 30992,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "``ErrorModel`` is constructed positionally instead of by keyword",
+      "gate_agrees": true
+    },
+    {
+      "config": "BB/free/zxcoloration/SD6/BP-OSD",
+      "dim": "decoder",
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "1c97770338298ecc",
+        "circuit_sha256_after": "1c97770338298ecc",
+        "dem_sha256_baseline": "845e907ae31e425f",
+        "dem_sha256_after": "845e907ae31e425f",
+        "circuit_len_chars": 30992,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the generic ``sliding_window_circuit_mem`` entry point is called with an explicit inner-decoder class and parameter dicts, instead of the ``sliding_window_bposd_circuit_mem`` convenience wrapper",
+      "gate_agrees": true
+    },
+    {
+      "config": "BB/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "code",
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "arch",
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "provably_unchanged_nodes": [
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "d5e28d9ebee631eb",
+        "circuit_sha256_after": "d5e28d9ebee631eb",
+        "dem_sha256_baseline": "1f2379056f13a08b",
+        "dem_sha256_after": "1f2379056f13a08b",
+        "circuit_len_chars": 30997,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the same family constructor, invoked with a different spelling of the construction arguments (BB: power lists vs tuples; HGP/QLP: int vs uint8 base matrices)",
+      "gate_agrees": true
+    },
+    {
+      "config": "BB/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "extractor",
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "decoder",
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "d5e28d9ebee631eb",
+        "circuit_sha256_after": "d5e28d9ebee631eb",
+        "dem_sha256_baseline": "1f2379056f13a08b",
+        "dem_sha256_after": "1f2379056f13a08b",
+        "circuit_len_chars": 30997,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the builder is reached directly through the strategy registry (``get_builder``) instead of through ``QldpcCode.build_circuit``'s dispatch, or the default ``CircuitBuildOptions`` is materialised by the caller instead of the callee",
+      "gate_agrees": true
+    },
+    {
+      "config": "BB/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "arch",
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "code",
+          "decoder",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "d5e28d9ebee631eb",
+        "circuit_sha256_after": "d5e28d9ebee631eb",
+        "dem_sha256_baseline": "1f2379056f13a08b",
+        "dem_sha256_after": "1f2379056f13a08b",
+        "circuit_len_chars": 30997,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the layout is constructed with every optional argument spelled out (``TransversalLayout`` explicit defaults, or the concrete ``BbToricLayout`` instead of the ``ToricLayout`` factory)",
+      "gate_agrees": true
+    },
+    {
+      "config": "BB/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "noise",
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "decoder",
+          "extractor"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "d5e28d9ebee631eb",
+        "circuit_sha256_after": "d5e28d9ebee631eb",
+        "dem_sha256_baseline": "1f2379056f13a08b",
+        "dem_sha256_after": "1f2379056f13a08b",
+        "circuit_len_chars": 30997,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "``ErrorModel`` is constructed positionally instead of by keyword",
+      "gate_agrees": true
+    },
+    {
+      "config": "BB/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "decoder",
+      "spec": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "d5e28d9ebee631eb",
+        "circuit_sha256_after": "d5e28d9ebee631eb",
+        "dem_sha256_baseline": "1f2379056f13a08b",
+        "dem_sha256_after": "1f2379056f13a08b",
+        "circuit_len_chars": 30997,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the generic ``sliding_window_circuit_mem`` entry point is called with an explicit inner-decoder class and parameter dicts, instead of the ``sliding_window_bposd_circuit_mem`` convenience wrapper",
+      "gate_agrees": true
+    },
+    {
+      "config": "HGP/free/cardinal/SD6/BP-OSD",
+      "dim": "code",
+      "spec": {
+        "code": "HGP",
+        "extractor": "cardinal",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "arch",
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "provably_unchanged_nodes": [
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "99be5bfaee0e2086",
+        "circuit_sha256_after": "99be5bfaee0e2086",
+        "dem_sha256_baseline": "56438c8e4501e55f",
+        "dem_sha256_after": "56438c8e4501e55f",
+        "circuit_len_chars": 3127,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "QldpcCode.build_circuit(explicit CircuitBuildOptions())",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the same family constructor, invoked with a different spelling of the construction arguments (BB: power lists vs tuples; HGP/QLP: int vs uint8 base matrices)",
+      "gate_agrees": true
+    },
+    {
+      "config": "HGP/free/cardinal/SD6/BP-OSD",
+      "dim": "extractor",
+      "spec": {
+        "code": "HGP",
+        "extractor": "cardinal",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "decoder",
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "99be5bfaee0e2086",
+        "circuit_sha256_after": "99be5bfaee0e2086",
+        "dem_sha256_baseline": "56438c8e4501e55f",
+        "dem_sha256_after": "56438c8e4501e55f",
+        "circuit_len_chars": 3127,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "QldpcCode.build_circuit(explicit CircuitBuildOptions())",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the builder is reached directly through the strategy registry (``get_builder``) instead of through ``QldpcCode.build_circuit``'s dispatch, or the default ``CircuitBuildOptions`` is materialised by the caller instead of the callee",
+      "gate_agrees": true
+    },
+    {
+      "config": "HGP/free/cardinal/SD6/BP-OSD",
+      "dim": "arch",
+      "spec": {
+        "code": "HGP",
+        "extractor": "cardinal",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "code",
+          "decoder",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "99be5bfaee0e2086",
+        "circuit_sha256_after": "99be5bfaee0e2086",
+        "dem_sha256_baseline": "56438c8e4501e55f",
+        "dem_sha256_after": "56438c8e4501e55f",
+        "circuit_len_chars": 3127,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "QldpcCode.build_circuit(explicit CircuitBuildOptions())",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the layout is constructed with every optional argument spelled out (``TransversalLayout`` explicit defaults, or the concrete ``BbToricLayout`` instead of the ``ToricLayout`` factory)",
+      "gate_agrees": true
+    },
+    {
+      "config": "HGP/free/cardinal/SD6/BP-OSD",
+      "dim": "noise",
+      "spec": {
+        "code": "HGP",
+        "extractor": "cardinal",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "decoder",
+          "extractor"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "99be5bfaee0e2086",
+        "circuit_sha256_after": "99be5bfaee0e2086",
+        "dem_sha256_baseline": "56438c8e4501e55f",
+        "dem_sha256_after": "56438c8e4501e55f",
+        "circuit_len_chars": 3127,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "QldpcCode.build_circuit(explicit CircuitBuildOptions())",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "``ErrorModel`` is constructed positionally instead of by keyword",
+      "gate_agrees": true
+    },
+    {
+      "config": "HGP/free/cardinal/SD6/BP-OSD",
+      "dim": "decoder",
+      "spec": {
+        "code": "HGP",
+        "extractor": "cardinal",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "99be5bfaee0e2086",
+        "circuit_sha256_after": "99be5bfaee0e2086",
+        "dem_sha256_baseline": "56438c8e4501e55f",
+        "dem_sha256_after": "56438c8e4501e55f",
+        "circuit_len_chars": 3127,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "QldpcCode.build_circuit(explicit CircuitBuildOptions())",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the generic ``sliding_window_circuit_mem`` entry point is called with an explicit inner-decoder class and parameter dicts, instead of the ``sliding_window_bposd_circuit_mem`` convenience wrapper",
+      "gate_agrees": true
+    },
+    {
+      "config": "HGP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "code",
+      "spec": {
+        "code": "HGP",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "arch",
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "provably_unchanged_nodes": [
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "c0c335d7428e4fda",
+        "circuit_sha256_after": "c0c335d7428e4fda",
+        "dem_sha256_baseline": "59cdfcb483700003",
+        "dem_sha256_after": "59cdfcb483700003",
+        "circuit_len_chars": 4410,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the same family constructor, invoked with a different spelling of the construction arguments (BB: power lists vs tuples; HGP/QLP: int vs uint8 base matrices)",
+      "gate_agrees": true
+    },
+    {
+      "config": "HGP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "extractor",
+      "spec": {
+        "code": "HGP",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "decoder",
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "c0c335d7428e4fda",
+        "circuit_sha256_after": "c0c335d7428e4fda",
+        "dem_sha256_baseline": "59cdfcb483700003",
+        "dem_sha256_after": "59cdfcb483700003",
+        "circuit_len_chars": 4410,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the builder is reached directly through the strategy registry (``get_builder``) instead of through ``QldpcCode.build_circuit``'s dispatch, or the default ``CircuitBuildOptions`` is materialised by the caller instead of the callee",
+      "gate_agrees": true
+    },
+    {
+      "config": "HGP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "arch",
+      "spec": {
+        "code": "HGP",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "code",
+          "decoder",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "c0c335d7428e4fda",
+        "circuit_sha256_after": "c0c335d7428e4fda",
+        "dem_sha256_baseline": "59cdfcb483700003",
+        "dem_sha256_after": "59cdfcb483700003",
+        "circuit_len_chars": 4410,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the layout is constructed with every optional argument spelled out (``TransversalLayout`` explicit defaults, or the concrete ``BbToricLayout`` instead of the ``ToricLayout`` factory)",
+      "gate_agrees": true
+    },
+    {
+      "config": "HGP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "noise",
+      "spec": {
+        "code": "HGP",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "decoder",
+          "extractor"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "c0c335d7428e4fda",
+        "circuit_sha256_after": "c0c335d7428e4fda",
+        "dem_sha256_baseline": "59cdfcb483700003",
+        "dem_sha256_after": "59cdfcb483700003",
+        "circuit_len_chars": 4410,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "``ErrorModel`` is constructed positionally instead of by keyword",
+      "gate_agrees": true
+    },
+    {
+      "config": "HGP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "decoder",
+      "spec": {
+        "code": "HGP",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "c0c335d7428e4fda",
+        "circuit_sha256_after": "c0c335d7428e4fda",
+        "dem_sha256_baseline": "59cdfcb483700003",
+        "dem_sha256_after": "59cdfcb483700003",
+        "circuit_len_chars": 4410,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the generic ``sliding_window_circuit_mem`` entry point is called with an explicit inner-decoder class and parameter dicts, instead of the ``sliding_window_bposd_circuit_mem`` convenience wrapper",
+      "gate_agrees": true
+    },
+    {
+      "config": "QLP/free/cardinal/SD6/BP-OSD",
+      "dim": "code",
+      "spec": {
+        "code": "QLP",
+        "extractor": "cardinal",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "arch",
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "provably_unchanged_nodes": [
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "03fb90b99faba185",
+        "circuit_sha256_after": "03fb90b99faba185",
+        "dem_sha256_baseline": "e394289326083578",
+        "dem_sha256_after": "e394289326083578",
+        "circuit_len_chars": 35026,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "QldpcCode.build_circuit(explicit CircuitBuildOptions())",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the same family constructor, invoked with a different spelling of the construction arguments (BB: power lists vs tuples; HGP/QLP: int vs uint8 base matrices)",
+      "gate_agrees": true
+    },
+    {
+      "config": "QLP/free/cardinal/SD6/BP-OSD",
+      "dim": "extractor",
+      "spec": {
+        "code": "QLP",
+        "extractor": "cardinal",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "decoder",
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "03fb90b99faba185",
+        "circuit_sha256_after": "03fb90b99faba185",
+        "dem_sha256_baseline": "e394289326083578",
+        "dem_sha256_after": "e394289326083578",
+        "circuit_len_chars": 35026,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "QldpcCode.build_circuit(explicit CircuitBuildOptions())",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the builder is reached directly through the strategy registry (``get_builder``) instead of through ``QldpcCode.build_circuit``'s dispatch, or the default ``CircuitBuildOptions`` is materialised by the caller instead of the callee",
+      "gate_agrees": true
+    },
+    {
+      "config": "QLP/free/cardinal/SD6/BP-OSD",
+      "dim": "arch",
+      "spec": {
+        "code": "QLP",
+        "extractor": "cardinal",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "code",
+          "decoder",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "03fb90b99faba185",
+        "circuit_sha256_after": "03fb90b99faba185",
+        "dem_sha256_baseline": "e394289326083578",
+        "dem_sha256_after": "e394289326083578",
+        "circuit_len_chars": 35026,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "QldpcCode.build_circuit(explicit CircuitBuildOptions())",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the layout is constructed with every optional argument spelled out (``TransversalLayout`` explicit defaults, or the concrete ``BbToricLayout`` instead of the ``ToricLayout`` factory)",
+      "gate_agrees": true
+    },
+    {
+      "config": "QLP/free/cardinal/SD6/BP-OSD",
+      "dim": "noise",
+      "spec": {
+        "code": "QLP",
+        "extractor": "cardinal",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "decoder",
+          "extractor"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "03fb90b99faba185",
+        "circuit_sha256_after": "03fb90b99faba185",
+        "dem_sha256_baseline": "e394289326083578",
+        "dem_sha256_after": "e394289326083578",
+        "circuit_len_chars": 35026,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "QldpcCode.build_circuit(explicit CircuitBuildOptions())",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "``ErrorModel`` is constructed positionally instead of by keyword",
+      "gate_agrees": true
+    },
+    {
+      "config": "QLP/free/cardinal/SD6/BP-OSD",
+      "dim": "decoder",
+      "spec": {
+        "code": "QLP",
+        "extractor": "cardinal",
+        "arch": "free",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "03fb90b99faba185",
+        "circuit_sha256_after": "03fb90b99faba185",
+        "dem_sha256_baseline": "e394289326083578",
+        "dem_sha256_after": "e394289326083578",
+        "circuit_len_chars": 35026,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "QldpcCode.build_circuit(explicit CircuitBuildOptions())",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the generic ``sliding_window_circuit_mem`` entry point is called with an explicit inner-decoder class and parameter dicts, instead of the ``sliding_window_bposd_circuit_mem`` convenience wrapper",
+      "gate_agrees": true
+    },
+    {
+      "config": "QLP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "code",
+      "spec": {
+        "code": "QLP",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "arch",
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "provably_unchanged_nodes": [
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "048363cbec88f710",
+        "circuit_sha256_after": "048363cbec88f710",
+        "dem_sha256_baseline": "da966592ae46b7d9",
+        "dem_sha256_after": "da966592ae46b7d9",
+        "circuit_len_chars": 42595,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the same family constructor, invoked with a different spelling of the construction arguments (BB: power lists vs tuples; HGP/QLP: int vs uint8 base matrices)",
+      "gate_agrees": true
+    },
+    {
+      "config": "QLP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "extractor",
+      "spec": {
+        "code": "QLP",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "decoder",
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "048363cbec88f710",
+        "circuit_sha256_after": "048363cbec88f710",
+        "dem_sha256_baseline": "da966592ae46b7d9",
+        "dem_sha256_after": "da966592ae46b7d9",
+        "circuit_len_chars": 42595,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the builder is reached directly through the strategy registry (``get_builder``) instead of through ``QldpcCode.build_circuit``'s dispatch, or the default ``CircuitBuildOptions`` is materialised by the caller instead of the callee",
+      "gate_agrees": true
+    },
+    {
+      "config": "QLP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "arch",
+      "spec": {
+        "code": "QLP",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "code",
+          "decoder",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "048363cbec88f710",
+        "circuit_sha256_after": "048363cbec88f710",
+        "dem_sha256_baseline": "da966592ae46b7d9",
+        "dem_sha256_after": "da966592ae46b7d9",
+        "circuit_len_chars": 42595,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the layout is constructed with every optional argument spelled out (``TransversalLayout`` explicit defaults, or the concrete ``BbToricLayout`` instead of the ``ToricLayout`` factory)",
+      "gate_agrees": true
+    },
+    {
+      "config": "QLP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "noise",
+      "spec": {
+        "code": "QLP",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "decoder",
+          "extractor"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "048363cbec88f710",
+        "circuit_sha256_after": "048363cbec88f710",
+        "dem_sha256_baseline": "da966592ae46b7d9",
+        "dem_sha256_after": "da966592ae46b7d9",
+        "circuit_len_chars": 42595,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "``ErrorModel`` is constructed positionally instead of by keyword",
+      "gate_agrees": true
+    },
+    {
+      "config": "QLP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "decoder",
+      "spec": {
+        "code": "QLP",
+        "extractor": "zxcoloration",
+        "arch": "free",
+        "noise": "SI1000",
+        "decoder": "BP-LSD"
+      },
+      "semantic": {
+        "applicable": true,
+        "invariance_ok": true,
+        "cone_nodes_rerun": [
+          "experiment"
+        ],
+        "provably_unchanged_nodes": [
+          "arch",
+          "code",
+          "extractor",
+          "noise"
+        ],
+        "baseline_assembly": "source_faithful"
+      },
+      "real": {
+        "stim_circuit_text_equal": true,
+        "detector_error_model_text_equal": true,
+        "code_artifact_equal": true,
+        "layout_artifact_equal": true,
+        "decoder_artifact_equal": true,
+        "all_provably_unchanged_nodes_equal": true,
+        "per_node_equal": {
+          "code": true,
+          "extractor": true,
+          "arch": true,
+          "noise": true,
+          "decoder": true,
+          "experiment": true
+        },
+        "circuit_sha256_baseline": "048363cbec88f710",
+        "circuit_sha256_after": "048363cbec88f710",
+        "dem_sha256_baseline": "da966592ae46b7d9",
+        "dem_sha256_after": "da966592ae46b7d9",
+        "circuit_len_chars": 42595,
+        "circuit_call_path_baseline": "QldpcCode.build_circuit",
+        "circuit_call_path_after": "get_builder('zxcoloration').get_coloration_circuit",
+        "decoder_entry_baseline": "sliding_window_bposd_circuit_mem",
+        "decoder_entry_after": "sliding_window_circuit_mem(BpOsdDecoder, ...)"
+      },
+      "alt_implementation": "the generic ``sliding_window_circuit_mem`` entry point is called with an explicit inner-decoder class and parameter dicts, instead of the ``sliding_window_bposd_circuit_mem`` convenience wrapper",
+      "gate_agrees": true
+    }
+  ],
+  "probes": {
+    "noise_coordinate_change": {
+      "name": "noise coordinate change (SD6 -> SI1000)",
+      "kind": "coordinate change, not a component substitution",
+      "circuit_text_equal": false,
+      "dem_text_equal": false,
+      "circuit_sha256_before": "1c97770338298ecc",
+      "circuit_sha256_after": "d5e28d9ebee631eb",
+      "dem_sha256_before": "845e907ae31e425f",
+      "dem_sha256_after": "1f2379056f13a08b",
+      "changed_nodes": [
+        "decoder",
+        "extractor"
+      ],
+      "note": "H3 confirmed on the real artifact: the noise coordinate is baked into the circuit, so changing it is NOT circuit-preserving -- while substituting the noise *component* (an equal-valued ErrorModel built by a different call path) is."
+    },
+    "inadmissible_pair": {
+      "name": "H1: BB + cardinal is inadmissible",
+      "family_whitelist": [
+        "custom",
+        "zxcoloration"
+      ],
+      "global_registry_strategies": [
+        "cardinal",
+        "cardinalNSmerge",
+        "custom",
+        "hook_error_free",
+        "zxcoloration"
+      ],
+      "semantic_layer_refuses": true,
+      "quits_outcome": "refused",
+      "exception": "NotImplementedError",
+      "message": "Error: strategy='cardinal' is not supported for BbCode. Supported strategies: custom, zxcoloration.",
+      "semantic_outcome": "refused",
+      "semantic_message": "contract violated: extractor (strategy 'cardinal' is not on BB's whitelist ['custom', 'zxcoloration'])"
+    },
+    "arch_family_restriction": {
+      "name": "arch = grid2d on a non-BB family",
+      "results": {
+        "BB": {
+          "quits_outcome": "assembled",
+          "layout": "BbToricLayout",
+          "n_positions": 72,
+          "semantic_contract": true
+        },
+        "HGP": {
+          "quits_outcome": "refused",
+          "exception": "ValueError",
+          "message": "ToricLayout only supports BbCode instances.",
+          "semantic_contract": false
+        },
+        "QLP": {
+          "quits_outcome": "refused",
+          "exception": "ValueError",
+          "message": "ToricLayout only supports BbCode instances.",
+          "semantic_contract": false
+        }
+      },
+      "note": "a second hidden cross-component dependency of exactly the H1 shape: whether a layout can be used is a property of the code component, checked by QUITS at run time and by the semantic layer's arch contract before assembly"
+    },
+    "non_c4_substitution": {
+      "name": "decoder value swap (BP-OSD -> BP-LSD)",
+      "kind": "a substitution that is NOT pointwise equal on R(x)",
+      "checker_applicable": false,
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": true,
+        "x_prime_context_independent": true,
+        "pointwise_equal_on_reads": false,
+        "assembly_is_dag": true
+      },
+      "cone_nodes_rerun": [
+        "experiment"
+      ],
+      "note": "the checker's job is to refuse here, and it does: (C4) fails, so no 'cone 外不变' claim is made"
+    }
+  },
+  "summary": {
+    "n_configs": 6,
+    "n_substitutions": 30,
+    "n_circuit_text_equal": 30,
+    "n_dem_text_equal": 30,
+    "n_all_unchanged_equal": 30,
+    "n_gate_agrees": 30,
+    "all_circuit_text_equal": true,
+    "all_dem_text_equal": true,
+    "all_gate_agrees": true,
+    "per_dimension": {
+      "code": {
+        "substitutions": 6,
+        "circuit_text_equal": 6,
+        "dem_text_equal": 6,
+        "gate_agrees": 6
+      },
+      "extractor": {
+        "substitutions": 6,
+        "circuit_text_equal": 6,
+        "dem_text_equal": 6,
+        "gate_agrees": 6
+      },
+      "arch": {
+        "substitutions": 6,
+        "circuit_text_equal": 6,
+        "dem_text_equal": 6,
+        "gate_agrees": 6
+      },
+      "noise": {
+        "substitutions": 6,
+        "circuit_text_equal": 6,
+        "dem_text_equal": 6,
+        "gate_agrees": 6
+      },
+      "decoder": {
+        "substitutions": 6,
+        "circuit_text_equal": 6,
+        "dem_text_equal": 6,
+        "gate_agrees": 6
+      }
+    },
+    "h3_noise_coordinate_change_is_not_local": true,
+    "h1_inadmissible_pair_refused": true,
+    "h1_semantic_layer_agrees": true,
+    "h1_arch_family_restriction_detected": true,
+    "non_c4_substitution_refused_by_checker": true,
+    "non_c4_pointwise_equality_fails": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "input_sha256": [
+    {
+      "path": "experiments/dynamic_impact.json",
+      "sha256": "c53e04b0a506f5025f14dd25f47189bccfcd3eb371ddcfa22f68a2b8f28a04f5"
+    },
+    {
+      "path": "experiments/practice_comparison.json",
+      "sha256": "006798c742dadd0cf5c0592b1e271380a15efa04dd6a4044a0e2db8df1e47e5c"
+    },
+    {
+      "path": "experiments/semantic_replacements.json",
+      "sha256": "e59d0b9efd90b9bbf9de5730957568fa4f35a907e64adb83e1a26485cda82615"
+    },
+    {
+      "path": "experiments/silent_error.json",
+      "sha256": "cb459471d22ea2711fb1927ad566abe0d43302baf7f91de14797b65d09eb7a88"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "assembly": "source_faithful",
+  "nodes": [
+    "arch",
+    "code",
+    "decoder",
+    "experiment",
+    "extractor",
+    "noise"
+  ],
+  "edges": {
+    "arch": [
+      "code"
+    ],
+    "code": [],
+    "decoder": [
+      "code",
+      "extractor"
+    ],
+    "experiment": [
+      "code",
+      "extractor",
+      "arch",
+      "noise",
+      "decoder"
+    ],
+    "extractor": [
+      "code"
+    ],
+    "noise": []
+  },
+  "reads": {
+    "arch": [
+      "arch"
+    ],
+    "code": [
+      "code"
+    ],
+    "decoder": [
+      "decoder"
+    ],
+    "experiment": [
+      "code",
+      "extractor",
+      "arch",
+      "noise",
+      "decoder"
+    ],
+    "extractor": [
+      "code",
+      "extractor",
+      "noise"
+    ],
+    "noise": [
+      "noise"
+    ]
+  },
+  "cone": {
+    "arch": [
+      "experiment"
+    ],
+    "code": [
+      "arch",
+      "decoder",
+      "experiment",
+      "extractor"
+    ],
+    "decoder": [
+      "experiment"
+    ],
+    "experiment": [],
+    "extractor": [
+      "decoder",
+      "experiment"
+    ],
+    "noise": [
+      "experiment"
+    ]
+  },
+  "coordinate_impact": {
+    "code": [
+      "arch",
+      "code",
+      "decoder",
+      "experiment",
+      "extractor"
+    ],
+    "extractor": [
+      "decoder",
+      "experiment",
+      "extractor"
+    ],
+    "arch": [
+      "arch",
+      "experiment"
+    ],
+    "noise": [
+      "decoder",
+      "experiment",
+      "extractor",
+      "noise"
+    ],
+    "decoder": [
+      "decoder",
+      "experiment"
+    ]
+  },
+  "cone_size": {
+    "arch": 1,
+    "code": 4,
+    "decoder": 1,
+    "experiment": 0,
+    "extractor": 2,
+    "noise": 1
+  },
+  "n_nodes": 6
+}

@@ -1,0 +1,605 @@
+{
+  "metadata": {
+    "description": "Quantitative evidence for H1-H3 on the pinned QUITS tree",
+    "date": "2026-10-09",
+    "quits_commit": "0f36b8c5a9b81d6b7be0cef2c81c61b5850c0452",
+    "quits_src": "third_party/quits-0f36b8c5a9b81d6b7be0cef2c81c61b5850c0452/src/quits",
+    "method": "ast-based static extraction + execution of the pinned tree",
+    "n_call_sites_verified": 5,
+    "n_call_sites_runtime_verified": 5,
+    "claims_are_about": "the pinned QUITS source itself (not about any semantic-layer assembly)",
+    "fed_into_assembly": {
+      "H1": "the family whitelists become `semantics.FAMILY_STRATEGIES`, which is the faithful extractor's `contract`: an inadmissible (code, extractor) pair is refused as a *stated obligation* by `semantics.inadmissible_pairs()` instead of a runtime raise.  It is also the `quits_faithful` counterexample's mechanism.",
+      "H2": "the absence of any abstract interface in decoder/ is why the semantic layer must *check* R(c) rather than infer it like an effect system (PIVOT_NOTE section 8.5).",
+      "H3": "noise being baked into the circuit is the `noise` coordinate in R(extractor) of every faithful assembly; its coordinate impact is {noise, extractor, decoder, experiment}.",
+      "published_baseline_assembly": "source_faithful",
+      "baseline_read_sets_from": "auto-extracted from the pinned QUITS tree by experiments/extract_read_sets.py (READ_SETS_FROM_SOURCE)",
+      "baseline_edges_from": "auto-derived: ARTIFACT_READS_FROM_SOURCE minus self-loops (ASSEMBLY_EDGES_FROM_SOURCE): extractor <- code, arch <- code, decoder <- (code, extractor)",
+      "hand_modelled_counterpart": {
+        "assembly": "quits_dataflow",
+        "read_sets_from": "hand-declared conservative H3 model: R(extractor) contains `noise` (build_circuit bakes the error model into the circuit) and R(decoder) is everything embedded in the circuit plus its own coordinate",
+        "edges_from": "hand-set, deliberately over-approximating: extractor <- (code, noise); decoder <- (code, extractor, arch, noise); arch <- code (added 2026-10-09 -- the dynamic measurement shows a code substitution changes `layout_positions`, so this edge is real)"
+      },
+      "dynamic_cross_check": "experiments/dynamic_impact.json measures H1 and H3 by executing QUITS; that measurement is the ground truth, this file and extract_read_sets.py are the static cross-validation of it."
+    }
+  },
+  "H1": {
+    "claim": "H1: admissibility (code family x extraction strategy) is a hidden cross-component relation",
+    "n_files_with_whitelist": 8,
+    "n_concrete_families": 7,
+    "base_class_default": [
+      "zxcoloration"
+    ],
+    "families_overriding_base_default": [
+      "BbCode",
+      "BpcCode",
+      "HgpCode",
+      "LcsCode",
+      "MittenCode",
+      "QlpCode",
+      "QlpPolyCode"
+    ],
+    "n_distinct_whitelists": 3,
+    "distinct_whitelists": [
+      [
+        "cardinal",
+        "cardinalNSmerge",
+        "zxcoloration"
+      ],
+      [
+        "custom",
+        "hook_error_free",
+        "zxcoloration"
+      ],
+      [
+        "custom",
+        "zxcoloration"
+      ]
+    ],
+    "n_family_pairs": 21,
+    "n_inconsistent_family_pairs": 11,
+    "fraction_inconsistent_pairs": 0.5238,
+    "strategy_acceptance_matrix": {
+      "cardinal": {
+        "accepted_by": [
+          "BpcCode",
+          "HgpCode",
+          "LcsCode",
+          "QlpCode",
+          "QlpPolyCode"
+        ],
+        "n_families": 5
+      },
+      "cardinalNSmerge": {
+        "accepted_by": [
+          "BpcCode",
+          "HgpCode",
+          "LcsCode",
+          "QlpCode",
+          "QlpPolyCode"
+        ],
+        "n_families": 5
+      },
+      "custom": {
+        "accepted_by": [
+          "BbCode",
+          "MittenCode"
+        ],
+        "n_families": 2
+      },
+      "hook_error_free": {
+        "accepted_by": [
+          "MittenCode"
+        ],
+        "n_families": 1
+      },
+      "zxcoloration": {
+        "accepted_by": [
+          "BbCode",
+          "BpcCode",
+          "HgpCode",
+          "LcsCode",
+          "MittenCode",
+          "QlpCode",
+          "QlpPolyCode"
+        ],
+        "n_families": 7
+      }
+    },
+    "global_registry_keys": [
+      "cardinal",
+      "cardinalNSmerge",
+      "custom",
+      "zxcoloration"
+    ],
+    "union_of_supported_strategies": [
+      "cardinal",
+      "cardinalNSmerge",
+      "custom",
+      "hook_error_free",
+      "zxcoloration"
+    ],
+    "strategies_whitelisted_without_registry_entry": [
+      "hook_error_free"
+    ],
+    "n_strategies_whitelisted_without_registry_entry": 1,
+    "families_participating_in_any_disagreement": [],
+    "enforcement": {
+      "file": "qldpc_code/base.py",
+      "raise_lines": [
+        131
+      ],
+      "guarded_strategy_set": [
+        "cardinal",
+        "cardinalNSmerge",
+        "custom"
+      ]
+    },
+    "per_class": [
+      {
+        "file": "qldpc_code/base.py",
+        "line": 20,
+        "class": "QldpcCode",
+        "strategies": [
+          "zxcoloration"
+        ]
+      },
+      {
+        "file": "qldpc_code/bb.py",
+        "line": 19,
+        "class": "BbCode",
+        "strategies": [
+          "custom",
+          "zxcoloration"
+        ]
+      },
+      {
+        "file": "qldpc_code/bpc.py",
+        "line": 15,
+        "class": "BpcCode",
+        "strategies": [
+          "cardinal",
+          "cardinalNSmerge",
+          "zxcoloration"
+        ]
+      },
+      {
+        "file": "qldpc_code/hgp.py",
+        "line": 15,
+        "class": "HgpCode",
+        "strategies": [
+          "cardinal",
+          "cardinalNSmerge",
+          "zxcoloration"
+        ]
+      },
+      {
+        "file": "qldpc_code/lcs.py",
+        "line": 24,
+        "class": "LcsCode",
+        "strategies": [
+          "cardinal",
+          "cardinalNSmerge",
+          "zxcoloration"
+        ]
+      },
+      {
+        "file": "qldpc_code/mitten.py",
+        "line": 181,
+        "class": "MittenCode",
+        "strategies": [
+          "custom",
+          "hook_error_free",
+          "zxcoloration"
+        ]
+      },
+      {
+        "file": "qldpc_code/qlp.py",
+        "line": 15,
+        "class": "QlpCode",
+        "strategies": [
+          "cardinal",
+          "cardinalNSmerge",
+          "zxcoloration"
+        ]
+      },
+      {
+        "file": "qldpc_code/qlp.py",
+        "line": 204,
+        "class": "QlpPolyCode",
+        "strategies": [
+          "cardinal",
+          "cardinalNSmerge",
+          "zxcoloration"
+        ]
+      }
+    ],
+    "verdict_supported": true
+  },
+  "H2": {
+    "claim": "H2: a substituter has no obligation it can state",
+    "decoder_package": {
+      "package": "decoder",
+      "n_files": 5,
+      "loc": 591,
+      "n_classes": 0,
+      "n_abstract_classes": 0,
+      "n_protocol_classes": 0,
+      "n_abstract_methods": 0,
+      "abstract_classes": [],
+      "protocol_classes": []
+    },
+    "layout_package": {
+      "package": "layout",
+      "n_files": 6,
+      "loc": 444,
+      "n_classes": 6,
+      "n_abstract_classes": 2,
+      "n_protocol_classes": 0,
+      "n_abstract_methods": 5,
+      "abstract_classes": [
+        "layout/base.py:22:Layout",
+        "layout/toric_common.py:11:AbstractToricLayout"
+      ],
+      "protocol_classes": []
+    },
+    "noise_package": {
+      "package": "noise",
+      "n_files": 2,
+      "loc": 85,
+      "n_classes": 1,
+      "n_abstract_classes": 0,
+      "n_protocol_classes": 0,
+      "n_abstract_methods": 0,
+      "abstract_classes": [],
+      "protocol_classes": []
+    },
+    "decoder_abstract_classes": 0,
+    "layout_abstract_classes": 2,
+    "ratio_layout_over_decoder": null,
+    "implicit_decoder_interface": {
+      "file": "simulation.py",
+      "function": "get_codecap_pL",
+      "lines": "31-61",
+      "decoder_is_a_parameter": true,
+      "parameter_names": [
+        "code",
+        "p",
+        "num_trials",
+        "decoder",
+        "dict",
+        "basis",
+        "seed",
+        "tqdm_on"
+      ],
+      "decoder_constructor_calls": [
+        {
+          "callee": "decoder",
+          "positional": [
+            "parity_check_matrix"
+          ],
+          "star_kwargs": true,
+          "explicit_kwargs": []
+        }
+      ],
+      "required_attributes": [
+        "decode"
+      ],
+      "n_required_attributes": 1,
+      "declared_interface_in_annotations": []
+    },
+    "verdict_supported": true
+  },
+  "H3": {
+    "claim": "H3: 'reuse the rest unchanged' has no a-priori statement (noise is baked into the circuit artifact)",
+    "n_build_circuit_definitions": 8,
+    "n_distinct_files_defining_build_circuit": 7,
+    "files_defining_build_circuit": [
+      "qldpc_code/base.py",
+      "qldpc_code/bb.py",
+      "qldpc_code/bpc.py",
+      "qldpc_code/hgp.py",
+      "qldpc_code/lcs.py",
+      "qldpc_code/mitten.py",
+      "qldpc_code/qlp.py"
+    ],
+    "n_files_with_explicit_noise_param": 6,
+    "files_with_explicit_noise_param": [
+      "qldpc_code/bb.py",
+      "qldpc_code/bpc.py",
+      "qldpc_code/hgp.py",
+      "qldpc_code/lcs.py",
+      "qldpc_code/mitten.py",
+      "qldpc_code/qlp.py"
+    ],
+    "n_files_depending_on_noise_any_channel": 7,
+    "fraction_files_depending_on_noise": 1.0,
+    "files_depending_on_noise_any_channel": [
+      "qldpc_code/base.py",
+      "qldpc_code/bb.py",
+      "qldpc_code/bpc.py",
+      "qldpc_code/hgp.py",
+      "qldpc_code/lcs.py",
+      "qldpc_code/mitten.py",
+      "qldpc_code/qlp.py"
+    ],
+    "n_files_forwarding_noise_into_builder": 7,
+    "files_using_opaque_varkw": [
+      "qldpc_code/base.py",
+      "qldpc_code/bb.py",
+      "qldpc_code/bpc.py",
+      "qldpc_code/hgp.py",
+      "qldpc_code/lcs.py",
+      "qldpc_code/mitten.py",
+      "qldpc_code/qlp.py"
+    ],
+    "definitions": [
+      {
+        "file": "qldpc_code/base.py",
+        "line": 115,
+        "params": [
+          "self",
+          "strategy",
+          "**opts"
+        ],
+        "noise_params": [],
+        "has_varkw": true,
+        "reads_noise_via_varkw": true,
+        "forwards_noise_to_builder": true
+      },
+      {
+        "file": "qldpc_code/bb.py",
+        "line": 66,
+        "params": [
+          "self",
+          "strategy",
+          "error_model",
+          "num_rounds",
+          "basis",
+          "circuit_build_options",
+          "**opts"
+        ],
+        "noise_params": [
+          "error_model"
+        ],
+        "has_varkw": true,
+        "reads_noise_via_varkw": false,
+        "forwards_noise_to_builder": true
+      },
+      {
+        "file": "qldpc_code/bpc.py",
+        "line": 134,
+        "params": [
+          "self",
+          "strategy",
+          "error_model",
+          "num_rounds",
+          "basis",
+          "circuit_build_options",
+          "**opts"
+        ],
+        "noise_params": [
+          "error_model"
+        ],
+        "has_varkw": true,
+        "reads_noise_via_varkw": false,
+        "forwards_noise_to_builder": true
+      },
+      {
+        "file": "qldpc_code/hgp.py",
+        "line": 87,
+        "params": [
+          "self",
+          "strategy",
+          "error_model",
+          "num_rounds",
+          "basis",
+          "circuit_build_options",
+          "**opts"
+        ],
+        "noise_params": [
+          "error_model"
+        ],
+        "has_varkw": true,
+        "reads_noise_via_varkw": false,
+        "forwards_noise_to_builder": true
+      },
+      {
+        "file": "qldpc_code/lcs.py",
+        "line": 48,
+        "params": [
+          "self",
+          "strategy",
+          "error_model",
+          "num_rounds",
+          "basis",
+          "circuit_build_options",
+          "**opts"
+        ],
+        "noise_params": [
+          "error_model"
+        ],
+        "has_varkw": true,
+        "reads_noise_via_varkw": false,
+        "forwards_noise_to_builder": true
+      },
+      {
+        "file": "qldpc_code/mitten.py",
+        "line": 234,
+        "params": [
+          "self",
+          "strategy",
+          "error_model",
+          "num_rounds",
+          "basis",
+          "circuit_build_options",
+          "**opts"
+        ],
+        "noise_params": [
+          "error_model"
+        ],
+        "has_varkw": true,
+        "reads_noise_via_varkw": false,
+        "forwards_noise_to_builder": true
+      },
+      {
+        "file": "qldpc_code/qlp.py",
+        "line": 50,
+        "params": [
+          "self",
+          "strategy",
+          "error_model",
+          "num_rounds",
+          "basis",
+          "circuit_build_options",
+          "**opts"
+        ],
+        "noise_params": [
+          "error_model"
+        ],
+        "has_varkw": true,
+        "reads_noise_via_varkw": false,
+        "forwards_noise_to_builder": true
+      },
+      {
+        "file": "qldpc_code/qlp.py",
+        "line": 269,
+        "params": [
+          "self",
+          "strategy",
+          "error_model",
+          "num_rounds",
+          "basis",
+          "circuit_build_options",
+          "**opts"
+        ],
+        "noise_params": [
+          "error_model"
+        ],
+        "has_varkw": true,
+        "reads_noise_via_varkw": false,
+        "forwards_noise_to_builder": true
+      }
+    ],
+    "verdict_supported": true
+  },
+  "domain_coverage": {
+    "extractor_domain_in_semantics": [
+      "cardinal",
+      "cardinalNSmerge",
+      "custom",
+      "hook_error_free",
+      "zxcoloration"
+    ],
+    "extractor_domain_from_source": [
+      "cardinal",
+      "cardinalNSmerge",
+      "custom",
+      "hook_error_free",
+      "zxcoloration"
+    ],
+    "missing_from_domain": [],
+    "extra_in_domain": [],
+    "covers_source_union": true,
+    "per_dimension_exhaustive_flag": {
+      "code": true,
+      "extractor": true,
+      "arch": false,
+      "noise": false,
+      "decoder": false
+    }
+  },
+  "call_site_verification": [
+    {
+      "dimension": "extraction",
+      "claim": "global string registry + per-family whitelist; cardinal is rejected for BbCode at runtime",
+      "static_check": {
+        "ok": true,
+        "detail": "3 distinct whitelists over 7 families; 11/21 pairs inconsistent",
+        "registry_keys": [
+          "cardinal",
+          "cardinalNSmerge",
+          "custom",
+          "zxcoloration"
+        ]
+      },
+      "runtime_check": {
+        "status": "ok",
+        "detail": "BbCode(3,3).supported_strategies=['custom', 'zxcoloration']; build_circuit -> {'cardinal': 'NotImplementedError', 'cardinalNSmerge': 'NotImplementedError'}",
+        "ok": true
+      },
+      "verified": true
+    },
+    {
+      "dimension": "decoder",
+      "claim": "no ABC/Protocol under decoder/; duck typing at the call site",
+      "static_check": {
+        "ok": true,
+        "detail": "decoder/: 0 classes, 0 ABC, 0 Protocol (layout/: 2 ABC); implicit interface = ['decode']"
+      },
+      "runtime_check": {
+        "status": "ok",
+        "detail": "quits.decoder.__all__ exposes 10 names, 0 classes; a duck-typed decoder (no ABC/Protocol) ran through get_codecap_pL -> pL=0.000",
+        "ok": true,
+        "n_public_names_in_quits_decoder": 10,
+        "n_classes_in_quits_decoder_module": 0
+      },
+      "verified": true
+    },
+    {
+      "dimension": "noise",
+      "claim": "only structural validation (type / tuple length); no obligation on properties the circuit builder relies on",
+      "static_check": {
+        "ok": true,
+        "detail": "ErrorModel.__post_init__ body =     self._validate_single_or_pauli1('idle_error', self.idle_error)\n    self._validate_single_or_pauli1('sqgate_error', self.sqgate_error)\n    self._validate_sin"
+      },
+      "runtime_check": {
+        "status": "ok",
+        "detail": "structurally-valid but semantically-bogus ErrorModel values are accepted (no property obligation): {'prob_gt_1': 'accepted', 'negative_prob': 'accepted', 'tqgate_pauli_sum_ne_1': 'accepted', 'spam_prob_gt_1': 'accepted'}",
+        "ok": true,
+        "bogus_inputs_accepted": {
+          "prob_gt_1": "accepted",
+          "negative_prob": "accepted",
+          "tqgate_pauli_sum_ne_1": "accepted",
+          "spam_prob_gt_1": "accepted"
+        }
+      },
+      "verified": true
+    },
+    {
+      "dimension": "code",
+      "claim": "family classes share the implicit set_parity_checks contract",
+      "static_check": {
+        "ok": true,
+        "detail": "8 class-level supported_strategies declarations, all subclasses of QldpcCode"
+      },
+      "runtime_check": {
+        "status": "ok",
+        "detail": "BbCode(3,3): CSS commutation hz.hx^T == hx.hz^T mod 2 holds=True; verify_css_logicals=True",
+        "ok": true
+      },
+      "verified": true
+    },
+    {
+      "dimension": "architecture",
+      "claim": "the only dimension with an abstract base class; get_layout() defaults to None",
+      "static_check": {
+        "ok": true,
+        "detail": "layout/: ['layout/base.py:22:Layout', 'layout/toric_common.py:11:AbstractToricLayout']; decoder/: 0 ABC/Protocol"
+      },
+      "runtime_check": {
+        "status": "ok",
+        "detail": "issubclass(Layout, abc.ABC)=True; Layout.__abstractmethods__=['mapping']; QldpcCode().get_layout() is None=True",
+        "ok": true
+      },
+      "verified": true
+    }
+  ],
+  "summary": {
+    "H1_verdict": true,
+    "H2_verdict": true,
+    "H3_verdict": true,
+    "domain_covers_source_union": true,
+    "all_call_sites_verified": true
+  }
+}

@@ -1,0 +1,1151 @@
+{
+  "metadata": {
+    "title": "subject 2 read sets: AST extraction vs hand model",
+    "date": "2026-10-12",
+    "subject": "qecc_routing (Berthusen et al., arXiv:2404.17676)",
+    "qecc_commit": "4ef18121c39492414b85ff36b3a61c83f9ebf95f",
+    "source_file": "src_py/bivariate-bicycle/general.py",
+    "method": "AST static analysis of the pinned tree; component granularity = the 11 nodes of subject2_qecc; coordinate-carrier / artifact / sub_api attribution (same channels as experiments/extract_read_sets.py)",
+    "granularity_note": "qecc_routing is a single module: components are line ranges of general.py, printed per row and sentinel-verified against the file",
+    "coordinate_carriers": {
+      "code": "code",
+      "probs": "noise",
+      "muls001": "noise",
+      "idle_error": "noise",
+      "lr_time": "routing",
+      "bposd_decoder": "decoder"
+    },
+    "artifact_producers": {
+      "ell": "code",
+      "m": "code",
+      "A1": "code",
+      "A2": "code",
+      "A3": "code",
+      "B1": "code",
+      "B2": "code",
+      "B3": "code",
+      "A": "code",
+      "B": "code",
+      "Hx": "code",
+      "Hz": "code",
+      "k": "code",
+      "lattice": "embedding",
+      "all_qbts": "embedding",
+      "qbts": "embedding",
+      "x_checks": "embedding",
+      "z_checks": "embedding",
+      "x_rs": "geometry",
+      "z_rs": "geometry",
+      "lr_x_checks": "sr_lr_split",
+      "sr_x_checks": "sr_lr_split",
+      "lr_z_checks": "sr_lr_split",
+      "sr_z_checks": "sr_lr_split",
+      "adv": "sr_lr_split",
+      "x_check_succ_probs": "succ_probs",
+      "z_check_succ_probs": "succ_probs"
+    },
+    "dependency_availability": {
+      "numpy": {
+        "available": true,
+        "version": "2.2.6",
+        "needed_by": "general.py, mec.py"
+      },
+      "scipy": {
+        "available": true,
+        "version": "1.15.3",
+        "needed_by": "general.py (sparse)"
+      },
+      "matplotlib": {
+        "available": true,
+        "version": "3.9.2",
+        "needed_by": "general.py (pyplot)"
+      },
+      "stim": {
+        "available": true,
+        "version": "1.14.0",
+        "needed_by": "general.py"
+      },
+      "galois": {
+        "available": true,
+        "version": "0.4.2",
+        "needed_by": "general.py (GF(2) rank)"
+      },
+      "ldpc": {
+        "available": true,
+        "version": "2.1.2",
+        "needed_by": "general.py (bposd)"
+      },
+      "tqdm": {
+        "available": true,
+        "version": "4.67.1",
+        "needed_by": "general.py (experiment loop)"
+      },
+      "pandas": {
+        "available": false,
+        "error": "numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject",
+        "needed_by": "code_exploration.py only -- NOT needed by the gate"
+      },
+      "networkx": {
+        "available": true,
+        "version": "3.4.2",
+        "needed_by": "requirements.txt only -- not imported by src_py"
+      },
+      "sinter": {
+        "available": true,
+        "version": "1.14.0",
+        "needed_by": "requirements.txt only -- not imported by src_py"
+      },
+      "_note": "galois 0.4.2 required upgrading numba (numpy 2.2 compat) and coverage (numba 0.61 compat) on this machine; the general.py pipeline imports are otherwise all satisfied"
+    }
+  },
+  "components": [
+    {
+      "component": "circuit",
+      "regions": [
+        "270-306",
+        "325-334",
+        "348-352"
+      ],
+      "hand_reads": [
+        "code",
+        "embedding"
+      ],
+      "ast_coordinate_reads": [
+        "noise"
+      ],
+      "ast_artifact_reads": [
+        "code",
+        "embedding",
+        "sr_lr_split"
+      ],
+      "ast_sub_api": [
+        "all_checks",
+        "get_logicals",
+        "manhattan",
+        "measure_x_checks",
+        "measure_z_checks"
+      ],
+      "raw_module_names": [
+        ".Circuit",
+        ".append",
+        ".items",
+        ".target_rec",
+        ".values",
+        ".where",
+        ".without_noise",
+        "Hx",
+        "Hz",
+        "all_checks",
+        "all_qbts",
+        "c",
+        "checks",
+        "ell",
+        "enumerate",
+        "gen_qbts",
+        "get_logicals",
+        "i",
+        "incl_qbts",
+        "j",
+        "key",
+        "logical",
+        "lr_x_checks",
+        "lr_z_checks",
+        "m",
+        "manhattan",
+        "measure_x_checks",
+        "measure_z_checks",
+        "muls001",
+        "np",
+        "p",
+        "path_qbts",
+        "qbt",
+        "qbts",
+        "scale",
+        "self",
+        "sr_x_checks",
+        "sr_z_checks",
+        "stim",
+        "type",
+        "value",
+        "x",
+        "x_check",
+        "x_checks",
+        "z",
+        "z_check",
+        "z_checks"
+      ],
+      "in_ast_not_hand": [
+        "noise"
+      ],
+      "in_hand_not_ast": [
+        "code",
+        "embedding"
+      ],
+      "verdict": "hidden_read_hand_missed",
+      "explanation": "the measure_* builders read the global `muls001` noise table when scale=True (general.py:280,295) -- a hidden noise read the hand model did NOT declare: hand R(circuit) omitted it",
+      "evidence": {
+        "coordinate": [
+          "general.py:280 reads `muls001`",
+          "general.py:295 reads `muls001`"
+        ],
+        "artifact": [
+          "general.py:272 reads `all_qbts`",
+          "general.py:272 reads `x_checks`",
+          "general.py:273 reads `all_qbts`",
+          "general.py:273 reads `x_checks`",
+          "general.py:275 reads `Hx`",
+          "general.py:275 reads `qbts`",
+          "general.py:277 reads `all_qbts`",
+          "general.py:277 reads `x_checks`",
+          "general.py:280 reads `x_checks`",
+          "general.py:283 reads `all_qbts`",
+          "general.py:283 reads `x_checks`",
+          "general.py:284 reads `all_qbts`",
+          "general.py:284 reads `x_checks`",
+          "general.py:290 reads `Hz`",
+          "general.py:290 reads `qbts`",
+          "general.py:292 reads `all_qbts`",
+          "general.py:292 reads `z_checks`",
+          "general.py:295 reads `z_checks`",
+          "general.py:302 reads `sr_z_checks`",
+          "general.py:303 reads `lr_z_checks`",
+          "general.py:304 reads `sr_x_checks`",
+          "general.py:305 reads `lr_x_checks`",
+          "general.py:326 reads `all_qbts`",
+          "general.py:328 reads `ell`",
+          "general.py:328 reads `m`",
+          "general.py:329 reads `all_qbts`",
+          "general.py:330 reads `all_qbts`",
+          "general.py:330 reads `ell`",
+          "general.py:330 reads `m`",
+          "general.py:333 reads `all_qbts`",
+          "general.py:333 reads `z_checks`",
+          "general.py:334 reads `all_qbts`",
+          "general.py:334 reads `x_checks`"
+        ],
+        "sub_api": [
+          "general.py:280 calls `manhattan(...)`",
+          "general.py:295 calls `manhattan(...)`",
+          "general.py:302 calls `measure_z_checks(...)`",
+          "general.py:303 calls `measure_z_checks(...)`",
+          "general.py:304 calls `measure_x_checks(...)`",
+          "general.py:305 calls `measure_x_checks(...)`",
+          "general.py:332 calls `all_checks(...)`",
+          "general.py:349 calls `get_logicals(...)`"
+        ]
+      }
+    },
+    {
+      "component": "code",
+      "regions": [
+        "43-68"
+      ],
+      "hand_reads": [
+        "code"
+      ],
+      "ast_coordinate_reads": [
+        "code"
+      ],
+      "ast_artifact_reads": [
+        "code"
+      ],
+      "ast_sub_api": [
+        "cyclic_shift_matrix"
+      ],
+      "raw_module_names": [
+        ".GF",
+        ".T",
+        ".astype",
+        ".eye",
+        ".hstack",
+        ".kron",
+        ".roll",
+        ".shape",
+        "A",
+        "A1",
+        "A2",
+        "A3",
+        "B",
+        "B1",
+        "B2",
+        "B3",
+        "GF",
+        "Hz",
+        "arr",
+        "code",
+        "cyclic_shift_matrix",
+        "ell",
+        "galois",
+        "int",
+        "l",
+        "m",
+        "matrix_power",
+        "matrix_rank",
+        "np",
+        "x",
+        "y"
+      ],
+      "in_ast_not_hand": [],
+      "in_hand_not_ast": [],
+      "verdict": "agreement",
+      "explanation": "AST reads exactly the declared coordinates",
+      "evidence": {
+        "coordinate": [
+          "general.py:47 reads `code`",
+          "general.py:48 reads `code`",
+          "general.py:53 reads `code`",
+          "general.py:54 reads `code`",
+          "general.py:55 reads `code`",
+          "general.py:58 reads `code`",
+          "general.py:59 reads `code`",
+          "general.py:60 reads `code`"
+        ],
+        "artifact": [
+          "general.py:50 reads `ell`",
+          "general.py:50 reads `m`",
+          "general.py:51 reads `ell`",
+          "general.py:51 reads `m`",
+          "general.py:56 reads `A1`",
+          "general.py:56 reads `A2`",
+          "general.py:56 reads `A3`",
+          "general.py:61 reads `B1`",
+          "general.py:61 reads `B2`",
+          "general.py:61 reads `B3`",
+          "general.py:63 reads `A`",
+          "general.py:63 reads `B`",
+          "general.py:64 reads `A`",
+          "general.py:64 reads `B`",
+          "general.py:67 reads `Hz`",
+          "general.py:68 reads `Hz`"
+        ],
+        "sub_api": [
+          "general.py:50 calls `cyclic_shift_matrix(...)`",
+          "general.py:51 calls `cyclic_shift_matrix(...)`"
+        ]
+      }
+    },
+    {
+      "component": "decoder",
+      "regions": [
+        "473-486"
+      ],
+      "hand_reads": [
+        "decoder"
+      ],
+      "ast_coordinate_reads": [
+        "decoder"
+      ],
+      "ast_artifact_reads": [],
+      "ast_sub_api": [],
+      "raw_module_names": [
+        ".decode",
+        ".sample",
+        ".shape",
+        "bposd_dec",
+        "bposd_decoder",
+        "channel_probs",
+        "detection_events",
+        "guessed_errors",
+        "lcm",
+        "min",
+        "pcm",
+        "sampler"
+      ],
+      "in_ast_not_hand": [],
+      "in_hand_not_ast": [],
+      "verdict": "agreement",
+      "explanation": "AST reads exactly the declared coordinates",
+      "evidence": {
+        "coordinate": [
+          "general.py:473 reads `bposd_decoder`"
+        ],
+        "artifact": [],
+        "sub_api": []
+      }
+    },
+    {
+      "component": "embedding",
+      "regions": [
+        "156-224"
+      ],
+      "hand_reads": [
+        "code",
+        "embedding"
+      ],
+      "ast_coordinate_reads": [
+        "code"
+      ],
+      "ast_artifact_reads": [
+        "code",
+        "embedding"
+      ],
+      "ast_sub_api": [
+        "embed_code"
+      ],
+      "raw_module_names": [
+        ".T",
+        ".array",
+        ".empty",
+        ".eye",
+        ".shape",
+        ".where",
+        "A1",
+        "A2",
+        "A3",
+        "A_ind",
+        "As",
+        "B1",
+        "B2",
+        "B3",
+        "B_ind",
+        "Bs",
+        "all_qbts",
+        "code",
+        "curr_ind",
+        "ell",
+        "emb_ell",
+        "emb_m",
+        "embed_code",
+        "get_nbr",
+        "i",
+        "init",
+        "int",
+        "j",
+        "lattice",
+        "m",
+        "np",
+        "object",
+        "qbts",
+        "range",
+        "tmp_A",
+        "tmp_B",
+        "x_checks",
+        "z_checks"
+      ],
+      "in_ast_not_hand": [],
+      "in_hand_not_ast": [
+        "embedding"
+      ],
+      "verdict": "carrier_sharing",
+      "explanation": "the embedding coordinate has no global of its own: its values are code[8:12], carried by the `code` list (general.py:204). AST sees one carrier; the hand model names the semantic view",
+      "evidence": {
+        "coordinate": [
+          "general.py:156 parameter `code`",
+          "general.py:157 reads `code`",
+          "general.py:204 reads `code`"
+        ],
+        "artifact": [
+          "general.py:160 reads `lattice`",
+          "general.py:164 reads `A1`",
+          "general.py:164 reads `A2`",
+          "general.py:164 reads `A3`",
+          "general.py:165 reads `B1`",
+          "general.py:165 reads `B2`",
+          "general.py:165 reads `B3`",
+          "general.py:181 reads `lattice`",
+          "general.py:192 reads `ell`",
+          "general.py:192 reads `lattice`",
+          "general.py:192 reads `m`",
+          "general.py:193 reads `ell`",
+          "general.py:193 reads `lattice`",
+          "general.py:193 reads `m`",
+          "general.py:197 reads `lattice`",
+          "general.py:198 reads `ell`",
+          "general.py:198 reads `lattice`",
+          "general.py:198 reads `m`",
+          "general.py:199 reads `lattice`",
+          "general.py:200 reads `ell`",
+          "general.py:200 reads `lattice`",
+          "general.py:200 reads `m`",
+          "general.py:202 reads `lattice`",
+          "general.py:208 reads `ell`",
+          "general.py:208 reads `m`",
+          "general.py:209 reads `lattice`",
+          "general.py:210 reads `lattice`",
+          "general.py:211 reads `lattice`",
+          "general.py:212 reads `all_qbts`",
+          "general.py:212 reads `lattice`",
+          "general.py:213 reads `lattice`",
+          "general.py:213 reads `qbts`",
+          "general.py:214 reads `ell`",
+          "general.py:214 reads `m`",
+          "general.py:215 reads `ell`",
+          "general.py:215 reads `m`",
+          "general.py:217 reads `lattice`",
+          "general.py:218 reads `lattice`",
+          "general.py:219 reads `lattice`",
+          "general.py:220 reads `all_qbts`",
+          "general.py:220 reads `ell`",
+          "general.py:220 reads `lattice`",
+          "general.py:220 reads `m`",
+          "general.py:221 reads `lattice`",
+          "general.py:221 reads `x_checks`",
+          "general.py:222 reads `lattice`",
+          "general.py:223 reads `all_qbts`",
+          "general.py:223 reads `ell`",
+          "general.py:223 reads `lattice`",
+          "general.py:223 reads `m`",
+          "general.py:224 reads `ell`",
+          "general.py:224 reads `lattice`",
+          "general.py:224 reads `m`",
+          "general.py:224 reads `z_checks`"
+        ],
+        "sub_api": [
+          "general.py:204 calls `embed_code(...)`"
+        ]
+      }
+    },
+    {
+      "component": "geometry",
+      "regions": [
+        "226-233"
+      ],
+      "hand_reads": [
+        "embedding"
+      ],
+      "ast_coordinate_reads": [],
+      "ast_artifact_reads": [
+        "code",
+        "embedding",
+        "geometry"
+      ],
+      "ast_sub_api": [],
+      "raw_module_names": [
+        ".append",
+        ".where",
+        "Hx",
+        "Hz",
+        "ell",
+        "gen_qbts",
+        "i",
+        "m",
+        "make_circle",
+        "np",
+        "qbts",
+        "range",
+        "x_rs",
+        "z_rs"
+      ],
+      "in_ast_not_hand": [],
+      "in_hand_not_ast": [
+        "embedding"
+      ],
+      "verdict": "artifact_only",
+      "explanation": "the real source reads only predecessor *artifacts* (embedding never appears as a coordinate carrier here); the hand toy produce used the coordinate directly",
+      "evidence": {
+        "coordinate": [],
+        "artifact": [
+          "general.py:228 reads `ell`",
+          "general.py:228 reads `m`",
+          "general.py:229 reads `Hx`",
+          "general.py:229 reads `qbts`",
+          "general.py:230 reads `x_rs`",
+          "general.py:231 reads `ell`",
+          "general.py:231 reads `m`",
+          "general.py:232 reads `Hz`",
+          "general.py:232 reads `qbts`",
+          "general.py:233 reads `z_rs`"
+        ],
+        "sub_api": []
+      }
+    },
+    {
+      "component": "idle",
+      "regions": [
+        "414-414",
+        "422-422"
+      ],
+      "hand_reads": [
+        "code"
+      ],
+      "ast_coordinate_reads": [
+        "code",
+        "noise"
+      ],
+      "ast_artifact_reads": [
+        "embedding"
+      ],
+      "ast_sub_api": [],
+      "raw_module_names": [
+        ".append",
+        "all_qbts",
+        "code",
+        "idle_error",
+        "qbt",
+        "qbts",
+        "self"
+      ],
+      "in_ast_not_hand": [
+        "noise"
+      ],
+      "in_hand_not_ast": [],
+      "verdict": "hidden_read_detected",
+      "explanation": "AST finds the hidden `['noise']` read the hand model declares as faithful-but-wrong (g / e / n / e / r / a / l / . / p / y / : / 4 / 1 / 4 / , / 4 / 2 / 2 /   / ` / 0 / . / 0 / 0 / 1 / + / 2 / * / c / o / d / e / [ / 1 / 2 / ] / * / i / d / l / e / _ / e / r / r / o / r / ` /   / - / - /   / n / o / i / s / e /   / m / u / l / t / i / p / l / i / e / d /   / b / y /   / a /   / c / o / d / e /   / p / o / l / y / n / o / m / i / a / l)",
+      "evidence": {
+        "coordinate": [
+          "general.py:414 reads `code`",
+          "general.py:414 reads `idle_error`",
+          "general.py:422 reads `code`",
+          "general.py:422 reads `idle_error`"
+        ],
+        "artifact": [
+          "general.py:414 reads `all_qbts`",
+          "general.py:414 reads `qbts`",
+          "general.py:422 reads `all_qbts`",
+          "general.py:422 reads `qbts`"
+        ],
+        "sub_api": []
+      }
+    },
+    {
+      "component": "logicals",
+      "regions": [
+        "73-149"
+      ],
+      "hand_reads": [
+        "code"
+      ],
+      "ast_coordinate_reads": [],
+      "ast_artifact_reads": [
+        "code"
+      ],
+      "ast_sub_api": [
+        "SGSOP",
+        "commute",
+        "par2gen"
+      ],
+      "raw_module_names": [
+        ".GF",
+        ".T",
+        ".any",
+        ".append",
+        ".array",
+        ".copy",
+        ".delete",
+        ".eye",
+        ".hstack",
+        ".linalg",
+        ".matrix_rank",
+        ".row_reduce",
+        ".shape",
+        ".vstack",
+        ".where",
+        ".zeros",
+        "G",
+        "GF",
+        "Gx",
+        "Gz",
+        "H",
+        "Hx",
+        "Hz",
+        "SGSOP",
+        "col_G",
+        "col_H",
+        "commute",
+        "commutes",
+        "g1",
+        "g2",
+        "galois",
+        "gen_type",
+        "generators",
+        "gfH",
+        "gfH_rank",
+        "gj",
+        "i",
+        "inds",
+        "int",
+        "j",
+        "l",
+        "logX",
+        "logZ",
+        "logicals",
+        "n",
+        "np",
+        "par2gen",
+        "pivot",
+        "print",
+        "range",
+        "rref_H",
+        "swap",
+        "swaps",
+        "sym_G",
+        "sym_Gx",
+        "sym_Gz",
+        "x",
+        "x1",
+        "x2",
+        "z",
+        "z1",
+        "z2"
+      ],
+      "in_ast_not_hand": [],
+      "in_hand_not_ast": [
+        "code"
+      ],
+      "verdict": "artifact_only",
+      "explanation": "the real source reads only predecessor *artifacts* (code never appears as a coordinate carrier here); the hand toy produce used the coordinate directly",
+      "evidence": {
+        "coordinate": [],
+        "artifact": [
+          "general.py:140 reads `Hx`",
+          "general.py:141 reads `Hx`",
+          "general.py:142 reads `Hz`"
+        ],
+        "sub_api": [
+          "general.py:122 calls `commute(...)`",
+          "general.py:128 calls `commute(...)`",
+          "general.py:141 calls `par2gen(...)`",
+          "general.py:142 calls `par2gen(...)`",
+          "general.py:143 calls `SGSOP(...)`"
+        ]
+      }
+    },
+    {
+      "component": "schedule",
+      "regions": [
+        "309-323",
+        "336-346",
+        "354-375",
+        "378-407",
+        "410-413",
+        "415-421",
+        "423-438"
+      ],
+      "hand_reads": [
+        "code",
+        "routing"
+      ],
+      "ast_coordinate_reads": [
+        "routing"
+      ],
+      "ast_artifact_reads": [
+        "code",
+        "embedding",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "ast_sub_api": [
+        "measure_x_checks",
+        "measure_z_checks"
+      ],
+      "raw_module_names": [
+        ".append",
+        ".arange",
+        ".concatenate",
+        ".num_measurements",
+        ".ones",
+        ".random",
+        ".target_rec",
+        ".vstack",
+        ".zeros",
+        "all_qbts",
+        "all_x_checks",
+        "all_z_checks",
+        "coord",
+        "curr_lr_x_checks",
+        "curr_lr_z_checks",
+        "curr_sr_x_checks",
+        "curr_sr_z_checks",
+        "curr_x_checks",
+        "curr_z_checks",
+        "ell",
+        "enumerate",
+        "i",
+        "int",
+        "lr_time",
+        "lr_x_checks",
+        "lr_z_checks",
+        "m",
+        "measure_x_checks",
+        "measure_z_checks",
+        "np",
+        "num_meas",
+        "num_rounds",
+        "qbt",
+        "qbts",
+        "range",
+        "self",
+        "sr_x_checks",
+        "sr_z_checks",
+        "stim",
+        "type",
+        "with_gate_noise",
+        "with_synd_noise",
+        "x",
+        "x_check",
+        "x_check_succ_probs",
+        "x_checks",
+        "z",
+        "z_check",
+        "z_check_succ_probs",
+        "z_checks"
+      ],
+      "in_ast_not_hand": [],
+      "in_hand_not_ast": [
+        "code"
+      ],
+      "verdict": "artifact_only",
+      "explanation": "simulate's code contact is via module state (m, ell, the split and succ-prob arrays) and the two idle sites, which this extractor attributes to the `idle` component; no direct `code` coordinate read remains in the schedule body",
+      "evidence": {
+        "coordinate": [
+          "general.py:310 parameter `lr_time`",
+          "general.py:312 reads `lr_time`"
+        ],
+        "artifact": [
+          "general.py:314 reads `ell`",
+          "general.py:314 reads `m`",
+          "general.py:315 reads `ell`",
+          "general.py:315 reads `m`",
+          "general.py:316 reads `ell`",
+          "general.py:316 reads `m`",
+          "general.py:317 reads `ell`",
+          "general.py:317 reads `m`",
+          "general.py:319 reads `ell`",
+          "general.py:319 reads `m`",
+          "general.py:320 reads `lr_z_checks`",
+          "general.py:321 reads `ell`",
+          "general.py:321 reads `m`",
+          "general.py:322 reads `lr_x_checks`",
+          "general.py:323 reads `ell`",
+          "general.py:323 reads `m`",
+          "general.py:340 reads `z_checks`",
+          "general.py:355 reads `sr_z_checks`",
+          "general.py:356 reads `sr_x_checks`",
+          "general.py:360 reads `all_qbts`",
+          "general.py:360 reads `z_checks`",
+          "general.py:361 reads `all_qbts`",
+          "general.py:361 reads `x_checks`",
+          "general.py:364 reads `all_qbts`",
+          "general.py:364 reads `z_checks`",
+          "general.py:366 reads `sr_z_checks`",
+          "general.py:367 reads `all_qbts`",
+          "general.py:367 reads `z_checks`",
+          "general.py:369 reads `all_qbts`",
+          "general.py:369 reads `x_checks`",
+          "general.py:371 reads `sr_x_checks`",
+          "general.py:372 reads `all_qbts`",
+          "general.py:372 reads `x_checks`",
+          "general.py:374 reads `all_qbts`",
+          "general.py:374 reads `sr_z_checks`",
+          "general.py:374 reads `z_checks`",
+          "general.py:375 reads `all_qbts`",
+          "general.py:375 reads `sr_x_checks`",
+          "general.py:375 reads `x_checks`",
+          "general.py:379 reads `sr_z_checks`",
+          "general.py:380 reads `sr_x_checks`",
+          "general.py:381 reads `lr_z_checks`",
+          "general.py:382 reads `lr_x_checks`",
+          "general.py:386 reads `lr_z_checks`",
+          "general.py:386 reads `sr_z_checks`",
+          "general.py:387 reads `lr_x_checks`",
+          "general.py:387 reads `sr_x_checks`",
+          "general.py:392 reads `all_qbts`",
+          "general.py:392 reads `z_checks`",
+          "general.py:393 reads `all_qbts`",
+          "general.py:393 reads `x_checks`",
+          "general.py:396 reads `all_qbts`",
+          "general.py:396 reads `z_checks`",
+          "general.py:399 reads `all_qbts`",
+          "general.py:399 reads `z_checks`",
+          "general.py:401 reads `all_qbts`",
+          "general.py:401 reads `x_checks`",
+          "general.py:404 reads `all_qbts`",
+          "general.py:404 reads `x_checks`",
+          "general.py:406 reads `all_qbts`",
+          "general.py:406 reads `z_checks`",
+          "general.py:407 reads `all_qbts`",
+          "general.py:407 reads `x_checks`",
+          "general.py:415 reads `sr_z_checks`",
+          "general.py:415 reads `z_check_succ_probs`",
+          "general.py:416 reads `lr_z_checks`",
+          "general.py:416 reads `z_check_succ_probs`",
+          "general.py:417 reads `sr_x_checks`",
+          "general.py:417 reads `x_check_succ_probs`",
+          "general.py:418 reads `lr_x_checks`",
+          "general.py:418 reads `x_check_succ_probs`",
+          "general.py:423 reads `sr_z_checks`",
+          "general.py:423 reads `z_check_succ_probs`",
+          "general.py:424 reads `lr_z_checks`",
+          "general.py:425 reads `sr_x_checks`",
+          "general.py:425 reads `x_check_succ_probs`",
+          "general.py:426 reads `lr_x_checks`",
+          "general.py:431 reads `ell`",
+          "general.py:431 reads `m`",
+          "general.py:432 reads `ell`",
+          "general.py:432 reads `m`",
+          "general.py:437 reads `all_qbts`",
+          "general.py:437 reads `qbts`"
+        ],
+        "sub_api": [
+          "general.py:357 calls `measure_z_checks(...)`",
+          "general.py:358 calls `measure_x_checks(...)`",
+          "general.py:389 calls `measure_z_checks(...)`",
+          "general.py:390 calls `measure_x_checks(...)`"
+        ]
+      }
+    },
+    {
+      "component": "sink",
+      "regions": [
+        "448-496"
+      ],
+      "hand_reads": [
+        "code",
+        "decoder",
+        "embedding",
+        "noise",
+        "routing"
+      ],
+      "ast_coordinate_reads": [
+        "code",
+        "decoder",
+        "noise",
+        "routing"
+      ],
+      "ast_artifact_reads": [
+        "code",
+        "sr_lr_split"
+      ],
+      "ast_sub_api": [],
+      "raw_module_names": [
+        ".all",
+        ".append",
+        ".args_copy",
+        ".astype",
+        ".bool_",
+        ".c",
+        ".compile_detector_sampler",
+        ".decode",
+        ".dem_error_terms",
+        ".dem_target",
+        ".detector_error_model",
+        ".explain_detector_error_model_errors",
+        ".is_logical_observable_id",
+        ".is_relative_detector_id",
+        ".num_detectors",
+        ".num_errors",
+        ".num_observables",
+        ".sample",
+        ".shape",
+        ".simulate",
+        ".type",
+        ".val",
+        "Result",
+        "Simulation",
+        "T",
+        "adv",
+        "bposd_dec",
+        "bposd_decoder",
+        "c",
+        "channel_probs",
+        "code",
+        "dem",
+        "det",
+        "detection_events",
+        "dets",
+        "e",
+        "ell",
+        "enumerate",
+        "error_event",
+        "guessed_errors",
+        "guessed_obs",
+        "i",
+        "idle_error",
+        "ii",
+        "int",
+        "k",
+        "lcm",
+        "lil_matrix",
+        "lr_time",
+        "m",
+        "min",
+        "np",
+        "num_iters",
+        "ob",
+        "obs",
+        "observable_flips",
+        "p_mask",
+        "pcm",
+        "print",
+        "range",
+        "res",
+        "res_file_name",
+        "rs",
+        "s",
+        "sampler",
+        "save_new_res",
+        "success",
+        "tqdm"
+      ],
+      "in_ast_not_hand": [],
+      "in_hand_not_ast": [
+        "embedding"
+      ],
+      "verdict": "carrier_sharing",
+      "explanation": "the sink consumes every artifact; the embedding coordinate reaches it only through the shared `code` carrier (general.py:489-490), there is no separate embedding global",
+      "evidence": {
+        "coordinate": [
+          "general.py:453 reads `lr_time`",
+          "general.py:473 reads `bposd_decoder`",
+          "general.py:489 reads `code`",
+          "general.py:490 reads `code`",
+          "general.py:491 reads `idle_error`"
+        ],
+        "artifact": [
+          "general.py:488 reads `ell`",
+          "general.py:488 reads `k`",
+          "general.py:488 reads `m`",
+          "general.py:490 reads `adv`"
+        ],
+        "sub_api": []
+      }
+    },
+    {
+      "component": "sr_lr_split",
+      "regions": [
+        "235-238",
+        "243-250",
+        "255-262",
+        "267-267"
+      ],
+      "hand_reads": [
+        "code",
+        "embedding"
+      ],
+      "ast_coordinate_reads": [],
+      "ast_artifact_reads": [
+        "code",
+        "embedding",
+        "geometry",
+        "sr_lr_split"
+      ],
+      "ast_sub_api": [],
+      "raw_module_names": [
+        ".append",
+        ".array",
+        ".std",
+        ".where",
+        "Hx",
+        "Hz",
+        "enumerate",
+        "i",
+        "int",
+        "lr_x_checks",
+        "lr_z_checks",
+        "min",
+        "np",
+        "qbts",
+        "sr_x_checks",
+        "sr_z_checks",
+        "sum",
+        "x_checks",
+        "x_rs",
+        "z_checks",
+        "z_rs"
+      ],
+      "in_ast_not_hand": [],
+      "in_hand_not_ast": [
+        "code",
+        "embedding"
+      ],
+      "verdict": "aggregate_visible_at_file_level",
+      "explanation": "the split decision is `min(x_rs)+np.std(x_rs)` over the WHOLE radius vector (general.py:247,259): AST sees the aggregate read of the geometry artifact, the hand model names the coordinates behind it.  File-level visible; the coordinate-keyed probe stays blind because aggregate and coordinate move together (subject_system2.md §2.3)",
+      "evidence": {
+        "coordinate": [],
+        "artifact": [
+          "general.py:243 reads `x_checks`",
+          "general.py:244 reads `Hx`",
+          "general.py:244 reads `qbts`",
+          "general.py:247 reads `x_rs`",
+          "general.py:248 reads `lr_x_checks`",
+          "general.py:250 reads `sr_x_checks`",
+          "general.py:255 reads `z_checks`",
+          "general.py:256 reads `Hz`",
+          "general.py:256 reads `qbts`",
+          "general.py:259 reads `z_rs`",
+          "general.py:260 reads `lr_z_checks`",
+          "general.py:262 reads `sr_z_checks`",
+          "general.py:267 reads `lr_x_checks`",
+          "general.py:267 reads `x_rs`"
+        ],
+        "sub_api": []
+      }
+    },
+    {
+      "component": "succ_probs",
+      "regions": [
+        "240-241",
+        "252-253",
+        "264-265"
+      ],
+      "hand_reads": [
+        "code"
+      ],
+      "ast_coordinate_reads": [
+        "noise"
+      ],
+      "ast_artifact_reads": [
+        "code",
+        "succ_probs"
+      ],
+      "ast_sub_api": [
+        "manhattan"
+      ],
+      "raw_module_names": [
+        ".ones",
+        "ell",
+        "gen_qbts",
+        "i",
+        "m",
+        "manhattan",
+        "np",
+        "probs",
+        "qbt",
+        "x_check",
+        "x_check_succ_probs",
+        "z_check",
+        "z_check_succ_probs"
+      ],
+      "in_ast_not_hand": [
+        "noise"
+      ],
+      "in_hand_not_ast": [
+        "code"
+      ],
+      "verdict": "hidden_read_detected",
+      "explanation": "AST finds the hidden `['noise']` read the hand model declares as faithful-but-wrong (g / e / n / e / r / a / l / . / p / y / : / 2 / 5 / 3 / , / 2 / 6 / 5 /   / ` / p / r / o / b / s / [ / m / a / n / h / a / t / t / a / n / ( / . / . / . / ) / + / 1 / ] / ` /   / - / - /   / r / e / a / d / s /   / t / h / e /   / g / l / o / b / a / l /   / ` / p / r / o / b / s / ` /   / t / a / b / l / e / , /   / i / . / e / . /   / t / h / e /   / n / o / i / s / e /   / c / o / o / r / d / i / n / a / t / e)",
+      "evidence": {
+        "coordinate": [
+          "general.py:253 reads `probs`",
+          "general.py:265 reads `probs`"
+        ],
+        "artifact": [
+          "general.py:240 reads `ell`",
+          "general.py:240 reads `m`",
+          "general.py:241 reads `ell`",
+          "general.py:241 reads `m`",
+          "general.py:253 reads `x_check_succ_probs`",
+          "general.py:265 reads `z_check_succ_probs`"
+        ],
+        "sub_api": [
+          "general.py:253 calls `manhattan(...)`",
+          "general.py:265 calls `manhattan(...)`"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "n_components": 11,
+    "n_agreements": 2,
+    "n_disagreements": 9,
+    "hidden_reads_detected_by_ast": [
+      "idle",
+      "succ_probs"
+    ],
+    "covers_all_hand_labelled_hidden_reads": true,
+    "hidden_reads_the_hand_model_missed": [
+      "circuit"
+    ],
+    "sr_lr_split_layered_visibility": "file-level AST sees min/std over the whole radius vector; the coordinate-keyed probe is blind to it (aggregate moves with the coordinate)"
+  }
+}

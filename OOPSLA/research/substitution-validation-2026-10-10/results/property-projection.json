@@ -1,0 +1,47 @@
+{
+  "environment": {
+    "python": "3.11.17 (main, Oct  9 2026, 15:19:27) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "environment/python",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "hash_seed": "0",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "stim": "1.16.0",
+      "ldpc": "2.4.1",
+      "qldpc": "0.4.1",
+      "quits": "1.2.0",
+      "galois": "0.4.11",
+      "pytest": "9.1.1"
+    }
+  },
+  "source": "OOPSLA/research/substitution-validation-2026-10-10/results/quits/decoder-evidence.npz",
+  "source_sha256": "f11fa0e9e9f7fcd73cfae78cf09ac5c1a85ff2caaf36e50b6eb05e9c36c9f097",
+  "field_values_equal": false,
+  "old_projection": [
+    [
+      128,
+      12
+    ],
+    true
+  ],
+  "new_projection": [
+    [
+      128,
+      12
+    ],
+    true
+  ],
+  "projection_equal": true,
+  "contract_equal": true,
+  "differing_bits": 42,
+  "strictly_weaker_than_field_equality_witness": true,
+  "certificate_extraction": {
+    "old_array_elements_scanned": 1536,
+    "new_array_elements_scanned": 1536,
+    "new_contract_evaluations_saved_after_certificate": 1,
+    "complete_new_array_scans_saved": 0
+  },
+  "algorithm_speed_advantage_established": false,
+  "scope": "schema predicate factors exactly through shape and binary-validity; logical correctness and accuracy are outside this observation"
+}

@@ -1,0 +1,53 @@
+{
+  "initial_event_parse_ns": 14481500,
+  "modes": {
+    "full_converter": {
+      "samples_ns": [
+        20165600,
+        20031400,
+        19759400,
+        19583700,
+        19784200,
+        20163500,
+        19842600,
+        19853100,
+        19959100
+      ],
+      "median_ns": 19853100,
+      "includes_new_event_and_dem_production": true
+    },
+    "event_fold_checker": {
+      "samples_ns": [
+        9728200,
+        9585300,
+        9439700,
+        9623700,
+        9812100,
+        9645300,
+        9674000,
+        9477400,
+        9781700
+      ],
+      "median_ns": 9645300,
+      "includes_new_event_and_dem_production": true
+    },
+    "same_event_certificate_cache": {
+      "samples_ns": [
+        9814000,
+        9600600,
+        9937500,
+        19540400,
+        9719800,
+        9493800,
+        9786500,
+        9637200,
+        9560000
+      ],
+      "median_ns": 9719800,
+      "includes_new_event_and_dem_production": true
+    }
+  },
+  "same_capability_baseline_has_identical_proof_algorithm": true,
+  "algorithm_advantage_established": false,
+  "scope": "end-to-end probability-only DEM construction plus native matrix conversion or event relation fold; source initialization separately counted"
+}

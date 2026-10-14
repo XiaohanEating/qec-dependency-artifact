@@ -1,0 +1,265 @@
+{
+  "protocol": "gate_audit/protocol.md",
+  "baseline_assembly": "source_faithful",
+  "baseline_assembly_sources": {
+    "source_faithful": {
+      "baseline": true,
+      "builder": "semantics.make_source_faithful_assembly()",
+      "read_sets": "auto-extracted from the pinned QUITS tree by experiments/extract_read_sets.py (READ_SETS_FROM_SOURCE)",
+      "edges": "auto-derived: ARTIFACT_READS_FROM_SOURCE minus self-loops (ASSEMBLY_EDGES_FROM_SOURCE): extractor <- code, arch <- code, decoder <- (code, extractor)",
+      "faithfulness": "faithful by construction (AST-extracted), cross-validated against the dynamic measurements in experiments/dynamic_impact.json",
+      "note": "the published baseline since 2026-10-09 (decisions 2 and 4)",
+      "_baseline_dimensions": [
+        "code",
+        "extractor",
+        "arch",
+        "noise",
+        "decoder"
+      ]
+    },
+    "_baseline": "source_faithful"
+  },
+  "column_provenance": {
+    "quits.cl": "pre-registered static attribution from gate_audit/audit_results.json (not measured)",
+    "hand_written.cl": "assumption: the monolith is touched in full",
+    "ours.cl": "abstraction.measure_cl over the pre-registered 6-component inventory (DSL track; design-time count, independent of any source-derived read set)",
+    "semantic.cl": "size of cone(x) divided by the node count on the `source_faithful` assembly; read sets auto-extracted from the pinned QUITS tree by experiments/extract_read_sets.py (READ_SETS_FROM_SOURCE)",
+    "semantic_coordinate_impact.cl": "same assembly, but the impact of *changing* a coordinate (PIVOT_NOTE section 4.3) \u2014 this, not the cone, is what a QUITS user asks"
+  },
+  "rows": [
+    {
+      "scenario": "code",
+      "semantic_coordinate": "code",
+      "quits": {
+        "touched": [
+          "circuit",
+          "qldpc_code"
+        ],
+        "cl": 0.3333333333333333
+      },
+      "hand_written": {
+        "touched": [
+          "monolith"
+        ],
+        "cl": 1.0
+      },
+      "ours": {
+        "touched": [
+          "code"
+        ],
+        "cl": 0.16666666666666666
+      },
+      "semantic": {
+        "assembly": "source_faithful",
+        "cone": [
+          "arch",
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "n_nodes": 6,
+        "cl": 0.6666666666666666,
+        "provably_unchanged": [
+          "noise"
+        ],
+        "question": "replace component x (Theorem 1 work sheet)"
+      },
+      "semantic_coordinate_impact": {
+        "impact": [
+          "arch",
+          "code",
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "cl": 0.8333333333333334,
+        "question": "change coordinate x (QUITS users' actual question)"
+      }
+    },
+    {
+      "scenario": "extraction",
+      "semantic_coordinate": "extractor",
+      "quits": {
+        "touched": [
+          "circuit",
+          "qldpc_code"
+        ],
+        "cl": 0.3333333333333333
+      },
+      "hand_written": {
+        "touched": [
+          "monolith"
+        ],
+        "cl": 1.0
+      },
+      "ours": {
+        "touched": [
+          "extractor"
+        ],
+        "cl": 0.16666666666666666
+      },
+      "semantic": {
+        "assembly": "source_faithful",
+        "cone": [
+          "decoder",
+          "experiment"
+        ],
+        "n_nodes": 6,
+        "cl": 0.3333333333333333,
+        "provably_unchanged": [
+          "arch",
+          "code",
+          "noise"
+        ],
+        "question": "replace component x (Theorem 1 work sheet)"
+      },
+      "semantic_coordinate_impact": {
+        "impact": [
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "cl": 0.5,
+        "question": "change coordinate x (QUITS users' actual question)"
+      }
+    },
+    {
+      "scenario": "architecture",
+      "semantic_coordinate": "arch",
+      "quits": {
+        "touched": [
+          "layout"
+        ],
+        "cl": 0.16666666666666666
+      },
+      "hand_written": {
+        "touched": [
+          "monolith"
+        ],
+        "cl": 1.0
+      },
+      "ours": {
+        "touched": [
+          "arch"
+        ],
+        "cl": 0.16666666666666666
+      },
+      "semantic": {
+        "assembly": "source_faithful",
+        "cone": [
+          "experiment"
+        ],
+        "n_nodes": 6,
+        "cl": 0.16666666666666666,
+        "provably_unchanged": [
+          "code",
+          "decoder",
+          "extractor",
+          "noise"
+        ],
+        "question": "replace component x (Theorem 1 work sheet)"
+      },
+      "semantic_coordinate_impact": {
+        "impact": [
+          "arch",
+          "experiment"
+        ],
+        "cl": 0.3333333333333333,
+        "question": "change coordinate x (QUITS users' actual question)"
+      }
+    },
+    {
+      "scenario": "noise",
+      "semantic_coordinate": "noise",
+      "quits": {
+        "touched": [
+          "noise"
+        ],
+        "cl": 0.16666666666666666
+      },
+      "hand_written": {
+        "touched": [
+          "monolith"
+        ],
+        "cl": 1.0
+      },
+      "ours": {
+        "touched": [
+          "noise"
+        ],
+        "cl": 0.16666666666666666
+      },
+      "semantic": {
+        "assembly": "source_faithful",
+        "cone": [
+          "experiment"
+        ],
+        "n_nodes": 6,
+        "cl": 0.16666666666666666,
+        "provably_unchanged": [
+          "arch",
+          "code",
+          "decoder",
+          "extractor"
+        ],
+        "question": "replace component x (Theorem 1 work sheet)"
+      },
+      "semantic_coordinate_impact": {
+        "impact": [
+          "decoder",
+          "experiment",
+          "extractor",
+          "noise"
+        ],
+        "cl": 0.6666666666666666,
+        "question": "change coordinate x (QUITS users' actual question)"
+      }
+    },
+    {
+      "scenario": "decoder",
+      "semantic_coordinate": "decoder",
+      "quits": {
+        "touched": [
+          "decoder",
+          "simulation"
+        ],
+        "cl": 0.3333333333333333
+      },
+      "hand_written": {
+        "touched": [
+          "monolith"
+        ],
+        "cl": 1.0
+      },
+      "ours": {
+        "touched": [
+          "decoder"
+        ],
+        "cl": 0.16666666666666666
+      },
+      "semantic": {
+        "assembly": "source_faithful",
+        "cone": [
+          "experiment"
+        ],
+        "n_nodes": 6,
+        "cl": 0.16666666666666666,
+        "provably_unchanged": [
+          "arch",
+          "code",
+          "extractor",
+          "noise"
+        ],
+        "question": "replace component x (Theorem 1 work sheet)"
+      },
+      "semantic_coordinate_impact": {
+        "impact": [
+          "decoder",
+          "experiment"
+        ],
+        "cl": 0.3333333333333333,
+        "question": "change coordinate x (QUITS users' actual question)"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.log
+*.tmp
+.venv/
+*.egg-info/
+.reproduction/
+OOPSLA/tools/figures/outputs/
+OOPSLA/tools/figures/provenance/
+OOPSLA/tools/figures/data/display-data.json
+OOPSLA/benchmarks/costs/regenerated/

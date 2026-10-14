@@ -1,0 +1,182 @@
+{
+  "quits_src": "third_party/quits-0f36b8c5a9b81d6b7be0cef2c81c61b5850c0452/src/quits",
+  "packages_found": {
+    "qldpc_code": [
+      "__init__.py",
+      "base.py",
+      "bb.py",
+      "bpc.py",
+      "hgp.py",
+      "lcs.py",
+      "mitten.py",
+      "qldpc_util.py",
+      "qlp.py"
+    ],
+    "layout": [
+      "__init__.py",
+      "base.py",
+      "toric.py",
+      "toric_bb.py",
+      "toric_common.py",
+      "transversal.py"
+    ],
+    "noise": [
+      "__init__.py",
+      "error_model.py"
+    ],
+    "decoder": [
+      "__init__.py",
+      "base.py",
+      "bplsd.py",
+      "bposd.py",
+      "sliding_window.py"
+    ],
+    "simulation": [],
+    "api": [],
+    "circuit": []
+  },
+  "dimensions": {
+    "code": {
+      "task": "add one new code family module",
+      "existing_family_modules": [
+        "bb.py",
+        "bpc.py",
+        "hgp.py",
+        "lcs.py",
+        "mitten.py",
+        "qldpc_util.py",
+        "qlp.py"
+      ],
+      "abstract_members_required": {
+        "QldpcCode": {
+          "file": "base.py",
+          "must_implement": [
+            "set_parity_checks",
+            "build_circuit"
+          ]
+        }
+      },
+      "touched_packages_est": [
+        "qldpc_code",
+        "circuit"
+      ],
+      "change_task": "add a new code family module (ToyFamilyCode: Z checks are full-rank random rows, X checks are the leading rows of the GF(2) nullspace basis of the Z checks, so hz@hx^T == 0 mod 2 by construction and k >= 1)",
+      "est_loc": 46,
+      "touched_packages_actual": [
+        "qldpc_code"
+      ],
+      "loc_detail": "git diff --stat: 2 files changed, 45 insertions(+), 1 deletion(-) — src/quits/qldpc_code/toy_family.py (+43), src/quits/qldpc_code/__init__.py (+2/-1). The new family is immediately usable: ToyFamilyCode().build_circuit(strategy='zxcoloration') succeeds and verify_css_logicals() is True."
+    },
+    "extraction": {
+      "task": "add one new circuit strategy",
+      "registry_points": [
+        "base.py",
+        "bb.py",
+        "bpc.py",
+        "hgp.py",
+        "lcs.py",
+        "mitten.py",
+        "qlp.py"
+      ],
+      "touched_packages_est": [
+        "qldpc_code",
+        "circuit"
+      ],
+      "change_task": "add a new syndrome-extraction strategy (ToyStrategyBuilder, name='toy': a pass-through that delegates to the zx-coloration builder, registered in the _BUILDERS registry)",
+      "est_loc": 37,
+      "touched_packages_actual": [
+        "qldpc_code"
+      ],
+      "loc_detail": "git diff --stat: 2 files changed, 37 insertions(+) — src/quits/qldpc_code/circuit_construction/toy_strategy.py (+34), src/quits/qldpc_code/circuit_construction/__init__.py (+3: import, _BUILDERS entry, __all__ entry). The new strategy is immediately usable: code.build_circuit(strategy='toy') resolves through get_builder and returns a circuit."
+    },
+    "architecture": {
+      "task": "add one new topology/layout constraint",
+      "layout_files": [
+        "__init__.py",
+        "base.py",
+        "toric.py",
+        "toric_bb.py",
+        "toric_common.py",
+        "transversal.py"
+      ],
+      "touched_packages_est": [
+        "layout"
+      ],
+      "change_task": "add a new qubit topology/layout constraint (ToyGridLayout: a rectangular integer-grid Layout whose mapping() covers every data/zcheck/xcheck qubit index of any CSS code)",
+      "est_loc": 57,
+      "touched_packages_actual": [
+        "layout"
+      ],
+      "loc_detail": "git diff --stat: 2 files changed, 57 insertions(+) — src/quits/layout/toy_grid.py (+55), src/quits/layout/__init__.py (+2). The new layout satisfies the Layout ABC: issubclass(ToyGridLayout, Layout) is True and mapping() returns a LayoutMapping covering all qubit indices."
+    },
+    "noise": {
+      "task": "add one new noise model",
+      "noise_files": [
+        "__init__.py",
+        "error_model.py"
+      ],
+      "touched_packages_est": [
+        "noise"
+      ],
+      "change_task": "add SI1000-style parameterized noise model (SI1000ErrorModel)",
+      "est_loc": 46,
+      "touched_packages_actual": [
+        "noise"
+      ],
+      "loc_detail": "git diff --stat: 2 files changed, 45 insertions(+), 1 deletion(-) — src/quits/noise/si1000.py (+43), src/quits/noise/__init__.py (+2/-1)"
+    },
+    "decoder": {
+      "task": "add one new decoder (e.g. BP-LSD as standalone)",
+      "decoder_files": [
+        "__init__.py",
+        "base.py",
+        "bplsd.py",
+        "bposd.py",
+        "sliding_window.py"
+      ],
+      "simulation_files": [],
+      "touched_packages_est": [
+        "decoder",
+        "simulation"
+      ],
+      "change_task": "add standalone BP-LSD decoder integration (StandaloneBpLsdDecoder)",
+      "est_loc": 53,
+      "touched_packages_actual": [
+        "decoder"
+      ],
+      "loc_detail": "git diff --stat: 2 files changed, 53 insertions(+) — src/quits/decoder/bplsd_standalone.py (+51), src/quits/decoder/__init__.py (+2)"
+    }
+  },
+  "executed_change_tasks": {
+    "n_dimensions": 5,
+    "n_executed": 5,
+    "all_executed": true,
+    "date": "2026-10-09",
+    "method": "each dimension's standard change task (protocol.md §变更任务定义) was actually implemented on the pinned tree and measured with `git add -N <new files>; git diff --stat`. Per-dimension attribution is by file set: Code = toy_family.py + qldpc_code/__init__.py, Extraction = toy_strategy.py + circuit_construction/__init__.py, Architecture = toy_grid.py + layout/__init__.py. The three later tasks were implemented in one working tree, so the totals partition the same diff (46 + 37 + 57 = 140 lines = 139 insertions + 1 deletion).",
+    "per_dimension_est_loc": {
+      "noise": 46,
+      "decoder": 53,
+      "code": 46,
+      "extraction": 37,
+      "architecture": 57
+    },
+    "per_dimension_touched_packages": {
+      "noise": [
+        "noise"
+      ],
+      "decoder": [
+        "decoder"
+      ],
+      "code": [
+        "qldpc_code"
+      ],
+      "extraction": [
+        "qldpc_code"
+      ],
+      "architecture": [
+        "layout"
+      ]
+    },
+    "note": "The static estimates (`touched_packages_est`) over-predicted for code/extraction/decoder (they included the `circuit`/`simulation` packages); the measured surface is one package per dimension for all five. All three later tasks were verified to be *usable*, not merely to compile: ToyFamilyCode().build_circuit('zxcoloration') builds a circuit and passes verify_css_logicals(); get_builder('toy', code) resolves through the registry; ToyGridLayout(code).mapping() returns a LayoutMapping covering every qubit index."
+  }
+}

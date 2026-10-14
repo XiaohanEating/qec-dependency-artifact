@@ -1,0 +1,1485 @@
+{
+  "metadata": {
+    "description": "Dynamic impact surface of five real QUITS substitutions (P2-2 dynamic half)",
+    "date": "2026-10-10",
+    "quits_file": "site-packages/quits/__init__.py",
+    "quits_version": "1.2.0",
+    "pinned_commit": "0f36b8c5a9b81d6b7be0cef2c81c61b5850c0452",
+    "quick": false,
+    "baseline_spec": {
+      "code": "BB",
+      "extractor": "zxcoloration",
+      "arch": "transversal",
+      "noise": "SD6",
+      "decoder": "BP-OSD"
+    },
+    "num_rounds": 2,
+    "sampler_seed": 7,
+    "num_shots": 16,
+    "stress_shots": 128,
+    "window": 3,
+    "overlap": 1,
+    "artifact_owner": {
+      "code_matrices": "code",
+      "layout_positions": "arch",
+      "noise_model": "noise",
+      "stim_circuit": "extractor",
+      "detector_error_model": "extractor",
+      "logical_observables": "extractor",
+      "decoder_output": "decoder"
+    },
+    "role": "ground truth for the assembly models compared below",
+    "assembly_model_sources": {
+      "compared_models": {
+        "source_faithful_cone": {
+          "assembly": "source_faithful",
+          "read_sets_from": "auto-extracted from the pinned QUITS tree by experiments/extract_read_sets.py (READ_SETS_FROM_SOURCE)",
+          "edges_from": "auto-derived: ARTIFACT_READS_FROM_SOURCE minus self-loops (ASSEMBLY_EDGES_FROM_SOURCE): extractor <- code, arch <- code, decoder <- (code, extractor)",
+          "question": "replace component x (Theorem 1)"
+        },
+        "source_faithful_coord": {
+          "assembly": "source_faithful",
+          "read_sets_from": "auto-extracted from the pinned QUITS tree by experiments/extract_read_sets.py (READ_SETS_FROM_SOURCE)",
+          "edges_from": "auto-derived: ARTIFACT_READS_FROM_SOURCE minus self-loops (ASSEMBLY_EDGES_FROM_SOURCE): extractor <- code, arch <- code, decoder <- (code, extractor)",
+          "question": "change coordinate x (semantics.coordinate_impact)"
+        },
+        "dataflow_cone": {
+          "assembly": "quits_dataflow",
+          "read_sets_from": "hand-declared conservative H3 model: R(extractor) contains `noise` (build_circuit bakes the error model into the circuit) and R(decoder) is everything embedded in the circuit plus its own coordinate",
+          "edges_from": "hand-set, deliberately over-approximating: extractor <- (code, noise); decoder <- (code, extractor, arch, noise); arch <- code (added 2026-10-09 -- the dynamic measurement shows a code substitution changes `layout_positions`, so this edge is real)",
+          "question": "replace component x on the hand-modelled H3 assembly"
+        }
+      },
+      "all_assemblies": {
+        "source_faithful": {
+          "baseline": true,
+          "builder": "semantics.make_source_faithful_assembly()",
+          "read_sets": "auto-extracted from the pinned QUITS tree by experiments/extract_read_sets.py (READ_SETS_FROM_SOURCE)",
+          "edges": "auto-derived: ARTIFACT_READS_FROM_SOURCE minus self-loops (ASSEMBLY_EDGES_FROM_SOURCE): extractor <- code, arch <- code, decoder <- (code, extractor)",
+          "faithfulness": "faithful by construction (AST-extracted), cross-validated against the dynamic measurements in experiments/dynamic_impact.json",
+          "note": "the published baseline since 2026-10-09 (decisions 2 and 4)",
+          "_baseline_dimensions": [
+            "code",
+            "extractor",
+            "arch",
+            "noise",
+            "decoder"
+          ]
+        },
+        "quits_dataflow": {
+          "baseline": false,
+          "builder": "experiments.cone_table.make_quits_dataflow_assembly()",
+          "read_sets": "hand-declared conservative H3 model: R(extractor) contains `noise` (build_circuit bakes the error model into the circuit) and R(decoder) is everything embedded in the circuit plus its own coordinate",
+          "edges": "hand-set, deliberately over-approximating: extractor <- (code, noise); decoder <- (code, extractor, arch, noise); arch <- code (added 2026-10-09 -- the dynamic measurement shows a code substitution changes `layout_positions`, so this edge is real)",
+          "faithfulness": "conservative over-approximation of the source, and still *wider* than the auto-extracted one",
+          "note": "kept as the hand-modelled counterpart of `source_faithful`"
+        },
+        "clean": {
+          "baseline": false,
+          "builder": "semantics.make_assembly()",
+          "read_sets": "hand-declared, idealised: every component reads only its own coordinate",
+          "edges": "none (all five dimension components are leaves)",
+          "faithfulness": "not faithful to the source; it is the deliberately minimal contrast baseline",
+          "note": "kept so the pre-2026-10-09 numbers stay reproducible"
+        },
+        "quits_faithful": {
+          "baseline": false,
+          "builder": "semantics.make_assembly(with_quits_style=True)",
+          "read_sets": "hand-declared, plus the H1 counterexample: the extractor declares reads=('code',) but its registry lookup also reads the `extractor` coordinate",
+          "edges": "none",
+          "faithfulness": "a *counterexample*, not a model of QUITS: it shows what Theorem 3 reports when a component under-declares",
+          "note": "the only assembly with unbounded cones by construction"
+        },
+        "_baseline": "source_faithful"
+      },
+      "note": "this experiment is the ground truth; the static read-set extractor (extract_read_sets.py) and the cone/invariance tables are cross-validation of it, not the other way round (PIVOT_NOTE section 4, decision 1 of 2026-10-09)."
+    },
+    "source_mode": "installed"
+  },
+  "baseline_artifacts": {
+    "code_matrices": {
+      "fingerprint": "a96ffde5947253e7",
+      "hz_shape": [
+        36,
+        72
+      ],
+      "hx_shape": [
+        36,
+        72
+      ],
+      "n_logical": 12,
+      "family": "BbCode"
+    },
+    "layout_positions": {
+      "fingerprint": "7eea8f35f6274366",
+      "layout": "TransversalLayout",
+      "is_none": false,
+      "n_positions": 72
+    },
+    "noise_model": {
+      "fingerprint": "12ac9c9f8fb6bfcd",
+      "model": "SD6",
+      "idle_error": 0.0001,
+      "sqgate_error": 0.001,
+      "tqgate_error": 0.001,
+      "spam_error": 0.001
+    },
+    "stim_circuit": {
+      "fingerprint": "ebd3d7b56e09206a",
+      "strategy": "zxcoloration",
+      "num_qubits": 144,
+      "num_detectors": 144,
+      "num_observables": 12,
+      "num_ticks": 54
+    },
+    "detector_error_model": {
+      "fingerprint": "939e3162b74a349b",
+      "num_detectors": 144,
+      "num_observables": 12,
+      "num_errors": 1152
+    },
+    "logical_observables": {
+      "fingerprint": "05e449bed2d75b82",
+      "n_observables": 12,
+      "n_observable_includes": 12
+    },
+    "decoder_output": {
+      "fingerprint": "711af16e1963cb72",
+      "decoder": "BP-OSD",
+      "entry": "sliding_window_bposd_circuit_mem",
+      "n_shots": 16,
+      "n_logical_flips": 14,
+      "window": 3,
+      "overlap": 1,
+      "seed": 7
+    }
+  },
+  "baseline_stages": {
+    "code": {
+      "modules": [
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb"
+      ],
+      "edges": [
+        "quits.gf2_util.css->quits.gf2_util.linalg",
+        "quits.gf2_util.linalg->quits.gf2_util.css",
+        "quits.qldpc_code.base->quits.gf2_util.lifted_product",
+        "quits.qldpc_code.bb->quits.qldpc_code.base"
+      ]
+    },
+    "arch": {
+      "modules": [
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal"
+      ],
+      "edges": [
+        "quits.layout.base->quits.layout.transversal",
+        "quits.layout.transversal->quits.layout.base"
+      ]
+    },
+    "noise": {
+      "modules": [
+        "quits.noise.error_model"
+      ],
+      "edges": []
+    },
+    "extractor": {
+      "modules": [
+        "quits.circuit",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration"
+      ],
+      "edges": [
+        "quits.circuit->quits.noise.error_model",
+        "quits.circuit->quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.layout.base->quits.layout.transversal",
+        "quits.layout.transversal->quits.layout.base",
+        "quits.qldpc_code.base->quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.qldpc_code.circuit_construction.__init__->quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.qldpc_code.circuit_construction.circuit_build_options->quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.zxcoloration->quits.circuit",
+        "quits.qldpc_code.circuit_construction.zxcoloration->quits.qldpc_code.circuit_construction.edge_coloration"
+      ]
+    },
+    "dem": {
+      "modules": [],
+      "edges": []
+    },
+    "observables": {
+      "modules": [],
+      "edges": []
+    },
+    "decoder": {
+      "modules": [
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.simulation"
+      ],
+      "edges": [
+        "quits.decoder.bposd->quits.decoder.sliding_window",
+        "quits.decoder.sliding_window->quits.decoder.base"
+      ]
+    }
+  },
+  "quits_import_order": [
+    "quits",
+    "quits.api",
+    "quits.noise",
+    "quits.noise.error_model",
+    "quits.qldpc_code",
+    "quits.qldpc_code.base",
+    "quits.gf2_util",
+    "quits.gf2_util.linalg",
+    "quits.gf2_util.css",
+    "quits.gf2_util.group",
+    "quits.gf2_util.lifted_product",
+    "quits.qldpc_code.circuit_construction",
+    "quits.qldpc_code.circuit_construction.cardinal",
+    "quits.circuit",
+    "quits.qldpc_code.circuit_construction.circuit_build_options",
+    "quits.qldpc_code.circuit_construction.edge_coloration",
+    "quits.qldpc_code.circuit_construction.base",
+    "quits.qldpc_code.circuit_construction.cardinalNSmerge",
+    "quits.qldpc_code.circuit_construction.custom",
+    "quits.qldpc_code.circuit_construction.schedule_validation",
+    "quits.qldpc_code.circuit_construction.zxcoloration",
+    "quits.layout",
+    "quits.layout.base",
+    "quits.layout.transversal",
+    "quits.qldpc_code.bb",
+    "quits.qldpc_code.bpc",
+    "quits.qldpc_code.hgp",
+    "quits.qldpc_code.lcs",
+    "quits.qldpc_code.qlp",
+    "quits.qldpc_code.mitten",
+    "quits.decoder",
+    "quits.decoder.base",
+    "quits.decoder.bplsd",
+    "quits.decoder.sliding_window",
+    "quits.decoder.bposd",
+    "quits.simulation",
+    "quits.layout.toric",
+    "quits.layout.toric_bb",
+    "quits.layout.toric_common"
+  ],
+  "substitutions": [
+    {
+      "name": "code",
+      "dimension": "code",
+      "what": "swap the bivariate-bicycle family instance for a quasi-cyclic lifted-product one (C0 corpus instances)",
+      "from": "BB",
+      "to": "QLP",
+      "operating_point": "SD6",
+      "shots": 16,
+      "spec_before": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "spec_after": {
+        "code": "QLP",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "changed_artifacts": [
+        "code_matrices",
+        "decoder_output",
+        "detector_error_model",
+        "layout_positions",
+        "logical_observables",
+        "stim_circuit"
+      ],
+      "unchanged_artifacts": [
+        "noise_model"
+      ],
+      "changed_nodes": [
+        "arch",
+        "code",
+        "decoder",
+        "extractor"
+      ],
+      "collateral_nodes": [
+        "arch",
+        "decoder",
+        "extractor"
+      ],
+      "collateral_artifacts": [
+        "decoder_output",
+        "detector_error_model",
+        "layout_positions",
+        "logical_observables",
+        "stim_circuit"
+      ],
+      "quits_modules_executed_baseline": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_executed_after": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.qldpc_code.qlp",
+        "quits.simulation"
+      ],
+      "quits_modules_added": [
+        "quits.qldpc_code.qlp"
+      ],
+      "quits_modules_removed": [
+        "quits.qldpc_code.bb"
+      ],
+      "n_quits_modules_baseline": 18,
+      "n_quits_modules_after": 18,
+      "predicted_nodes_to_rerun": {
+        "source_faithful_cone": [
+          "arch",
+          "code",
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "source_faithful_coord": [
+          "arch",
+          "code",
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "dataflow_cone": [
+          "arch",
+          "code",
+          "decoder",
+          "experiment",
+          "extractor"
+        ]
+      },
+      "prediction_covers_measurement": {
+        "source_faithful_cone": true,
+        "source_faithful_coord": true,
+        "dataflow_cone": true
+      },
+      "measurement_tighter_than_prediction": {
+        "source_faithful_cone": [
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "experiment"
+        ]
+      }
+    },
+    {
+      "name": "extractor",
+      "dimension": "extractor",
+      "what": "swap the ZX-coloration builder for the BB-specific custom schedule builder (both on the family's whitelist)",
+      "from": "zxcoloration",
+      "to": "custom",
+      "operating_point": "SD6",
+      "shots": 16,
+      "spec_before": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "spec_after": {
+        "code": "BB",
+        "extractor": "custom",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "changed_artifacts": [
+        "decoder_output",
+        "detector_error_model",
+        "stim_circuit"
+      ],
+      "unchanged_artifacts": [
+        "code_matrices",
+        "layout_positions",
+        "logical_observables",
+        "noise_model"
+      ],
+      "changed_nodes": [
+        "decoder",
+        "extractor"
+      ],
+      "collateral_nodes": [
+        "decoder"
+      ],
+      "collateral_artifacts": [
+        "decoder_output"
+      ],
+      "quits_modules_executed_baseline": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_executed_after": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.custom",
+        "quits.simulation"
+      ],
+      "quits_modules_added": [
+        "quits.qldpc_code.circuit_construction.custom"
+      ],
+      "quits_modules_removed": [
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration"
+      ],
+      "n_quits_modules_baseline": 18,
+      "n_quits_modules_after": 17,
+      "predicted_nodes_to_rerun": {
+        "source_faithful_cone": [
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "source_faithful_coord": [
+          "decoder",
+          "experiment",
+          "extractor"
+        ],
+        "dataflow_cone": [
+          "decoder",
+          "experiment",
+          "extractor"
+        ]
+      },
+      "prediction_covers_measurement": {
+        "source_faithful_cone": true,
+        "source_faithful_coord": true,
+        "dataflow_cone": true
+      },
+      "measurement_tighter_than_prediction": {
+        "source_faithful_cone": [
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "experiment"
+        ]
+      }
+    },
+    {
+      "name": "arch",
+      "dimension": "arch",
+      "what": "swap TransversalLayout for the BB toric embedding",
+      "from": "transversal",
+      "to": "toric",
+      "operating_point": "SD6",
+      "shots": 16,
+      "spec_before": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "spec_after": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "toric",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "changed_artifacts": [
+        "layout_positions"
+      ],
+      "unchanged_artifacts": [
+        "code_matrices",
+        "decoder_output",
+        "detector_error_model",
+        "logical_observables",
+        "noise_model",
+        "stim_circuit"
+      ],
+      "changed_nodes": [
+        "arch"
+      ],
+      "collateral_nodes": [],
+      "collateral_artifacts": [],
+      "quits_modules_executed_baseline": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_executed_after": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.toric",
+        "quits.layout.toric_bb",
+        "quits.layout.toric_common",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_added": [
+        "quits.layout.toric",
+        "quits.layout.toric_bb",
+        "quits.layout.toric_common"
+      ],
+      "quits_modules_removed": [],
+      "n_quits_modules_baseline": 18,
+      "n_quits_modules_after": 21,
+      "predicted_nodes_to_rerun": {
+        "source_faithful_cone": [
+          "arch",
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "arch",
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "arch",
+          "decoder",
+          "experiment"
+        ]
+      },
+      "prediction_covers_measurement": {
+        "source_faithful_cone": true,
+        "source_faithful_coord": true,
+        "dataflow_cone": true
+      },
+      "measurement_tighter_than_prediction": {
+        "source_faithful_cone": [
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "decoder",
+          "experiment"
+        ]
+      }
+    },
+    {
+      "name": "noise",
+      "dimension": "noise",
+      "what": "swap the ErrorModel parameterisation (depolarizing 1e-3 vs 2e-4)",
+      "from": "SD6",
+      "to": "SI1000",
+      "operating_point": "SD6",
+      "shots": 16,
+      "spec_before": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "spec_after": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SI1000",
+        "decoder": "BP-OSD"
+      },
+      "changed_artifacts": [
+        "decoder_output",
+        "detector_error_model",
+        "noise_model",
+        "stim_circuit"
+      ],
+      "unchanged_artifacts": [
+        "code_matrices",
+        "layout_positions",
+        "logical_observables"
+      ],
+      "changed_nodes": [
+        "decoder",
+        "extractor",
+        "noise"
+      ],
+      "collateral_nodes": [
+        "decoder",
+        "extractor"
+      ],
+      "collateral_artifacts": [
+        "decoder_output",
+        "detector_error_model",
+        "stim_circuit"
+      ],
+      "quits_modules_executed_baseline": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_executed_after": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_added": [],
+      "quits_modules_removed": [],
+      "n_quits_modules_baseline": 18,
+      "n_quits_modules_after": 18,
+      "predicted_nodes_to_rerun": {
+        "source_faithful_cone": [
+          "experiment",
+          "noise"
+        ],
+        "source_faithful_coord": [
+          "decoder",
+          "experiment",
+          "extractor",
+          "noise"
+        ],
+        "dataflow_cone": [
+          "decoder",
+          "experiment",
+          "extractor",
+          "noise"
+        ]
+      },
+      "prediction_covers_measurement": {
+        "source_faithful_cone": false,
+        "source_faithful_coord": true,
+        "dataflow_cone": true
+      },
+      "measurement_tighter_than_prediction": {
+        "source_faithful_cone": [
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "experiment"
+        ]
+      }
+    },
+    {
+      "name": "decoder",
+      "dimension": "decoder",
+      "what": "swap the sliding-window inner decoder (BP-OSD vs BP-LSD)",
+      "from": "BP-OSD",
+      "to": "BP-LSD",
+      "operating_point": "SD6",
+      "shots": 16,
+      "spec_before": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "spec_after": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-LSD"
+      },
+      "changed_artifacts": [],
+      "unchanged_artifacts": [
+        "code_matrices",
+        "decoder_output",
+        "detector_error_model",
+        "layout_positions",
+        "logical_observables",
+        "noise_model",
+        "stim_circuit"
+      ],
+      "changed_nodes": [],
+      "collateral_nodes": [],
+      "collateral_artifacts": [],
+      "quits_modules_executed_baseline": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_executed_after": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bplsd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_added": [
+        "quits.decoder.bplsd"
+      ],
+      "quits_modules_removed": [
+        "quits.decoder.bposd"
+      ],
+      "n_quits_modules_baseline": 18,
+      "n_quits_modules_after": 18,
+      "predicted_nodes_to_rerun": {
+        "source_faithful_cone": [
+          "decoder",
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "decoder",
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "decoder",
+          "experiment"
+        ]
+      },
+      "prediction_covers_measurement": {
+        "source_faithful_cone": true,
+        "source_faithful_coord": true,
+        "dataflow_cone": true
+      },
+      "measurement_tighter_than_prediction": {
+        "source_faithful_cone": [
+          "decoder",
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "decoder",
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "decoder",
+          "experiment"
+        ]
+      }
+    },
+    {
+      "name": "arch_none",
+      "dimension": "arch",
+      "what": "QldpcCode.get_layout() defaults to None: the 'no layout' case",
+      "from": "transversal",
+      "to": "none",
+      "operating_point": "SD6",
+      "shots": 16,
+      "spec_before": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "spec_after": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "none",
+        "noise": "SD6",
+        "decoder": "BP-OSD"
+      },
+      "changed_artifacts": [
+        "layout_positions"
+      ],
+      "unchanged_artifacts": [
+        "code_matrices",
+        "decoder_output",
+        "detector_error_model",
+        "logical_observables",
+        "noise_model",
+        "stim_circuit"
+      ],
+      "changed_nodes": [
+        "arch"
+      ],
+      "collateral_nodes": [],
+      "collateral_artifacts": [],
+      "quits_modules_executed_baseline": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_executed_after": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_added": [],
+      "quits_modules_removed": [
+        "quits.layout.__init__"
+      ],
+      "n_quits_modules_baseline": 18,
+      "n_quits_modules_after": 17,
+      "predicted_nodes_to_rerun": {
+        "source_faithful_cone": [
+          "arch",
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "arch",
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "arch",
+          "decoder",
+          "experiment"
+        ]
+      },
+      "prediction_covers_measurement": {
+        "source_faithful_cone": true,
+        "source_faithful_coord": true,
+        "dataflow_cone": true
+      },
+      "measurement_tighter_than_prediction": {
+        "source_faithful_cone": [
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "decoder",
+          "experiment"
+        ]
+      }
+    },
+    {
+      "name": "extractor_inadmissible",
+      "dimension": "extractor",
+      "what": "H1: 'cardinal' is in the global builder registry but NOT in BbCode.supported_strategies",
+      "to": "cardinal",
+      "refused": true,
+      "exception": "NotImplementedError",
+      "message": "Error: strategy='cardinal' is not supported for BbCode. Supported strategies: custom, zxcoloration."
+    },
+    {
+      "name": "decoder_stress",
+      "dimension": "decoder",
+      "what": "same decoder swap at 10x the SD6 error rate",
+      "from": "BP-OSD",
+      "to": "BP-LSD",
+      "operating_point": "SD6-stress",
+      "shots": 128,
+      "spec_before": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6-stress",
+        "decoder": "BP-OSD"
+      },
+      "spec_after": {
+        "code": "BB",
+        "extractor": "zxcoloration",
+        "arch": "transversal",
+        "noise": "SD6-stress",
+        "decoder": "BP-LSD"
+      },
+      "changed_artifacts": [
+        "decoder_output"
+      ],
+      "unchanged_artifacts": [
+        "code_matrices",
+        "detector_error_model",
+        "layout_positions",
+        "logical_observables",
+        "noise_model",
+        "stim_circuit"
+      ],
+      "changed_nodes": [
+        "decoder"
+      ],
+      "collateral_nodes": [],
+      "collateral_artifacts": [],
+      "quits_modules_executed_baseline": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bposd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_executed_after": [
+        "quits.circuit",
+        "quits.decoder.base",
+        "quits.decoder.bplsd",
+        "quits.decoder.sliding_window",
+        "quits.gf2_util.css",
+        "quits.gf2_util.lifted_product",
+        "quits.gf2_util.linalg",
+        "quits.layout.__init__",
+        "quits.layout.base",
+        "quits.layout.transversal",
+        "quits.noise.error_model",
+        "quits.qldpc_code.base",
+        "quits.qldpc_code.bb",
+        "quits.qldpc_code.circuit_construction.__init__",
+        "quits.qldpc_code.circuit_construction.circuit_build_options",
+        "quits.qldpc_code.circuit_construction.edge_coloration",
+        "quits.qldpc_code.circuit_construction.zxcoloration",
+        "quits.simulation"
+      ],
+      "quits_modules_added": [
+        "quits.decoder.bplsd"
+      ],
+      "quits_modules_removed": [
+        "quits.decoder.bposd"
+      ],
+      "n_quits_modules_baseline": 18,
+      "n_quits_modules_after": 18,
+      "predicted_nodes_to_rerun": {
+        "source_faithful_cone": [
+          "decoder",
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "decoder",
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "decoder",
+          "experiment"
+        ]
+      },
+      "prediction_covers_measurement": {
+        "source_faithful_cone": true,
+        "source_faithful_coord": true,
+        "dataflow_cone": true
+      },
+      "measurement_tighter_than_prediction": {
+        "source_faithful_cone": [
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "experiment"
+        ]
+      }
+    }
+  ],
+  "cones": {
+    "source_faithful_cone": {
+      "code": [
+        "arch",
+        "code",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "extractor": [
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "arch": [
+        "arch",
+        "experiment"
+      ],
+      "noise": [
+        "experiment",
+        "noise"
+      ],
+      "decoder": [
+        "decoder",
+        "experiment"
+      ],
+      "experiment": [
+        "experiment"
+      ]
+    },
+    "source_faithful_coord": {
+      "code": [
+        "arch",
+        "code",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "extractor": [
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "arch": [
+        "arch",
+        "experiment"
+      ],
+      "noise": [
+        "decoder",
+        "experiment",
+        "extractor",
+        "noise"
+      ],
+      "decoder": [
+        "decoder",
+        "experiment"
+      ]
+    },
+    "dataflow_cone": {
+      "code": [
+        "arch",
+        "code",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "extractor": [
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "arch": [
+        "arch",
+        "decoder",
+        "experiment"
+      ],
+      "noise": [
+        "decoder",
+        "experiment",
+        "extractor",
+        "noise"
+      ],
+      "decoder": [
+        "decoder",
+        "experiment"
+      ],
+      "experiment": [
+        "experiment"
+      ]
+    }
+  },
+  "inadmissible_probe": {
+    "outcome": "refused",
+    "exception": "NotImplementedError",
+    "message": "Error: strategy='cardinal' is not supported for BbCode. Supported strategies: custom, zxcoloration.",
+    "registry_has_cardinal": true,
+    "family_whitelist": [
+      "custom",
+      "zxcoloration"
+    ],
+    "global_whitelist": [
+      "cardinal",
+      "cardinalNSmerge",
+      "custom",
+      "hook_error_free",
+      "zxcoloration"
+    ],
+    "semantic_layer_refuses_same_pair": true
+  },
+  "layout_none_probe": {
+    "outcome": "None",
+    "get_layout_default": null
+  },
+  "hash_seed_probe": {
+    "fingerprints_by_pythonhashseed": {
+      "0": "ebd3d7b56e09206a",
+      "1": "09b5194d018246bc",
+      "12345": "6b45af3a173966af"
+    },
+    "n_distinct": 3,
+    "deterministic": false,
+    "note": "networkx hopcroft_karp_matching iterates over a set, so the circuit text depends on PYTHONHASHSEED; the experiment re-execs itself with PYTHONHASHSEED=0 so the fingerprints in this file are reproducible."
+  },
+  "call_site_alignment": [
+    {
+      "dimension": "extractor",
+      "call_site_dimension": "extraction",
+      "site": "circuit_construction/__init__.py:9-14,17-23",
+      "static_modelling": "hidden-dependency 探测报 observed ⊄ declared → cone unbounded",
+      "measured": {
+        "changed_artifacts": [
+          "decoder_output",
+          "detector_error_model",
+          "stim_circuit"
+        ],
+        "changed_nodes": [
+          "decoder",
+          "extractor"
+        ],
+        "collateral_nodes": [
+          "decoder"
+        ],
+        "n_quits_modules_executed": 17
+      },
+      "aligned": true,
+      "notes": [
+        "H1: the substituted strategy is on the family whitelist, so the assembly succeeds; the inadmissible variant is measured separately (see `inadmissible_probe`)."
+      ]
+    },
+    {
+      "dimension": "decoder",
+      "call_site_dimension": "decoder",
+      "site": "simulation.py:50-56",
+      "static_modelling": "义务写成 contract 可检查（syndrome 语义保持）",
+      "measured": {
+        "changed_artifacts": [
+          "decoder_output"
+        ],
+        "changed_nodes": [
+          "decoder"
+        ],
+        "collateral_nodes": [],
+        "n_quits_modules_executed": 18
+      },
+      "aligned": true,
+      "notes": [
+        "the decoder artifact changes but no upstream artifact does: decoder substitution is the most local of the five."
+      ]
+    },
+    {
+      "dimension": "noise",
+      "call_site_dimension": "noise",
+      "site": "noise/error_model.py:37-42",
+      "static_modelling": "contract = circuit builder 依赖的性质，而非形状",
+      "measured": {
+        "changed_artifacts": [
+          "decoder_output",
+          "detector_error_model",
+          "noise_model",
+          "stim_circuit"
+        ],
+        "changed_nodes": [
+          "decoder",
+          "extractor",
+          "noise"
+        ],
+        "collateral_nodes": [
+          "decoder",
+          "extractor"
+        ],
+        "n_quits_modules_executed": 18
+      },
+      "aligned": true,
+      "notes": [
+        "H3 confirmed: replacing only the noise model changes the stim circuit and its DEM, i.e. the extractor artifact, so a noise substitution is NOT circuit-preserving."
+      ]
+    },
+    {
+      "dimension": "code",
+      "call_site_dimension": "code",
+      "site": "qldpc_code/__init__.py:3-10, base.py:30-50",
+      "static_modelling": "contract = CSS 对易（hz·hxᵀ ≡ hx·hzᵀ）",
+      "measured": {
+        "changed_artifacts": [
+          "code_matrices",
+          "decoder_output",
+          "detector_error_model",
+          "layout_positions",
+          "logical_observables",
+          "stim_circuit"
+        ],
+        "changed_nodes": [
+          "arch",
+          "code",
+          "decoder",
+          "extractor"
+        ],
+        "collateral_nodes": [
+          "arch",
+          "decoder",
+          "extractor"
+        ],
+        "n_quits_modules_executed": 18
+      },
+      "aligned": true,
+      "notes": [
+        "the code artifact feeds arch (Layout(code)), the extractor (build_circuit is a QldpcCode method) and the decoder (hz/lz); the measured collateral matches the auto-extracted edges exactly."
+      ]
+    },
+    {
+      "dimension": "arch",
+      "call_site_dimension": "architecture",
+      "site": "layout/base.py:22; qldpc_code/base.py:55-57",
+      "static_modelling": "读集合显式包含 arch 坐标",
+      "measured": {
+        "changed_artifacts": [
+          "layout_positions"
+        ],
+        "changed_nodes": [
+          "arch"
+        ],
+        "collateral_nodes": [],
+        "n_quits_modules_executed": 17
+      },
+      "aligned": true,
+      "notes": [
+        "layout substitution changes only the layout artifact: the extractor builds its own TransversalLayout internally, so swapping the arch coordinate is circuit-preserving."
+      ]
+    }
+  ],
+  "summary": {
+    "n_substitutions": 8,
+    "n_refused": 1,
+    "n_measured": 7,
+    "coordinate_impact_covers_measurement_all": true,
+    "theorem1_cone_covers_measurement_all": false,
+    "dataflow_cone_covers_measurement_all": true,
+    "h3_noise_not_circuit_preserving": true,
+    "h1_extractor_inadmissible_detected": true,
+    "h1_semantic_layer_agrees": true,
+    "collateral_nodes_by_dimension": {
+      "code": [
+        "arch",
+        "decoder",
+        "extractor"
+      ],
+      "extractor": [
+        "decoder"
+      ],
+      "arch": [],
+      "noise": [
+        "decoder",
+        "extractor"
+      ],
+      "decoder": []
+    },
+    "tighter_than_prediction": {
+      "code": {
+        "source_faithful_cone": [
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "experiment"
+        ]
+      },
+      "extractor": {
+        "source_faithful_cone": [
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "experiment"
+        ]
+      },
+      "arch": {
+        "source_faithful_cone": [
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "decoder",
+          "experiment"
+        ]
+      },
+      "noise": {
+        "source_faithful_cone": [
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "experiment"
+        ]
+      },
+      "decoder": {
+        "source_faithful_cone": [
+          "experiment"
+        ],
+        "source_faithful_coord": [
+          "experiment"
+        ],
+        "dataflow_cone": [
+          "experiment"
+        ]
+      }
+    }
+  }
+}

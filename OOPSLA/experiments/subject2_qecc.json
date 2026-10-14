@@ -1,0 +1,824 @@
+{
+  "metadata": {
+    "title": "second subject system: qecc_routing modelled as an assembly",
+    "date": "2026-10-10",
+    "subject": "qecc_routing (Berthusen et al., arXiv:2404.17676)",
+    "qecc_commit": "4ef18121c39492414b85ff36b3a61c83f9ebf95f",
+    "semantics_module": "OOPSLA/src/semantics.py",
+    "reuse": "unchanged except three additive default-valued parameters (Component.coordinates, _cartesian(spec_cls=), detect_hidden_dependency(coordinates=) + spec_cls threading)",
+    "modelling_provenance": {
+      "code": "src_py/bivariate-bicycle/general.py:18 (`code` global) :53-64 (Hx, Hz from A/B polynomials)",
+      "embedding": "general.py:156-202 `embed_code(code, init)`, driven by code[8:12] (emb_m, emb_l, A_ind, B_ind)",
+      "geometry": "general.py:226-233 x_rs/z_rs = minimal enclosing circle radius of every check's qubits",
+      "sr_lr_split": "general.py:247,259 `if x_rs[i] > min(x_rs)+np.std(x_rs)` -- an aggregate over the WHOLE radius vector",
+      "succ_probs": "general.py:253,265 `probs[manhattan(...)+1]` -- reads the global `probs` table, i.e. the noise coordinate",
+      "idle": "general.py:414,422 `0.001+2*code[12]*idle_error` -- noise multiplied by a code polynomial",
+      "logicals": "general.py:139-149 `get_logicals` -> SGSOP on Hx/Hz",
+      "schedule": "general.py:309-438 `Simulation(num_rounds, lr_time)`, `lr_time` = the routing depth",
+      "circuit": "general.py:332-334,354-407,410-438 -> stim.Circuit",
+      "decoder": "general.py:473-486 `bposd_decoder(pcm, channel_probs=...)`"
+    },
+    "produce_layer": "toy (same sense as QUITS's toy layer); the real artifact is a stim.Circuit built by the pinned module, never executed on this platform"
+  },
+  "domain": {
+    "code": [
+      "bb_9_5",
+      "bb_12_3"
+    ],
+    "embedding": [
+      "toric_4_5_A1B1",
+      "toric_6_3_A2B0"
+    ],
+    "noise": [
+      "depolarizing_p1e-3",
+      "depolarizing_p2e-3"
+    ],
+    "routing": [
+      "lr5",
+      "lr10"
+    ],
+    "decoder": [
+      "bposd_ms_osd_cs"
+    ]
+  },
+  "domain_exhaustive": {
+    "code": true,
+    "embedding": true,
+    "noise": false,
+    "routing": false,
+    "decoder": false
+  },
+  "coordinates": [
+    "code",
+    "decoder",
+    "embedding",
+    "noise",
+    "routing"
+  ],
+  "edges": {
+    "code": [],
+    "embedding": [
+      "code"
+    ],
+    "geometry": [
+      "embedding"
+    ],
+    "sr_lr_split": [
+      "geometry"
+    ],
+    "logicals": [
+      "code"
+    ],
+    "succ_probs": [
+      "code"
+    ],
+    "idle": [
+      "code"
+    ],
+    "schedule": [
+      "sr_lr_split",
+      "succ_probs",
+      "idle"
+    ],
+    "circuit": [
+      "schedule",
+      "logicals"
+    ],
+    "decoder": [
+      "circuit"
+    ],
+    "sink": [
+      "code",
+      "embedding",
+      "geometry",
+      "sr_lr_split",
+      "logicals",
+      "succ_probs",
+      "idle",
+      "schedule",
+      "circuit",
+      "decoder"
+    ]
+  },
+  "nodes": [
+    "circuit",
+    "code",
+    "decoder",
+    "embedding",
+    "geometry",
+    "idle",
+    "logicals",
+    "schedule",
+    "sink",
+    "sr_lr_split",
+    "succ_probs"
+  ],
+  "n_nodes": 11,
+  "probe": [
+    {
+      "component": "circuit",
+      "declared_reads": [
+        "code",
+        "embedding"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure",
+      "faithful_but_wrong": false,
+      "aggregate_only": false
+    },
+    {
+      "component": "code",
+      "declared_reads": [
+        "code"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure",
+      "faithful_but_wrong": false,
+      "aggregate_only": false
+    },
+    {
+      "component": "decoder",
+      "declared_reads": [
+        "decoder"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure",
+      "faithful_but_wrong": false,
+      "aggregate_only": false
+    },
+    {
+      "component": "embedding",
+      "declared_reads": [
+        "code",
+        "embedding"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure",
+      "faithful_but_wrong": false,
+      "aggregate_only": false
+    },
+    {
+      "component": "geometry",
+      "declared_reads": [
+        "embedding"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure",
+      "faithful_but_wrong": false,
+      "aggregate_only": false
+    },
+    {
+      "component": "idle",
+      "declared_reads": [
+        "code"
+      ],
+      "observed_extensions": [
+        "noise"
+      ],
+      "observed_reads_subset_declared": false,
+      "verdict": "impure (hidden reads)",
+      "faithful_but_wrong": true,
+      "aggregate_only": false
+    },
+    {
+      "component": "logicals",
+      "declared_reads": [
+        "code"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure",
+      "faithful_but_wrong": false,
+      "aggregate_only": false
+    },
+    {
+      "component": "schedule",
+      "declared_reads": [
+        "code",
+        "routing"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure",
+      "faithful_but_wrong": false,
+      "aggregate_only": false
+    },
+    {
+      "component": "sink",
+      "declared_reads": [
+        "code",
+        "decoder",
+        "embedding",
+        "noise",
+        "routing"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure",
+      "faithful_but_wrong": false,
+      "aggregate_only": false
+    },
+    {
+      "component": "sr_lr_split",
+      "declared_reads": [
+        "code",
+        "embedding"
+      ],
+      "observed_extensions": [],
+      "observed_reads_subset_declared": true,
+      "verdict": "pure",
+      "faithful_but_wrong": false,
+      "aggregate_only": true
+    },
+    {
+      "component": "succ_probs",
+      "declared_reads": [
+        "code"
+      ],
+      "observed_extensions": [
+        "noise"
+      ],
+      "observed_reads_subset_declared": false,
+      "verdict": "impure (hidden reads)",
+      "faithful_but_wrong": true,
+      "aggregate_only": false
+    }
+  ],
+  "theorem1": [
+    {
+      "component": "circuit",
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": true,
+        "x_prime_context_independent": true,
+        "pointwise_equal_on_reads": true,
+        "assembly_is_dag": true
+      },
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "sink"
+      ],
+      "cone_size": 2,
+      "provably_unchanged": [
+        "circuit",
+        "code",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "schedule",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "n_nodes": 11,
+      "cl_cone": 0.18181818181818182
+    },
+    {
+      "component": "code",
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": true,
+        "x_prime_context_independent": true,
+        "pointwise_equal_on_reads": true,
+        "assembly_is_dag": true
+      },
+      "applicable": true,
+      "cone": [
+        "circuit",
+        "decoder",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "schedule",
+        "sink",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "cone_size": 10,
+      "provably_unchanged": [
+        "code"
+      ],
+      "n_nodes": 11,
+      "cl_cone": 0.9090909090909091
+    },
+    {
+      "component": "decoder",
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": true,
+        "x_prime_context_independent": true,
+        "pointwise_equal_on_reads": true,
+        "assembly_is_dag": true
+      },
+      "applicable": true,
+      "cone": [
+        "sink"
+      ],
+      "cone_size": 1,
+      "provably_unchanged": [
+        "circuit",
+        "code",
+        "decoder",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "schedule",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "n_nodes": 11,
+      "cl_cone": 0.09090909090909091
+    },
+    {
+      "component": "embedding",
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": true,
+        "x_prime_context_independent": true,
+        "pointwise_equal_on_reads": true,
+        "assembly_is_dag": true
+      },
+      "applicable": true,
+      "cone": [
+        "circuit",
+        "decoder",
+        "geometry",
+        "schedule",
+        "sink",
+        "sr_lr_split"
+      ],
+      "cone_size": 6,
+      "provably_unchanged": [
+        "code",
+        "embedding",
+        "idle",
+        "logicals",
+        "succ_probs"
+      ],
+      "n_nodes": 11,
+      "cl_cone": 0.5454545454545454
+    },
+    {
+      "component": "geometry",
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": true,
+        "x_prime_context_independent": true,
+        "pointwise_equal_on_reads": true,
+        "assembly_is_dag": true
+      },
+      "applicable": true,
+      "cone": [
+        "circuit",
+        "decoder",
+        "schedule",
+        "sink",
+        "sr_lr_split"
+      ],
+      "cone_size": 5,
+      "provably_unchanged": [
+        "code",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "succ_probs"
+      ],
+      "n_nodes": 11,
+      "cl_cone": 0.45454545454545453
+    },
+    {
+      "component": "idle",
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": false,
+        "x_prime_context_independent": false,
+        "pointwise_equal_on_reads": true,
+        "assembly_is_dag": true
+      },
+      "applicable": false,
+      "cone": [
+        "circuit",
+        "decoder",
+        "schedule",
+        "sink"
+      ],
+      "cone_size": 4,
+      "provably_unchanged": [
+        "code",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "n_nodes": 11,
+      "cl_cone": 0.36363636363636365
+    },
+    {
+      "component": "logicals",
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": true,
+        "x_prime_context_independent": true,
+        "pointwise_equal_on_reads": true,
+        "assembly_is_dag": true
+      },
+      "applicable": true,
+      "cone": [
+        "circuit",
+        "decoder",
+        "sink"
+      ],
+      "cone_size": 3,
+      "provably_unchanged": [
+        "code",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "schedule",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "n_nodes": 11,
+      "cl_cone": 0.2727272727272727
+    },
+    {
+      "component": "schedule",
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": true,
+        "x_prime_context_independent": true,
+        "pointwise_equal_on_reads": true,
+        "assembly_is_dag": true
+      },
+      "applicable": true,
+      "cone": [
+        "circuit",
+        "decoder",
+        "sink"
+      ],
+      "cone_size": 3,
+      "provably_unchanged": [
+        "code",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "schedule",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "n_nodes": 11,
+      "cl_cone": 0.2727272727272727
+    },
+    {
+      "component": "sink",
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": true,
+        "x_prime_context_independent": true,
+        "pointwise_equal_on_reads": true,
+        "assembly_is_dag": true
+      },
+      "applicable": true,
+      "cone": [],
+      "cone_size": 0,
+      "provably_unchanged": [
+        "circuit",
+        "code",
+        "decoder",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "schedule",
+        "sink",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "n_nodes": 11,
+      "cl_cone": 0.0
+    },
+    {
+      "component": "sr_lr_split",
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": true,
+        "x_prime_context_independent": true,
+        "pointwise_equal_on_reads": true,
+        "assembly_is_dag": true
+      },
+      "applicable": true,
+      "cone": [
+        "circuit",
+        "decoder",
+        "schedule",
+        "sink"
+      ],
+      "cone_size": 4,
+      "provably_unchanged": [
+        "code",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "n_nodes": 11,
+      "cl_cone": 0.36363636363636365
+    },
+    {
+      "component": "succ_probs",
+      "checks": {
+        "signature_ok": true,
+        "x_context_independent": false,
+        "x_prime_context_independent": false,
+        "pointwise_equal_on_reads": true,
+        "assembly_is_dag": true
+      },
+      "applicable": false,
+      "cone": [
+        "circuit",
+        "decoder",
+        "schedule",
+        "sink"
+      ],
+      "cone_size": 4,
+      "provably_unchanged": [
+        "code",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "n_nodes": 11,
+      "cl_cone": 0.36363636363636365
+    }
+  ],
+  "structure": {
+    "n_coordinates": 5,
+    "n_nodes": 11,
+    "coordinates_with_a_node": [
+      "code",
+      "decoder",
+      "embedding"
+    ],
+    "coordinates_without_a_node": [
+      "noise",
+      "routing"
+    ],
+    "nodes_without_a_coordinate": [
+      "circuit",
+      "geometry",
+      "idle",
+      "logicals",
+      "schedule",
+      "sink",
+      "sr_lr_split",
+      "succ_probs"
+    ],
+    "coordinates_with_several_readers": {
+      "code": [
+        "circuit",
+        "code",
+        "embedding",
+        "idle",
+        "logicals",
+        "schedule",
+        "sink",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "decoder": [
+        "decoder",
+        "sink"
+      ],
+      "embedding": [
+        "circuit",
+        "embedding",
+        "geometry",
+        "sink",
+        "sr_lr_split"
+      ],
+      "routing": [
+        "schedule",
+        "sink"
+      ]
+    },
+    "bijective": false
+  },
+  "cone_table": [
+    {
+      "coordinate": "code",
+      "declared_readers": [
+        "circuit",
+        "code",
+        "embedding",
+        "idle",
+        "logicals",
+        "schedule",
+        "sink",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "has_node_of_same_name": true,
+      "cone": [
+        "circuit",
+        "decoder",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "schedule",
+        "sink",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "cone_size": 10,
+      "coordinate_impact": [
+        "circuit",
+        "code",
+        "decoder",
+        "embedding",
+        "geometry",
+        "idle",
+        "logicals",
+        "schedule",
+        "sink",
+        "sr_lr_split",
+        "succ_probs"
+      ],
+      "impact_size": 11,
+      "agree": false,
+      "nodes_a_cone_report_would_miss": [
+        "code"
+      ],
+      "cone_covers_everything": false
+    },
+    {
+      "coordinate": "decoder",
+      "declared_readers": [
+        "decoder",
+        "sink"
+      ],
+      "has_node_of_same_name": true,
+      "cone": [
+        "sink"
+      ],
+      "cone_size": 1,
+      "coordinate_impact": [
+        "decoder",
+        "sink"
+      ],
+      "impact_size": 2,
+      "agree": false,
+      "nodes_a_cone_report_would_miss": [
+        "decoder"
+      ],
+      "cone_covers_everything": false
+    },
+    {
+      "coordinate": "embedding",
+      "declared_readers": [
+        "circuit",
+        "embedding",
+        "geometry",
+        "sink",
+        "sr_lr_split"
+      ],
+      "has_node_of_same_name": true,
+      "cone": [
+        "circuit",
+        "decoder",
+        "geometry",
+        "schedule",
+        "sink",
+        "sr_lr_split"
+      ],
+      "cone_size": 6,
+      "coordinate_impact": [
+        "circuit",
+        "decoder",
+        "embedding",
+        "geometry",
+        "schedule",
+        "sink",
+        "sr_lr_split"
+      ],
+      "impact_size": 7,
+      "agree": false,
+      "nodes_a_cone_report_would_miss": [
+        "embedding"
+      ],
+      "cone_covers_everything": false
+    },
+    {
+      "coordinate": "noise",
+      "declared_readers": [
+        "sink"
+      ],
+      "has_node_of_same_name": false,
+      "cone": [],
+      "cone_size": 0,
+      "coordinate_impact": [
+        "noise",
+        "sink"
+      ],
+      "impact_size": 2,
+      "agree": false,
+      "nodes_a_cone_report_would_miss": [
+        "noise",
+        "sink"
+      ],
+      "cone_covers_everything": false
+    },
+    {
+      "coordinate": "routing",
+      "declared_readers": [
+        "schedule",
+        "sink"
+      ],
+      "has_node_of_same_name": false,
+      "cone": [
+        "circuit",
+        "decoder",
+        "sink"
+      ],
+      "cone_size": 3,
+      "coordinate_impact": [
+        "circuit",
+        "decoder",
+        "routing",
+        "schedule",
+        "sink"
+      ],
+      "impact_size": 5,
+      "agree": false,
+      "nodes_a_cone_report_would_miss": [
+        "routing",
+        "schedule"
+      ],
+      "cone_covers_everything": false
+    }
+  ],
+  "summary": {
+    "hidden_dependencies_detected": [
+      "idle",
+      "succ_probs"
+    ],
+    "declared_faithful_but_wrong": [
+      "idle",
+      "succ_probs"
+    ],
+    "probe_covers_all_faithful_but_wrong": true,
+    "false_positives": [],
+    "aggregate_only_blind_spot": [
+      "sr_lr_split"
+    ],
+    "coordinate_node_map_is_bijective": false,
+    "cone_vs_impact_agree_on": 0,
+    "cone_vs_impact_disagree_on": [
+      "code",
+      "decoder",
+      "embedding",
+      "noise",
+      "routing"
+    ],
+    "nodes_a_cone_report_would_miss": {
+      "code": [
+        "code"
+      ],
+      "decoder": [
+        "decoder"
+      ],
+      "embedding": [
+        "embedding"
+      ],
+      "noise": [
+        "noise",
+        "sink"
+      ],
+      "routing": [
+        "routing",
+        "schedule"
+      ]
+    },
+    "max_nodes_a_cone_report_would_miss": 2,
+    "theorem1_applicable_on": 9,
+    "n_nodes_total": 11
+  }
+}

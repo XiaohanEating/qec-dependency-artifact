@@ -1,0 +1,2898 @@
+{
+  "n_configs": 48,
+  "decoder_is_a_dimension": true,
+  "decoders": [
+    "BP-OSD",
+    "BP-LSD"
+  ],
+  "baseline_assembly": "source_faithful",
+  "assembly_model_sources": {
+    "source_faithful": {
+      "baseline": true,
+      "builder": "semantics.make_source_faithful_assembly()",
+      "read_sets": "auto-extracted from the pinned QUITS tree by experiments/extract_read_sets.py (READ_SETS_FROM_SOURCE)",
+      "edges": "auto-derived: ARTIFACT_READS_FROM_SOURCE minus self-loops (ASSEMBLY_EDGES_FROM_SOURCE): extractor <- code, arch <- code, decoder <- (code, extractor)",
+      "faithfulness": "faithful by construction (AST-extracted), cross-validated against the dynamic measurements in experiments/dynamic_impact.json",
+      "note": "the published baseline since 2026-10-09 (decisions 2 and 4)",
+      "_baseline_dimensions": [
+        "code",
+        "extractor",
+        "arch",
+        "noise",
+        "decoder"
+      ]
+    },
+    "_baseline": "source_faithful"
+  },
+  "dimensions": [
+    "code",
+    "extractor",
+    "arch",
+    "noise",
+    "decoder"
+  ],
+  "n_substitutions": 240,
+  "n_substitutions_evaluated": 200,
+  "n_inadmissible_specs": 40,
+  "n_applicable": 200,
+  "n_invariance_ok": 200,
+  "theorem1_confirmed": true,
+  "per_dimension": {
+    "code": {
+      "substitutions": 48,
+      "evaluated": 40,
+      "inadmissible": 8,
+      "applicable": 40,
+      "invariance_ok": 40,
+      "cone_sizes": [
+        4
+      ],
+      "cone_nodes": [
+        "arch,decoder,experiment,extractor"
+      ]
+    },
+    "extractor": {
+      "substitutions": 48,
+      "evaluated": 40,
+      "inadmissible": 8,
+      "applicable": 40,
+      "invariance_ok": 40,
+      "cone_sizes": [
+        2
+      ],
+      "cone_nodes": [
+        "decoder,experiment"
+      ]
+    },
+    "arch": {
+      "substitutions": 48,
+      "evaluated": 40,
+      "inadmissible": 8,
+      "applicable": 40,
+      "invariance_ok": 40,
+      "cone_sizes": [
+        1
+      ],
+      "cone_nodes": [
+        "experiment"
+      ]
+    },
+    "noise": {
+      "substitutions": 48,
+      "evaluated": 40,
+      "inadmissible": 8,
+      "applicable": 40,
+      "invariance_ok": 40,
+      "cone_sizes": [
+        1
+      ],
+      "cone_nodes": [
+        "experiment"
+      ]
+    },
+    "decoder": {
+      "substitutions": 48,
+      "evaluated": 40,
+      "inadmissible": 8,
+      "applicable": 40,
+      "invariance_ok": 40,
+      "cone_sizes": [
+        1
+      ],
+      "cone_nodes": [
+        "experiment"
+      ]
+    }
+  },
+  "domain": {
+    "code": [
+      "BB",
+      "HGP",
+      "mitten",
+      "BPC",
+      "LCS",
+      "QLP"
+    ],
+    "extractor": [
+      "cardinal",
+      "cardinalNSmerge",
+      "custom",
+      "hook_error_free",
+      "zxcoloration"
+    ],
+    "arch": [
+      "free",
+      "grid2d"
+    ],
+    "noise": [
+      "SD6",
+      "SI1000"
+    ],
+    "decoder": [
+      "BP-OSD",
+      "BP-LSD"
+    ]
+  },
+  "rows": [
+    {
+      "config_id": 0,
+      "config": "BB/free/cardinal/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 0,
+      "config": "BB/free/cardinal/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 0,
+      "config": "BB/free/cardinal/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 0,
+      "config": "BB/free/cardinal/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 0,
+      "config": "BB/free/cardinal/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 1,
+      "config": "BB/free/cardinal/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 1,
+      "config": "BB/free/cardinal/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 1,
+      "config": "BB/free/cardinal/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 1,
+      "config": "BB/free/cardinal/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 1,
+      "config": "BB/free/cardinal/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 2,
+      "config": "BB/free/cardinal/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 2,
+      "config": "BB/free/cardinal/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 2,
+      "config": "BB/free/cardinal/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 2,
+      "config": "BB/free/cardinal/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 2,
+      "config": "BB/free/cardinal/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 3,
+      "config": "BB/free/cardinal/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 3,
+      "config": "BB/free/cardinal/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 3,
+      "config": "BB/free/cardinal/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 3,
+      "config": "BB/free/cardinal/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 3,
+      "config": "BB/free/cardinal/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 4,
+      "config": "BB/free/zxcoloration/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 4,
+      "config": "BB/free/zxcoloration/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 4,
+      "config": "BB/free/zxcoloration/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 4,
+      "config": "BB/free/zxcoloration/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 4,
+      "config": "BB/free/zxcoloration/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 5,
+      "config": "BB/free/zxcoloration/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 5,
+      "config": "BB/free/zxcoloration/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 5,
+      "config": "BB/free/zxcoloration/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 5,
+      "config": "BB/free/zxcoloration/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 5,
+      "config": "BB/free/zxcoloration/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 6,
+      "config": "BB/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 6,
+      "config": "BB/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 6,
+      "config": "BB/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 6,
+      "config": "BB/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 6,
+      "config": "BB/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 7,
+      "config": "BB/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 7,
+      "config": "BB/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 7,
+      "config": "BB/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 7,
+      "config": "BB/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 7,
+      "config": "BB/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 8,
+      "config": "BB/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 8,
+      "config": "BB/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 8,
+      "config": "BB/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 8,
+      "config": "BB/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 8,
+      "config": "BB/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 9,
+      "config": "BB/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 9,
+      "config": "BB/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 9,
+      "config": "BB/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 9,
+      "config": "BB/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 9,
+      "config": "BB/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 10,
+      "config": "BB/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 10,
+      "config": "BB/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 10,
+      "config": "BB/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 10,
+      "config": "BB/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 10,
+      "config": "BB/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 11,
+      "config": "BB/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 11,
+      "config": "BB/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 11,
+      "config": "BB/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 11,
+      "config": "BB/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 11,
+      "config": "BB/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": false,
+      "refused_by": "contract violated: extractor (H1)",
+      "applicable": null,
+      "cone": null,
+      "invariance_ok": null
+    },
+    {
+      "config_id": 12,
+      "config": "BB/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 12,
+      "config": "BB/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 12,
+      "config": "BB/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 12,
+      "config": "BB/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 12,
+      "config": "BB/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 13,
+      "config": "BB/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 13,
+      "config": "BB/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 13,
+      "config": "BB/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 13,
+      "config": "BB/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 13,
+      "config": "BB/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 14,
+      "config": "BB/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 14,
+      "config": "BB/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 14,
+      "config": "BB/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 14,
+      "config": "BB/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 14,
+      "config": "BB/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 15,
+      "config": "BB/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 15,
+      "config": "BB/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 15,
+      "config": "BB/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 15,
+      "config": "BB/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 15,
+      "config": "BB/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 16,
+      "config": "HGP/free/cardinal/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 16,
+      "config": "HGP/free/cardinal/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 16,
+      "config": "HGP/free/cardinal/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 16,
+      "config": "HGP/free/cardinal/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 16,
+      "config": "HGP/free/cardinal/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 17,
+      "config": "HGP/free/cardinal/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 17,
+      "config": "HGP/free/cardinal/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 17,
+      "config": "HGP/free/cardinal/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 17,
+      "config": "HGP/free/cardinal/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 17,
+      "config": "HGP/free/cardinal/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 18,
+      "config": "HGP/free/cardinal/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 18,
+      "config": "HGP/free/cardinal/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 18,
+      "config": "HGP/free/cardinal/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 18,
+      "config": "HGP/free/cardinal/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 18,
+      "config": "HGP/free/cardinal/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 19,
+      "config": "HGP/free/cardinal/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 19,
+      "config": "HGP/free/cardinal/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 19,
+      "config": "HGP/free/cardinal/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 19,
+      "config": "HGP/free/cardinal/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 19,
+      "config": "HGP/free/cardinal/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 20,
+      "config": "HGP/free/zxcoloration/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 20,
+      "config": "HGP/free/zxcoloration/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 20,
+      "config": "HGP/free/zxcoloration/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 20,
+      "config": "HGP/free/zxcoloration/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 20,
+      "config": "HGP/free/zxcoloration/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 21,
+      "config": "HGP/free/zxcoloration/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 21,
+      "config": "HGP/free/zxcoloration/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 21,
+      "config": "HGP/free/zxcoloration/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 21,
+      "config": "HGP/free/zxcoloration/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 21,
+      "config": "HGP/free/zxcoloration/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 22,
+      "config": "HGP/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 22,
+      "config": "HGP/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 22,
+      "config": "HGP/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 22,
+      "config": "HGP/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 22,
+      "config": "HGP/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 23,
+      "config": "HGP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 23,
+      "config": "HGP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 23,
+      "config": "HGP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 23,
+      "config": "HGP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 23,
+      "config": "HGP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 24,
+      "config": "HGP/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 24,
+      "config": "HGP/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 24,
+      "config": "HGP/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 24,
+      "config": "HGP/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 24,
+      "config": "HGP/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 25,
+      "config": "HGP/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 25,
+      "config": "HGP/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 25,
+      "config": "HGP/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 25,
+      "config": "HGP/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 25,
+      "config": "HGP/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 26,
+      "config": "HGP/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 26,
+      "config": "HGP/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 26,
+      "config": "HGP/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 26,
+      "config": "HGP/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 26,
+      "config": "HGP/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 27,
+      "config": "HGP/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 27,
+      "config": "HGP/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 27,
+      "config": "HGP/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 27,
+      "config": "HGP/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 27,
+      "config": "HGP/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 28,
+      "config": "HGP/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 28,
+      "config": "HGP/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 28,
+      "config": "HGP/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 28,
+      "config": "HGP/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 28,
+      "config": "HGP/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 29,
+      "config": "HGP/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 29,
+      "config": "HGP/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 29,
+      "config": "HGP/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 29,
+      "config": "HGP/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 29,
+      "config": "HGP/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 30,
+      "config": "HGP/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 30,
+      "config": "HGP/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 30,
+      "config": "HGP/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 30,
+      "config": "HGP/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 30,
+      "config": "HGP/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 31,
+      "config": "HGP/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 31,
+      "config": "HGP/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 31,
+      "config": "HGP/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 31,
+      "config": "HGP/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 31,
+      "config": "HGP/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 32,
+      "config": "QLP/free/cardinal/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 32,
+      "config": "QLP/free/cardinal/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 32,
+      "config": "QLP/free/cardinal/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 32,
+      "config": "QLP/free/cardinal/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 32,
+      "config": "QLP/free/cardinal/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 33,
+      "config": "QLP/free/cardinal/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 33,
+      "config": "QLP/free/cardinal/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 33,
+      "config": "QLP/free/cardinal/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 33,
+      "config": "QLP/free/cardinal/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 33,
+      "config": "QLP/free/cardinal/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 34,
+      "config": "QLP/free/cardinal/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 34,
+      "config": "QLP/free/cardinal/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 34,
+      "config": "QLP/free/cardinal/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 34,
+      "config": "QLP/free/cardinal/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 34,
+      "config": "QLP/free/cardinal/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 35,
+      "config": "QLP/free/cardinal/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 35,
+      "config": "QLP/free/cardinal/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 35,
+      "config": "QLP/free/cardinal/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 35,
+      "config": "QLP/free/cardinal/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 35,
+      "config": "QLP/free/cardinal/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 36,
+      "config": "QLP/free/zxcoloration/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 36,
+      "config": "QLP/free/zxcoloration/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 36,
+      "config": "QLP/free/zxcoloration/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 36,
+      "config": "QLP/free/zxcoloration/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 36,
+      "config": "QLP/free/zxcoloration/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 37,
+      "config": "QLP/free/zxcoloration/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 37,
+      "config": "QLP/free/zxcoloration/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 37,
+      "config": "QLP/free/zxcoloration/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 37,
+      "config": "QLP/free/zxcoloration/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 37,
+      "config": "QLP/free/zxcoloration/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 38,
+      "config": "QLP/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 38,
+      "config": "QLP/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 38,
+      "config": "QLP/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 38,
+      "config": "QLP/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 38,
+      "config": "QLP/free/zxcoloration/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 39,
+      "config": "QLP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 39,
+      "config": "QLP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 39,
+      "config": "QLP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 39,
+      "config": "QLP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 39,
+      "config": "QLP/free/zxcoloration/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 40,
+      "config": "QLP/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 40,
+      "config": "QLP/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 40,
+      "config": "QLP/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 40,
+      "config": "QLP/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 40,
+      "config": "QLP/grid2d/cardinal/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 41,
+      "config": "QLP/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 41,
+      "config": "QLP/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 41,
+      "config": "QLP/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 41,
+      "config": "QLP/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 41,
+      "config": "QLP/grid2d/cardinal/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 42,
+      "config": "QLP/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 42,
+      "config": "QLP/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 42,
+      "config": "QLP/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 42,
+      "config": "QLP/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 42,
+      "config": "QLP/grid2d/cardinal/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 43,
+      "config": "QLP/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 43,
+      "config": "QLP/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 43,
+      "config": "QLP/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 43,
+      "config": "QLP/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 43,
+      "config": "QLP/grid2d/cardinal/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 44,
+      "config": "QLP/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 44,
+      "config": "QLP/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 44,
+      "config": "QLP/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 44,
+      "config": "QLP/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 44,
+      "config": "QLP/grid2d/zxcoloration/SD6/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 45,
+      "config": "QLP/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 45,
+      "config": "QLP/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 45,
+      "config": "QLP/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 45,
+      "config": "QLP/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 45,
+      "config": "QLP/grid2d/zxcoloration/SD6/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 46,
+      "config": "QLP/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 46,
+      "config": "QLP/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 46,
+      "config": "QLP/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 46,
+      "config": "QLP/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 46,
+      "config": "QLP/grid2d/zxcoloration/SI1000/BP-OSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 47,
+      "config": "QLP/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "code",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "arch",
+        "decoder",
+        "experiment",
+        "extractor"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 47,
+      "config": "QLP/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "extractor",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "decoder",
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 47,
+      "config": "QLP/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "arch",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 47,
+      "config": "QLP/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "noise",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    },
+    {
+      "config_id": 47,
+      "config": "QLP/grid2d/zxcoloration/SI1000/BP-LSD",
+      "dim": "decoder",
+      "admissible": true,
+      "applicable": true,
+      "cone": [
+        "experiment"
+      ],
+      "invariance_ok": true
+    }
+  ]
+}

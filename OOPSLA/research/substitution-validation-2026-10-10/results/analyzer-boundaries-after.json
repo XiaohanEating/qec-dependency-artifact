@@ -1,0 +1,110 @@
+{
+  "zero_loop_target": {
+    "result": {
+      "output_dependencies": [
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ]
+      ],
+      "probability_independent_structure": false,
+      "branches": [],
+      "calls": [],
+      "abstract_heap_locations": 1
+    },
+    "accepted": false
+  },
+  "zero_loop_body": {
+    "result": {
+      "output_dependencies": [
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ]
+      ],
+      "probability_independent_structure": false,
+      "branches": [],
+      "calls": [],
+      "abstract_heap_locations": 1
+    },
+    "accepted": false
+  },
+  "mutable_helper_return": {
+    "result": {
+      "output_dependencies": [
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ]
+      ],
+      "probability_independent_structure": false,
+      "branches": [],
+      "calls": [
+        "identity"
+      ],
+      "abstract_heap_locations": 1
+    },
+    "accepted": false
+  },
+  "tuple_alias": {
+    "accepted": false,
+    "unknown": "Stored tuple containing mutable aliases"
+  },
+  "nested_alias": {
+    "accepted": false,
+    "unknown": "Nested mutable-container escape"
+  },
+  "swapped_keywords": {
+    "result": {
+      "output_dependencies": [
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ]
+      ],
+      "probability_independent_structure": false,
+      "branches": [],
+      "calls": [
+        "select"
+      ],
+      "abstract_heap_locations": 1
+    },
+    "accepted": false
+  },
+  "dynamic_caller_scope": {
+    "accepted": false,
+    "unknown": "Unbound dynamic value: hidden"
+  }
+}

@@ -1,0 +1,659 @@
+{
+  "environment": {
+    "python": "3.11.17 (main, Oct  9 2026, 15:19:27) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "environment/python",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "hash_seed": "0",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "stim": "1.16.0",
+      "ldpc": "2.4.1",
+      "qldpc": "0.4.1",
+      "quits": "1.2.0",
+      "galois": "0.4.11",
+      "pytest": "9.1.1"
+    }
+  },
+  "source": "site-packages/quits/decoder/base.py",
+  "source_sha256": "182701ee2028d0b43832bf78c66718f3f7183f4cc767cddac4bf31c57cac6ff4",
+  "cases": {
+    "real_quits": {
+      "output_dependencies": [
+        [
+          "structure"
+        ],
+        [
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ]
+      ],
+      "probability_independent_structure": true,
+      "branches": [
+        {
+          "line": 103,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 110,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 110,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 114,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 93,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 117,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 119,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 103,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 110,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 114,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 93,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 117,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 119,
+          "deps": [
+            "structure"
+          ]
+        }
+      ],
+      "calls": [
+        "dict_to_csc_matrix_column_row",
+        "dict_to_csc_matrix_row_column",
+        "handle_error",
+        "print [unobserved logging]"
+      ],
+      "abstract_heap_locations": 12,
+      "accepted": true,
+      "analysis_ns": 1524400
+    },
+    "branch_probability": {
+      "output_dependencies": [
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ]
+      ],
+      "probability_independent_structure": false,
+      "branches": [
+        {
+          "line": 103,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 110,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 110,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 114,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 93,
+          "deps": [
+            "probability",
+            "structure"
+          ]
+        },
+        {
+          "line": 117,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 119,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 103,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 110,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 114,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 93,
+          "deps": [
+            "probability",
+            "structure"
+          ]
+        },
+        {
+          "line": 117,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 119,
+          "deps": [
+            "structure"
+          ]
+        }
+      ],
+      "calls": [
+        "dict_to_csc_matrix_column_row",
+        "dict_to_csc_matrix_row_column",
+        "handle_error",
+        "print [unobserved logging]"
+      ],
+      "abstract_heap_locations": 12,
+      "accepted": false,
+      "analysis_ns": 1706500
+    },
+    "alias_probability": {
+      "output_dependencies": [
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ]
+      ],
+      "probability_independent_structure": false,
+      "branches": [
+        {
+          "line": 105,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 114,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 114,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 116,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 95,
+          "deps": [
+            "probability",
+            "structure"
+          ]
+        },
+        {
+          "line": 119,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 121,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 105,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 114,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 116,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 95,
+          "deps": [
+            "probability",
+            "structure"
+          ]
+        },
+        {
+          "line": 119,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 121,
+          "deps": [
+            "structure"
+          ]
+        }
+      ],
+      "calls": [
+        "dict_to_csc_matrix_column_row",
+        "dict_to_csc_matrix_row_column",
+        "handle_error",
+        "print [unobserved logging]"
+      ],
+      "abstract_heap_locations": 12,
+      "accepted": false,
+      "analysis_ns": 1337800
+    },
+    "cross_procedure_probability": {
+      "output_dependencies": [
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ]
+      ],
+      "probability_independent_structure": false,
+      "branches": [
+        {
+          "line": 103,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 110,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 110,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 114,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 93,
+          "deps": [
+            "probability",
+            "structure"
+          ]
+        },
+        {
+          "line": 117,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 119,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 103,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 110,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 112,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 114,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 93,
+          "deps": [
+            "probability",
+            "structure"
+          ]
+        },
+        {
+          "line": 117,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 119,
+          "deps": [
+            "structure"
+          ]
+        }
+      ],
+      "calls": [
+        "dict_to_csc_matrix_column_row",
+        "dict_to_csc_matrix_row_column",
+        "handle_error",
+        "leak",
+        "print [unobserved logging]"
+      ],
+      "abstract_heap_locations": 12,
+      "accepted": false,
+      "analysis_ns": 1348400
+    },
+    "unmodeled_dynamic_call": {
+      "accepted": false,
+      "unsupported": "Unknown call: external_callback",
+      "analysis_ns": 658600
+    },
+    "equivalent_helper_alias": {
+      "output_dependencies": [
+        [
+          "structure"
+        ],
+        [
+          "structure"
+        ],
+        [
+          "probability",
+          "structure"
+        ]
+      ],
+      "probability_independent_structure": true,
+      "branches": [
+        {
+          "line": 104,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 111,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 113,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 111,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 113,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 115,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 94,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 118,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 120,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 104,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 111,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 113,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 115,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 94,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 118,
+          "deps": [
+            "structure"
+          ]
+        },
+        {
+          "line": 120,
+          "deps": [
+            "structure"
+          ]
+        }
+      ],
+      "calls": [
+        "copy_targets",
+        "dict_to_csc_matrix_column_row",
+        "dict_to_csc_matrix_row_column",
+        "handle_error",
+        "print [unobserved logging]"
+      ],
+      "abstract_heap_locations": 12,
+      "accepted": true,
+      "analysis_ns": 1265100
+    }
+  },
+  "domain_enumerations": 0,
+  "upstream_artifact_enumerations": 0,
+  "equivalent_source_replacement_real_replay_equal": true,
+  "validation_replay_ns": 21376400,
+  "source_replacement_proof": "helper maps input detector list to frozenset exactly; local alias preserves object identity; remaining syntax unchanged",
+  "strong_baseline": "same cached source summary keyed by complete source version; proof checker and ordinary semantic cache share identical proof cost and zero domain enumerations",
+  "scope": "Restricted abstract interpretation; source proof obligations are conditional on whitelisted operation summaries. Not machine-verified Python semantics.",
+  "independent_algorithm_novelty": false
+}

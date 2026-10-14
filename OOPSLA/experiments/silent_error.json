@@ -1,0 +1,334 @@
+{
+  "metadata": {
+    "description": "does reusing a stale artifact silently corrupt a measured logical error rate?",
+    "silent_error_definition": "no error raised; output looks like a plausible measurement; result differs from a full clean rerun at the same spec",
+    "date": "2026-10-12",
+    "shots": 9600,
+    "num_rounds": 2,
+    "window": 3,
+    "overlap": 1,
+    "sampler_seed": 7,
+    "statistics": "Wilson 95% per rate; two-proportion z per comparison"
+  },
+  "agreement_check": {
+    "shots": 24,
+    "seed": 7,
+    "official_ler": 0.11458333333333333,
+    "injected_ler": 0.11458333333333333,
+    "bitwise_identical": true,
+    "differing_entries": 0,
+    "total_entries": 288
+  },
+  "stale_dem_cases": [
+    {
+      "label": "zxcoloration circuit, stale DEM from 'custom' schedule",
+      "note": "the two schedules produce the same DEM shape (144 detectors, 12 observables, 1152 fault columns) but a different nonzero pattern, so the decoder is solving a slightly different problem",
+      "fresh_dem_shape": {
+        "num_detectors": 144,
+        "num_observables": 12,
+        "matrix_shape": [
+          144,
+          1152
+        ],
+        "check_matrix_nonzeros": 4056,
+        "observable_matrix_nonzeros": 2238,
+        "mean_prior": 0.0012231409184562773
+      },
+      "stale_dem_shape": {
+        "num_detectors": 144,
+        "num_observables": 12,
+        "matrix_shape": [
+          144,
+          1152
+        ],
+        "check_matrix_nonzeros": 3996,
+        "observable_matrix_nonzeros": 2415,
+        "mean_prior": 0.0011670144248807554
+      },
+      "dem_structurally_different": true,
+      "fresh": {
+        "label": "fresh DEM",
+        "errors": 16033,
+        "shots": 115200,
+        "rate": 0.13917534722222222,
+        "wilson95_low": 0.13718861734020815,
+        "wilson95_high": 0.14118614041718808,
+        "per_logical_qubit_rate": 0.13917534722222222
+      },
+      "stale": {
+        "label": "stale DEM",
+        "errors": 16038,
+        "shots": 115200,
+        "rate": 0.13921875,
+        "wilson95_low": 0.13723175744678046,
+        "wilson95_high": 0.1412298029716501,
+        "per_logical_qubit_rate": 0.13921875
+      },
+      "rate_intervals_overlap": true,
+      "two_proportion_test": {
+        "rate_a": 0.13917534722222222,
+        "rate_b": 0.13921875,
+        "absolute_difference": -4.340277777778456e-05,
+        "relative_difference": -0.000311759571018879,
+        "z": -0.030092750178360717,
+        "p_value": 0.975993082633746,
+        "significant_at_95": false
+      },
+      "individual_predictions_differing": 307,
+      "individual_predictions_total": 115200,
+      "individual_fraction_changed": 0.0026649305555555554,
+      "silent_error_on_rate": false
+    },
+    {
+      "label": "SI1000 circuit, stale DEM from 'SD6'",
+      "note": "same DEM structure; only the prior vector differs (SI1000 priors are ~10x smaller than SD6's)",
+      "fresh_dem_shape": {
+        "num_detectors": 144,
+        "num_observables": 12,
+        "matrix_shape": [
+          144,
+          1152
+        ],
+        "check_matrix_nonzeros": 4056,
+        "observable_matrix_nonzeros": 2238,
+        "mean_prior": 0.0002449255656288016
+      },
+      "stale_dem_shape": {
+        "num_detectors": 144,
+        "num_observables": 12,
+        "matrix_shape": [
+          144,
+          1152
+        ],
+        "check_matrix_nonzeros": 4056,
+        "observable_matrix_nonzeros": 2238,
+        "mean_prior": 0.0012231409184562773
+      },
+      "dem_structurally_different": false,
+      "fresh": {
+        "label": "fresh DEM",
+        "errors": 3567,
+        "shots": 115200,
+        "rate": 0.030963541666666667,
+        "wilson95_low": 0.029978806087438838,
+        "wilson95_high": 0.03197955717922442,
+        "per_logical_qubit_rate": 0.030963541666666667
+      },
+      "stale": {
+        "label": "stale DEM",
+        "errors": 3564,
+        "shots": 115200,
+        "rate": 0.0309375,
+        "wilson95_low": 0.029953172507636613,
+        "wilson95_high": 0.03195310916240606,
+        "per_logical_qubit_rate": 0.0309375
+      },
+      "rate_intervals_overlap": true,
+      "two_proportion_test": {
+        "rate_a": 0.030963541666666667,
+        "rate_b": 0.0309375,
+        "absolute_difference": 2.6041666666667268e-05,
+        "relative_difference": 0.0008417508417508612,
+        "z": 0.03608885142274332,
+        "p_value": 0.9712115118143894,
+        "significant_at_95": false
+      },
+      "individual_predictions_differing": 5,
+      "individual_predictions_total": 115200,
+      "individual_fraction_changed": 4.340277777777778e-05,
+      "silent_error_on_rate": false
+    },
+    {
+      "label": "SD6-10x circuit, stale DEM from SD6-0.1x",
+      "note": "the largest prior mismatch available in this subject; mean prior differs by ~287x",
+      "fresh_dem_shape": {
+        "num_detectors": 144,
+        "num_observables": 12,
+        "matrix_shape": [
+          144,
+          1152
+        ],
+        "check_matrix_nonzeros": 4056,
+        "observable_matrix_nonzeros": 2238,
+        "mean_prior": 0.03513367421279713
+      },
+      "stale_dem_shape": {
+        "num_detectors": 144,
+        "num_observables": 12,
+        "matrix_shape": [
+          144,
+          1152
+        ],
+        "check_matrix_nonzeros": 4056,
+        "observable_matrix_nonzeros": 2238,
+        "mean_prior": 0.00012248138918341653
+      },
+      "dem_structurally_different": false,
+      "fresh": {
+        "label": "fresh DEM",
+        "errors": 57258,
+        "shots": 115200,
+        "rate": 0.49703125,
+        "wilson95_low": 0.4941441483895012,
+        "wilson95_high": 0.49991854959575216,
+        "per_logical_qubit_rate": 0.49703125
+      },
+      "stale": {
+        "label": "stale DEM",
+        "errors": 57559,
+        "shots": 115200,
+        "rate": 0.49964409722222225,
+        "wilson95_low": 0.4967568583258491,
+        "wilson95_high": 0.5025313598536696,
+        "per_logical_qubit_rate": 0.49964409722222225
+      },
+      "rate_intervals_overlap": true,
+      "two_proportion_test": {
+        "rate_a": 0.49703125,
+        "rate_b": 0.49964409722222225,
+        "absolute_difference": -0.00261284722222227,
+        "relative_difference": -0.005229416772355417,
+        "z": -1.2541735980744508,
+        "p_value": 0.20977891403100743,
+        "significant_at_95": false
+      },
+      "individual_predictions_differing": 57453,
+      "individual_predictions_total": 115200,
+      "individual_fraction_changed": 0.49872395833333333,
+      "silent_error_on_rate": false
+    },
+    {
+      "label": "5-round zxcoloration circuit, stale DEM from 'custom'",
+      "note": "longer experiment: more windows, more accumulated priors",
+      "fresh": {
+        "label": "fresh DEM",
+        "errors": 26212,
+        "shots": 115200,
+        "rate": 0.22753472222222224,
+        "wilson95_low": 0.2251228844561443,
+        "wilson95_high": 0.22996473063489314,
+        "per_logical_qubit_rate": 0.22753472222222224
+      },
+      "stale": {
+        "label": "stale DEM",
+        "errors": 26308,
+        "shots": 115200,
+        "rate": 0.22836805555555556,
+        "wilson95_low": 0.22595306953782793,
+        "wilson95_high": 0.2308011566450682,
+        "per_logical_qubit_rate": 0.22836805555555556
+      },
+      "rate_intervals_overlap": true,
+      "two_proportion_test": {
+        "rate_a": 0.22753472222222224,
+        "rate_b": 0.22836805555555556,
+        "absolute_difference": -0.0008333333333333248,
+        "relative_difference": -0.003649080127717767,
+        "z": -0.47674544388921136,
+        "p_value": 0.6335433986177617,
+        "significant_at_95": false
+      },
+      "individual_predictions_differing": 720,
+      "individual_predictions_total": 115200,
+      "individual_fraction_changed": 0.00625,
+      "silent_error_on_rate": false
+    }
+  ],
+  "stale_circuit_cases": [
+    {
+      "label": "declared 5-round circuit, stale 2-round circuit from cache",
+      "note": "a rounds sweep that does not invalidate the cached circuit reports the previous step's rate for the current spec; the two circuits have different detector counts (252 vs 144), which is in principle detectable, but nothing raises and the number looks normal",
+      "declared": {
+        "label": "declared spec (5 rounds)",
+        "errors": 26236,
+        "shots": 115200,
+        "rate": 0.22774305555555555,
+        "wilson95_low": 0.22533042945320958,
+        "wilson95_high": 0.23017383841079248,
+        "per_logical_qubit_rate": 0.22774305555555555
+      },
+      "consumed": {
+        "label": "consumed stale circuit (2 rounds)",
+        "errors": 16022,
+        "shots": 115200,
+        "rate": 0.13907986111111112,
+        "wilson95_low": 0.1370937093366081,
+        "wilson95_high": 0.14109008256651265,
+        "per_logical_qubit_rate": 0.13907986111111112
+      },
+      "rate_intervals_overlap": false,
+      "two_proportion_test": {
+        "rate_a": 0.22774305555555555,
+        "rate_b": 0.13907986111111112,
+        "absolute_difference": 0.08866319444444443,
+        "relative_difference": 0.6374984396454872,
+        "z": 54.98443203176671,
+        "p_value": 0.0,
+        "significant_at_95": true
+      },
+      "individual_predictions_differing": 15332,
+      "individual_predictions_total": 115200,
+      "individual_fraction_changed": 0.13309027777777777,
+      "silent_error_on_rate": true
+    }
+  ],
+  "cached_predictions": {
+    "label": "decoder cache keyed on (code, decoder) only",
+    "note": "a cache that omits the noise coordinate returns a stale rate for a new spec; this is the failure the audit predicts, and unlike the DEM cases the rate *does* separate",
+    "base": {
+      "label": "SD6 (cached entry)",
+      "errors": 16026,
+      "shots": 115200,
+      "rate": 0.13911458333333335,
+      "wilson95_low": 0.13712822130117813,
+      "wilson95_high": 0.1411250127307701,
+      "per_logical_qubit_rate": 0.13911458333333335
+    },
+    "correct": {
+      "label": "SI1000 (correct entry)",
+      "errors": 3564,
+      "shots": 115200,
+      "rate": 0.0309375,
+      "wilson95_low": 0.029953172507636613,
+      "wilson95_high": 0.03195310916240606,
+      "per_logical_qubit_rate": 0.0309375
+    },
+    "two_proportion_test": {
+      "rate_a": 0.13911458333333335,
+      "rate_b": 0.0309375,
+      "absolute_difference": 0.10817708333333334,
+      "relative_difference": 3.496632996632997,
+      "z": 93.08209773739749,
+      "p_value": 0.0,
+      "significant_at_95": true
+    },
+    "silent_error_on_rate": true
+  },
+  "summary": {
+    "n_dem_cases": 4,
+    "n_dem_cases_silent_on_rate": 0,
+    "dem_verdict": "no stale DEM moves the aggregate rate outside its Wilson interval in any of the tested scenarios",
+    "n_circuit_cases": 1,
+    "n_circuit_cases_silent_on_rate": 1,
+    "circuit_verdict": "a stale primary circuit DOES corrupt the reported rate: the consumed artifact's rate is reported for the declared spec",
+    "predictions_changed": [
+      [
+        "zxcoloration circuit, stale DEM from 'custom' schedule",
+        0.0026649305555555554
+      ],
+      [
+        "SI1000 circuit, stale DEM from 'SD6'",
+        4.340277777777778e-05
+      ],
+      [
+        "SD6-10x circuit, stale DEM from SD6-0.1x",
+        0.49872395833333333
+      ],
+      [
+        "5-round zxcoloration circuit, stale DEM from 'custom'",
+        0.00625
+      ]
+    ],
+    "interpretation": "the aggregate logical error rate is robust to a stale DEM in every scenario tested, even when half the individual predictions change. This does not make stale artifacts harmless: the detector error matrix, the priors and the per-shot predictions all change, and a study that compares decoders on a stale DEM compares them on a model that does not describe its own circuit.  But the failure mode that corrupts the headline number is a stale *primary* artifact (the circuit, or a cache keyed without the noise coordinate), not a stale derived model."
+  }
+}

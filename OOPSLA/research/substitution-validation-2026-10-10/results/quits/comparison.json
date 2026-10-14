@@ -1,0 +1,458 @@
+{
+  "environment": {
+    "python": "3.11.17 (main, Oct  9 2026, 15:19:27) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "environment/python",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "hash_seed": "0",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "stim": "1.16.0",
+      "ldpc": "2.4.1",
+      "qldpc": "0.4.1",
+      "quits": "1.2.0",
+      "galois": "0.4.11",
+      "pytest": "9.1.1"
+    }
+  },
+  "quits_file": "site-packages/quits/__init__.py",
+  "source_hashes": {
+    "site-packages/quits/decoder/base.py": "182701ee2028d0b43832bf78c66718f3f7183f4cc767cddac4bf31c57cac6ff4",
+    "site-packages/quits/decoder/sliding_window.py": "c32d1dea617ea2a2681e7b025d01bce66c7a1fc2f6f01d4abbb2f7ecd2a1069a"
+  },
+  "noise": {
+    "circuit_changed": true,
+    "dem_changed": true,
+    "complete_window_artifact_changed": true,
+    "field_equal": {
+      "checks": true,
+      "observables": true,
+      "priors": false,
+      "updates": true
+    },
+    "old_field_hash": {
+      "checks": "bdc5cfd90e4445c5da82b9b467b96185e78d0eba1096b3fdd9e582098a5c60ee",
+      "observables": "d6fc3886acf7ad46ff8f768f78964c1c7d35e2e54f1ce6614f7da8a08353daf2",
+      "priors": "0cb5a31ecd84e94670377fa1cb9292ee9bc45724d85c8acf50ed51237d19234f",
+      "updates": "66858a7e468285e60c825268c69bd0a0ec8df7fd3799d61ab6af2eff173f0182"
+    },
+    "new_field_hash": {
+      "checks": "bdc5cfd90e4445c5da82b9b467b96185e78d0eba1096b3fdd9e582098a5c60ee",
+      "observables": "d6fc3886acf7ad46ff8f768f78964c1c7d35e2e54f1ce6614f7da8a08353daf2",
+      "priors": "e61d0fc462154029525aa3da9aeb47e0536acf7ecad9d7a92cf0ffbcc1021cb8",
+      "updates": "66858a7e468285e60c825268c69bd0a0ec8df7fd3799d61ab6af2eff173f0182"
+    },
+    "baselines": [
+      {
+        "mode": "graph",
+        "recomputed": [
+          "transport",
+          "transport_contract",
+          "prior_contract"
+        ],
+        "producer_runs": 1,
+        "contract_runs": 2,
+        "certificate_comparisons": 0,
+        "actions": [
+          {
+            "node": "transport",
+            "contract": false,
+            "output_equal": true,
+            "reads": [
+              [
+                "windows",
+                [
+                  "updates"
+                ]
+              ]
+            ]
+          },
+          {
+            "node": "transport_contract",
+            "contract": true,
+            "output_equal": true,
+            "reads": [
+              [
+                "transport",
+                [
+                  "maps"
+                ]
+              ]
+            ]
+          },
+          {
+            "node": "prior_contract",
+            "contract": true,
+            "output_equal": true,
+            "reads": [
+              [
+                "windows",
+                [
+                  "priors"
+                ]
+              ]
+            ]
+          }
+        ],
+        "equals_full_recompute": true
+      },
+      {
+        "mode": "whole",
+        "recomputed": [
+          "transport",
+          "prior_contract"
+        ],
+        "producer_runs": 1,
+        "contract_runs": 1,
+        "certificate_comparisons": 3,
+        "actions": [
+          {
+            "node": "transport",
+            "contract": false,
+            "output_equal": true,
+            "reads": [
+              [
+                "windows",
+                [
+                  "updates"
+                ]
+              ]
+            ]
+          },
+          {
+            "node": "prior_contract",
+            "contract": true,
+            "output_equal": true,
+            "reads": [
+              [
+                "windows",
+                [
+                  "priors"
+                ]
+              ]
+            ]
+          }
+        ],
+        "equals_full_recompute": true
+      },
+      {
+        "mode": "fields",
+        "recomputed": [
+          "prior_contract"
+        ],
+        "producer_runs": 0,
+        "contract_runs": 1,
+        "certificate_comparisons": 3,
+        "actions": [
+          {
+            "node": "prior_contract",
+            "contract": true,
+            "output_equal": true,
+            "reads": [
+              [
+                "windows",
+                [
+                  "priors"
+                ]
+              ]
+            ]
+          }
+        ],
+        "equals_full_recompute": true
+      },
+      {
+        "mode": "contracts",
+        "recomputed": [
+          "prior_contract"
+        ],
+        "producer_runs": 0,
+        "contract_runs": 1,
+        "certificate_comparisons": 3,
+        "actions": [
+          {
+            "node": "prior_contract",
+            "contract": true,
+            "output_equal": true,
+            "reads": [
+              [
+                "windows",
+                [
+                  "priors"
+                ]
+              ]
+            ]
+          }
+        ],
+        "equals_full_recompute": true
+      },
+      {
+        "mode": "proposed",
+        "recomputed": [
+          "prior_contract"
+        ],
+        "producer_runs": 0,
+        "contract_runs": 1,
+        "certificate_comparisons": 3,
+        "actions": [
+          {
+            "node": "prior_contract",
+            "contract": true,
+            "output_equal": true,
+            "reads": [
+              [
+                "windows",
+                [
+                  "priors"
+                ]
+              ]
+            ]
+          }
+        ],
+        "equals_full_recompute": true
+      }
+    ]
+  },
+  "decoder": {
+    "operating_point": {
+      "idle_error": 0.003,
+      "sqgate_error": 0.03,
+      "tqgate_error": 0.03,
+      "spam_error": 0.03
+    },
+    "shots": 128,
+    "sampler_seed": 7,
+    "predictions_changed": true,
+    "differing_bits": 42,
+    "differing_shots": 8,
+    "old_hash": "7a45e70a38ff21cdadcb71322287f775492fbb7c4a0bed582d1155675cbbcc9d",
+    "new_hash": "0e4a79a433c0008dad3fe073350375acd8acb8b8ddf866c3f955eadaaff9182f",
+    "consumer_contract": "binary array with shape (nshots, number of logical observables)",
+    "logical_accuracy_preserved": "not claimed",
+    "old_schema_valid": true,
+    "new_schema_valid": true,
+    "baselines": [
+      {
+        "mode": "graph",
+        "recomputed": [
+          "schema_contract",
+          "dimensions"
+        ],
+        "producer_runs": 1,
+        "contract_runs": 1,
+        "certificate_comparisons": 0,
+        "actions": [
+          {
+            "node": "schema_contract",
+            "contract": true,
+            "output_equal": true,
+            "reads": [
+              [
+                "prediction",
+                [
+                  "values"
+                ]
+              ],
+              [
+                "prediction",
+                [
+                  "expected_shape"
+                ]
+              ]
+            ]
+          },
+          {
+            "node": "dimensions",
+            "contract": false,
+            "output_equal": true,
+            "reads": [
+              [
+                "prediction",
+                [
+                  "expected_shape"
+                ]
+              ]
+            ]
+          }
+        ],
+        "equals_full_recompute": true
+      },
+      {
+        "mode": "whole",
+        "recomputed": [
+          "schema_contract",
+          "dimensions"
+        ],
+        "producer_runs": 1,
+        "contract_runs": 1,
+        "certificate_comparisons": 2,
+        "actions": [
+          {
+            "node": "schema_contract",
+            "contract": true,
+            "output_equal": true,
+            "reads": [
+              [
+                "prediction",
+                [
+                  "values"
+                ]
+              ],
+              [
+                "prediction",
+                [
+                  "expected_shape"
+                ]
+              ]
+            ]
+          },
+          {
+            "node": "dimensions",
+            "contract": false,
+            "output_equal": true,
+            "reads": [
+              [
+                "prediction",
+                [
+                  "expected_shape"
+                ]
+              ]
+            ]
+          }
+        ],
+        "equals_full_recompute": true
+      },
+      {
+        "mode": "fields",
+        "recomputed": [
+          "schema_contract"
+        ],
+        "producer_runs": 0,
+        "contract_runs": 1,
+        "certificate_comparisons": 3,
+        "actions": [
+          {
+            "node": "schema_contract",
+            "contract": true,
+            "output_equal": true,
+            "reads": [
+              [
+                "prediction",
+                [
+                  "values"
+                ]
+              ],
+              [
+                "prediction",
+                [
+                  "expected_shape"
+                ]
+              ]
+            ]
+          }
+        ],
+        "equals_full_recompute": true
+      },
+      {
+        "mode": "contracts",
+        "recomputed": [
+          "schema_contract"
+        ],
+        "producer_runs": 0,
+        "contract_runs": 1,
+        "certificate_comparisons": 3,
+        "actions": [
+          {
+            "node": "schema_contract",
+            "contract": true,
+            "output_equal": true,
+            "reads": [
+              [
+                "prediction",
+                [
+                  "values"
+                ]
+              ],
+              [
+                "prediction",
+                [
+                  "expected_shape"
+                ]
+              ]
+            ]
+          }
+        ],
+        "equals_full_recompute": true
+      },
+      {
+        "mode": "proposed",
+        "recomputed": [
+          "schema_contract"
+        ],
+        "producer_runs": 0,
+        "contract_runs": 1,
+        "certificate_comparisons": 3,
+        "actions": [
+          {
+            "node": "schema_contract",
+            "contract": true,
+            "output_equal": true,
+            "reads": [
+              [
+                "prediction",
+                [
+                  "values"
+                ]
+              ],
+              [
+                "prediction",
+                [
+                  "expected_shape"
+                ]
+              ]
+            ]
+          }
+        ],
+        "equals_full_recompute": true
+      }
+    ]
+  },
+  "generation_cost_accounting": {
+    "code_constructions": 1,
+    "circuit_constructions": 3,
+    "window_bundle_constructions": 2,
+    "decoder_executions": 2,
+    "note": "These real production calls precede every baseline; comparison counts concern downstream consumers and contracts only."
+  },
+  "read_provenance": [
+    {
+      "consumer": "window slices",
+      "source": "decoder/base.py:152-202",
+      "fields": [
+        "checks",
+        "observables",
+        "priors",
+        "updates"
+      ],
+      "method": "actual upstream spacetime return values"
+    },
+    {
+      "consumer": "syndrome transport",
+      "source": "decoder/sliding_window.py:169",
+      "fields": [
+        "updates"
+      ],
+      "method": "study adapter observes actual upstream linear maps; downstream application is represented by transport task"
+    },
+    {
+      "consumer": "prediction schema",
+      "source": "decoder/sliding_window.py:149-189",
+      "fields": [
+        "shape",
+        "binary values"
+      ],
+      "method": "study contract for source-documented output interface"
+    }
+  ],
+  "novel_algorithm_advantage": false,
+  "reason": "Field-aware incremental tracking and tracked ordinary contracts execute exactly the same nodes as proposed projections."
+}

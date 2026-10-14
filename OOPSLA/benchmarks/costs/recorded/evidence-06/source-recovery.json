@@ -1,0 +1,1944 @@
+{
+  "metadata": {
+    "description": "Read sets R(c) auto-extracted from the pinned QUITS tree",
+    "date": "2026-10-13",
+    "quits_commit": "0f36b8c5a9b81d6b7be0cef2c81c61b5850c0452",
+    "quits_src": "third_party/quits-0f36b8c5a9b81d6b7be0cef2c81c61b5850c0452/src/quits",
+    "method": "AST static analysis; component granularity from gate_audit/protocol.md; anchors located by AST search; coordinate / artifact / sub_api attribution",
+    "granularity_source": "gate_audit/protocol.md (component granularity, frozen): qldpc_code/* (Code, Extraction) / layout (Architecture) / noise (Noise) / decoder (Decoder) / simulation+api (assembly). Refinement: qldpc_code/circuit_construction is the Extraction package, the remaining qldpc_code family modules are the Code package.",
+    "coordinates": [
+      "code",
+      "extractor",
+      "arch",
+      "noise",
+      "decoder"
+    ],
+    "kinds": [
+      "coordinate",
+      "artifact",
+      "sub_api"
+    ],
+    "min_ident_len": 3,
+    "ambiguity_threshold": 2,
+    "generic_identifiers_excluded": {
+      "name": "generic 'subject' parameter (e.g. noise/error_model.py:45 error message); the Extraction registry key is captured through the strategy-name channel, not through this spelling"
+    },
+    "artifact_aliases": {
+      "code": "code",
+      "circuit": "extractor",
+      "circ": "extractor",
+      "dem": "extractor",
+      "model": "extractor",
+      "hz": "code",
+      "hx": "code",
+      "lz": "code",
+      "lx": "code",
+      "data_qubits": "code",
+      "zcheck_qubits": "code",
+      "xcheck_qubits": "code",
+      "check_qubits": "code",
+      "all_qubits": "code"
+    },
+    "coordinate_carriers": {
+      "strategy": "extractor",
+      "error_model": "noise",
+      "decoder": "decoder"
+    }
+  },
+  "vocabularies": {
+    "code": {
+      "n_files": 7,
+      "n_names": 29,
+      "names": [
+        "BbCode",
+        "BpcCode",
+        "HgpCode",
+        "LcsCode",
+        "MittenCode",
+        "QldpcCode",
+        "QlpCode",
+        "QlpPolyCode",
+        "_DEPTH12_PATTERN",
+        "_matching_edges",
+        "all_qubits",
+        "b1_placeholder",
+        "b2_placeholder",
+        "canonical_basis",
+        "check_qubits",
+        "conjugate_pair_overlaps",
+        "data_qubits",
+        "depth",
+        "draw_graph",
+        "factor",
+        "is_valid_mitten",
+        "l1t",
+        "l2t",
+        "length",
+        "lift_size",
+        "sample_mitten_base_matrices",
+        "supported_strategies",
+        "xcheck_qubits",
+        "zcheck_qubits"
+      ],
+      "api": [
+        "BbCode",
+        "BpcCode",
+        "HgpCode",
+        "LcsCode",
+        "MittenCode",
+        "QldpcCode",
+        "QlpCode",
+        "QlpPolyCode",
+        "_DEPTH12_PATTERN",
+        "_matching_edges",
+        "conjugate_pair_overlaps",
+        "is_valid_mitten",
+        "sample_mitten_base_matrices"
+      ],
+      "state": [
+        "all_qubits",
+        "b1_placeholder",
+        "b2_placeholder",
+        "canonical_basis",
+        "check_qubits",
+        "data_qubits",
+        "depth",
+        "draw_graph",
+        "factor",
+        "l1t",
+        "l2t",
+        "length",
+        "lift_size",
+        "supported_strategies",
+        "xcheck_qubits",
+        "zcheck_qubits"
+      ],
+      "strategy_names": []
+    },
+    "extractor": {
+      "n_files": 9,
+      "n_names": 23,
+      "names": [
+        "CardinalBuilder",
+        "CardinalNSMergeBuilder",
+        "CircuitBuildOptions",
+        "CircuitBuilder",
+        "CustomBuilder",
+        "EdgeLayering",
+        "WrappedNode",
+        "ZXColorationBuilder",
+        "_BUILDERS",
+        "_build_delta_regular_supergraph",
+        "_try_build_regular_supergraph",
+        "_validate_bipartite_graph",
+        "edge_coloration",
+        "get_all_detectors",
+        "get_builder",
+        "interleaving_parity_violations",
+        "layers",
+        "layers_X",
+        "layers_Z",
+        "name",
+        "noisy_final_meas",
+        "noisy_zeroth_round",
+        "verify_stabilizer_flows"
+      ],
+      "api": [
+        "CardinalBuilder",
+        "CardinalNSMergeBuilder",
+        "CircuitBuildOptions",
+        "CircuitBuilder",
+        "CustomBuilder",
+        "EdgeLayering",
+        "WrappedNode",
+        "ZXColorationBuilder",
+        "_BUILDERS",
+        "_build_delta_regular_supergraph",
+        "_try_build_regular_supergraph",
+        "_validate_bipartite_graph",
+        "edge_coloration",
+        "get_builder",
+        "interleaving_parity_violations",
+        "verify_stabilizer_flows"
+      ],
+      "state": [
+        "get_all_detectors",
+        "layers",
+        "layers_X",
+        "layers_Z",
+        "name",
+        "noisy_final_meas",
+        "noisy_zeroth_round"
+      ],
+      "strategy_names": [
+        "cardinal",
+        "cardinalNSmerge",
+        "custom",
+        "zxcoloration"
+      ]
+    },
+    "arch": {
+      "n_files": 6,
+      "n_names": 22,
+      "names": [
+        "AbstractToricLayout",
+        "BbToricLayout",
+        "Coordinate",
+        "Layout",
+        "LayoutMapping",
+        "ToricLayout",
+        "TransversalLayout",
+        "_BB_TORIC_LAYOUT_ERROR",
+        "_TORIC_LAYOUT_ERROR",
+        "__getattr__",
+        "_a_terms",
+        "_b_terms",
+        "_left_size",
+        "_mapping",
+        "_selection",
+        "center_checks",
+        "data",
+        "data_rows",
+        "xcheck",
+        "xcheck_rows",
+        "zcheck",
+        "zcheck_rows"
+      ],
+      "api": [
+        "AbstractToricLayout",
+        "BbToricLayout",
+        "Coordinate",
+        "Layout",
+        "LayoutMapping",
+        "ToricLayout",
+        "TransversalLayout",
+        "_BB_TORIC_LAYOUT_ERROR",
+        "_TORIC_LAYOUT_ERROR",
+        "__getattr__"
+      ],
+      "state": [
+        "_a_terms",
+        "_b_terms",
+        "_left_size",
+        "_mapping",
+        "_selection",
+        "center_checks",
+        "data",
+        "data_rows",
+        "xcheck",
+        "xcheck_rows",
+        "zcheck",
+        "zcheck_rows"
+      ],
+      "strategy_names": []
+    },
+    "noise": {
+      "n_files": 2,
+      "n_names": 6,
+      "names": [
+        "ErrorModel",
+        "_is_real_sequence",
+        "idle_error",
+        "spam_error",
+        "sqgate_error",
+        "tqgate_error"
+      ],
+      "api": [
+        "ErrorModel",
+        "_is_real_sequence"
+      ],
+      "state": [
+        "idle_error",
+        "spam_error",
+        "sqgate_error",
+        "tqgate_error"
+      ],
+      "strategy_names": []
+    },
+    "decoder": {
+      "n_files": 5,
+      "n_names": 10,
+      "names": [
+        "detector_error_model_to_matrix",
+        "dict_to_csc_matrix_column_row",
+        "dict_to_csc_matrix_row_column",
+        "sliding_window_bplsd_circuit_mem",
+        "sliding_window_bplsd_phenom_mem",
+        "sliding_window_bposd_circuit_mem",
+        "sliding_window_bposd_phenom_mem",
+        "sliding_window_circuit_mem",
+        "sliding_window_phenom_mem",
+        "spacetime"
+      ],
+      "api": [
+        "detector_error_model_to_matrix",
+        "dict_to_csc_matrix_column_row",
+        "dict_to_csc_matrix_row_column",
+        "sliding_window_bplsd_circuit_mem",
+        "sliding_window_bplsd_phenom_mem",
+        "sliding_window_bposd_circuit_mem",
+        "sliding_window_bposd_phenom_mem",
+        "sliding_window_circuit_mem",
+        "sliding_window_phenom_mem",
+        "spacetime"
+      ],
+      "state": [],
+      "strategy_names": []
+    },
+    "assembly": {
+      "n_files": 4,
+      "n_names": 16,
+      "names": [
+        "Circuit",
+        "all_qubits",
+        "check_overlapping_CX",
+        "circuit",
+        "error_model",
+        "estimate_spacetime_distance",
+        "get_cardinalNSmerge_circuit",
+        "get_cardinal_circuit",
+        "get_codecap_pL",
+        "get_stim_mem_result",
+        "idle_error",
+        "margin",
+        "spacetime_matrices",
+        "spam_error",
+        "sqgate_error",
+        "tqgate_error"
+      ],
+      "api": [
+        "Circuit",
+        "check_overlapping_CX",
+        "estimate_spacetime_distance",
+        "get_cardinalNSmerge_circuit",
+        "get_cardinal_circuit",
+        "get_codecap_pL",
+        "get_stim_mem_result",
+        "spacetime_matrices"
+      ],
+      "state": [
+        "all_qubits",
+        "circuit",
+        "error_model",
+        "idle_error",
+        "margin",
+        "spam_error",
+        "sqgate_error",
+        "tqgate_error"
+      ],
+      "strategy_names": []
+    }
+  },
+  "ambiguous_names_dropped": {
+    "__all__": [
+      "arch",
+      "code",
+      "decoder",
+      "extractor",
+      "noise"
+    ],
+    "code": [
+      "arch",
+      "extractor"
+    ]
+  },
+  "read_sets": {
+    "code": {
+      "reads": [
+        "code"
+      ],
+      "artifact_reads": [
+        "code"
+      ],
+      "reads_flat": [
+        "code"
+      ],
+      "sub_api": [
+        "code"
+      ],
+      "anchors": [
+        {
+          "file": "qldpc_code/base.py",
+          "line": 22,
+          "qualname": "QldpcCode.__init__",
+          "self_owner": "code",
+          "coordinates_here": [],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/base.py",
+          "line": 37,
+          "qualname": "QldpcCode.set_parity_checks",
+          "self_owner": "code",
+          "coordinates_here": [],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/base.py",
+          "line": 52,
+          "qualname": "QldpcCode.verify_css_logicals",
+          "self_owner": "code",
+          "coordinates_here": [],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/bb.py",
+          "line": 21,
+          "qualname": "BbCode.__init__",
+          "self_owner": "code",
+          "coordinates_here": [],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/bpc.py",
+          "line": 17,
+          "qualname": "BpcCode.__init__",
+          "self_owner": "code",
+          "coordinates_here": [
+            "code"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/hgp.py",
+          "line": 17,
+          "qualname": "HgpCode.__init__",
+          "self_owner": "code",
+          "coordinates_here": [
+            "code"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/lcs.py",
+          "line": 26,
+          "qualname": "LcsCode.__init__",
+          "self_owner": "code",
+          "coordinates_here": [
+            "code"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/mitten.py",
+          "line": 183,
+          "qualname": "MittenCode.__init__",
+          "self_owner": "code",
+          "coordinates_here": [],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/qlp.py",
+          "line": 17,
+          "qualname": "QlpCode.__init__",
+          "self_owner": "code",
+          "coordinates_here": [
+            "code"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/qlp.py",
+          "line": 206,
+          "qualname": "QlpPolyCode.__init__",
+          "self_owner": "code",
+          "coordinates_here": [
+            "code"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        }
+      ],
+      "evidence": {
+        "code": [
+          "qldpc_code/base.py:22 [attribute/artifact] reads `.all_qubits`",
+          "qldpc_code/base.py:22 [attribute/artifact] reads `.check_qubits`",
+          "qldpc_code/base.py:22 [attribute/artifact] reads `.data_qubits`",
+          "qldpc_code/base.py:22 [attribute/artifact] reads `.hx`",
+          "qldpc_code/base.py:22 [attribute/artifact] reads `.hz`",
+          "qldpc_code/base.py:22 [attribute/artifact] reads `.lx`",
+          "qldpc_code/base.py:22 [attribute/artifact] reads `.lz`",
+          "qldpc_code/base.py:22 [attribute/artifact] reads `.xcheck_qubits`",
+          "qldpc_code/base.py:22 [attribute/artifact] reads `.zcheck_qubits`",
+          "qldpc_code/base.py:22 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/base.py:37 [argument/artifact] `hx` flows into `asarray(...)`",
+          "qldpc_code/base.py:37 [argument/artifact] `hx` flows into `compute_lz_and_lx(...)`",
+          "qldpc_code/base.py:37 [argument/artifact] `hz` flows into `asarray(...)`",
+          "qldpc_code/base.py:37 [argument/artifact] `hz` flows into `compute_lz_and_lx(...)`",
+          "qldpc_code/base.py:37 [attribute/artifact] reads `.hx`",
+          "qldpc_code/base.py:37 [attribute/artifact] reads `.hz`",
+          "qldpc_code/base.py:37 [attribute/artifact] reads `.lx`",
+          "qldpc_code/base.py:37 [attribute/artifact] reads `.lz`",
+          "qldpc_code/base.py:37 [declaration/artifact] parameter `hx`",
+          "qldpc_code/base.py:37 [declaration/artifact] parameter `hz`",
+          "qldpc_code/base.py:37 [name/artifact] reads `hx`",
+          "qldpc_code/base.py:37 [name/artifact] reads `hz`",
+          "qldpc_code/base.py:37 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/base.py:52 [attribute/artifact] reads `.hx`",
+          "qldpc_code/base.py:52 [attribute/artifact] reads `.hz`",
+          "qldpc_code/base.py:52 [attribute/artifact] reads `.lx`",
+          "qldpc_code/base.py:52 [attribute/artifact] reads `.lz`",
+          "qldpc_code/base.py:52 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/bb.py:21 [attribute/artifact] reads `.hx`",
+          "qldpc_code/bb.py:21 [attribute/artifact] reads `.hz`",
+          "qldpc_code/bb.py:21 [attribute/artifact] reads `.lx`",
+          "qldpc_code/bb.py:21 [attribute/artifact] reads `.lz`",
+          "qldpc_code/bb.py:21 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/bpc.py:17 [argument/coordinate] `b1_placeholder` flows into `lift(...)`",
+          "qldpc_code/bpc.py:17 [attribute/artifact] reads `.hx`",
+          "qldpc_code/bpc.py:17 [attribute/artifact] reads `.hz`",
+          "qldpc_code/bpc.py:17 [attribute/artifact] reads `.lx`",
+          "qldpc_code/bpc.py:17 [attribute/artifact] reads `.lz`",
+          "qldpc_code/bpc.py:17 [attribute/coordinate] reads `.b1_placeholder`",
+          "qldpc_code/bpc.py:17 [attribute/coordinate] reads `.canonical_basis`",
+          "qldpc_code/bpc.py:17 [attribute/coordinate] reads `.factor`",
+          "qldpc_code/bpc.py:17 [attribute/coordinate] reads `.lift_size`",
+          "qldpc_code/bpc.py:17 [declaration/coordinate] parameter `canonical_basis`",
+          "qldpc_code/bpc.py:17 [declaration/coordinate] parameter `factor`",
+          "qldpc_code/bpc.py:17 [declaration/coordinate] parameter `lift_size`",
+          "qldpc_code/bpc.py:17 [name/coordinate] reads `b1_placeholder`",
+          "qldpc_code/bpc.py:17 [name/coordinate] reads `canonical_basis`",
+          "qldpc_code/bpc.py:17 [name/coordinate] reads `factor`",
+          "qldpc_code/bpc.py:17 [name/coordinate] reads `lift_size`",
+          "qldpc_code/bpc.py:17 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/bpc.py:17 [string/coordinate] keyword `canonical_basis=`",
+          "qldpc_code/hgp.py:17 [attribute/artifact] reads `.hx`",
+          "qldpc_code/hgp.py:17 [attribute/artifact] reads `.hz`",
+          "qldpc_code/hgp.py:17 [attribute/artifact] reads `.lx`",
+          "qldpc_code/hgp.py:17 [attribute/artifact] reads `.lz`",
+          "qldpc_code/hgp.py:17 [attribute/coordinate] reads `.l1t`",
+          "qldpc_code/hgp.py:17 [attribute/coordinate] reads `.l2t`",
+          "qldpc_code/hgp.py:17 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/lcs.py:26 [argument/coordinate] `length` flows into `range(...)`",
+          "qldpc_code/lcs.py:26 [argument/coordinate] `lift_size` flows into `__init__(...)`",
+          "qldpc_code/lcs.py:26 [attribute/coordinate] reads `.length`",
+          "qldpc_code/lcs.py:26 [attribute/coordinate] reads `.lift_size`",
+          "qldpc_code/lcs.py:26 [declaration/coordinate] parameter `length`",
+          "qldpc_code/lcs.py:26 [declaration/coordinate] parameter `lift_size`",
+          "qldpc_code/lcs.py:26 [name/coordinate] reads `length`",
+          "qldpc_code/lcs.py:26 [name/coordinate] reads `lift_size`",
+          "qldpc_code/lcs.py:26 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/mitten.py:183 [attribute/artifact] reads `.hx`",
+          "qldpc_code/mitten.py:183 [attribute/artifact] reads `.hz`",
+          "qldpc_code/mitten.py:183 [attribute/artifact] reads `.lx`",
+          "qldpc_code/mitten.py:183 [attribute/artifact] reads `.lz`",
+          "qldpc_code/mitten.py:183 [callee/sub_api] calls `is_valid_mitten(...)`",
+          "qldpc_code/mitten.py:183 [name/sub_api] reads `is_valid_mitten`",
+          "qldpc_code/mitten.py:183 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/qlp.py:17 [argument/coordinate] `b1_placeholder` flows into `concatenate(...)`",
+          "qldpc_code/qlp.py:17 [argument/coordinate] `b1_placeholder` flows into `kron(...)`",
+          "qldpc_code/qlp.py:17 [argument/coordinate] `b2_placeholder` flows into `concatenate(...)`",
+          "qldpc_code/qlp.py:17 [argument/coordinate] `b2_placeholder` flows into `kron(...)`",
+          "qldpc_code/qlp.py:17 [attribute/artifact] reads `.hx`",
+          "qldpc_code/qlp.py:17 [attribute/artifact] reads `.hz`",
+          "qldpc_code/qlp.py:17 [attribute/artifact] reads `.lx`",
+          "qldpc_code/qlp.py:17 [attribute/artifact] reads `.lz`",
+          "qldpc_code/qlp.py:17 [attribute/coordinate] reads `.lift_size`",
+          "qldpc_code/qlp.py:17 [declaration/coordinate] parameter `lift_size`",
+          "qldpc_code/qlp.py:17 [name/coordinate] reads `b1_placeholder`",
+          "qldpc_code/qlp.py:17 [name/coordinate] reads `b2_placeholder`",
+          "qldpc_code/qlp.py:17 [name/coordinate] reads `lift_size`",
+          "qldpc_code/qlp.py:17 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/qlp.py:206 [attribute/artifact] reads `.hx`",
+          "qldpc_code/qlp.py:206 [attribute/artifact] reads `.hz`",
+          "qldpc_code/qlp.py:206 [attribute/artifact] reads `.lx`",
+          "qldpc_code/qlp.py:206 [attribute/artifact] reads `.lz`",
+          "qldpc_code/qlp.py:206 [attribute/coordinate] reads `.b1_placeholder`",
+          "qldpc_code/qlp.py:206 [attribute/coordinate] reads `.b2_placeholder`",
+          "qldpc_code/qlp.py:206 [attribute/coordinate] reads `.lift_size`",
+          "qldpc_code/qlp.py:206 [declaration/coordinate] parameter `lift_size`",
+          "qldpc_code/qlp.py:206 [name/coordinate] reads `lift_size`",
+          "qldpc_code/qlp.py:206 [receiver/artifact] `self` is an instance of the enclosing class"
+        ]
+      },
+      "obligation_clues": [
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "qldpc_code/base.py:42"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "qldpc_code/base.py:44"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "qldpc_code/bb.py:34"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "qldpc_code/bpc.py:64"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "qldpc_code/lcs.py:33"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "qldpc_code/mitten.py:187"
+        }
+      ]
+    },
+    "extractor": {
+      "reads": [
+        "code",
+        "extractor",
+        "noise"
+      ],
+      "artifact_reads": [
+        "code"
+      ],
+      "reads_flat": [
+        "code",
+        "extractor",
+        "noise"
+      ],
+      "sub_api": [
+        "extractor",
+        "noise"
+      ],
+      "anchors": [
+        {
+          "file": "qldpc_code/base.py",
+          "line": 115,
+          "qualname": "QldpcCode.build_circuit",
+          "self_owner": "code",
+          "coordinates_here": [
+            "code",
+            "extractor",
+            "noise"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/bb.py",
+          "line": 66,
+          "qualname": "BbCode.build_circuit",
+          "self_owner": "code",
+          "coordinates_here": [
+            "extractor",
+            "noise"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/bpc.py",
+          "line": 134,
+          "qualname": "BpcCode.build_circuit",
+          "self_owner": "code",
+          "coordinates_here": [
+            "extractor",
+            "noise"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/hgp.py",
+          "line": 87,
+          "qualname": "HgpCode.build_circuit",
+          "self_owner": "code",
+          "coordinates_here": [
+            "extractor",
+            "noise"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/lcs.py",
+          "line": 48,
+          "qualname": "LcsCode.build_circuit",
+          "self_owner": "code",
+          "coordinates_here": [
+            "extractor",
+            "noise"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/mitten.py",
+          "line": 234,
+          "qualname": "MittenCode.build_circuit",
+          "self_owner": "code",
+          "coordinates_here": [
+            "extractor",
+            "noise"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/qlp.py",
+          "line": 50,
+          "qualname": "QlpCode.build_circuit",
+          "self_owner": "code",
+          "coordinates_here": [
+            "extractor",
+            "noise"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "qldpc_code/qlp.py",
+          "line": 269,
+          "qualname": "QlpPolyCode.build_circuit",
+          "self_owner": "code",
+          "coordinates_here": [
+            "extractor",
+            "noise"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        }
+      ],
+      "evidence": {
+        "code": [
+          "qldpc_code/base.py:115 [attribute/coordinate] reads `.supported_strategies`",
+          "qldpc_code/base.py:115 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/bb.py:66 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/bpc.py:134 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/hgp.py:87 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/lcs.py:48 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/mitten.py:234 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/qlp.py:269 [receiver/artifact] `self` is an instance of the enclosing class",
+          "qldpc_code/qlp.py:50 [receiver/artifact] `self` is an instance of the enclosing class"
+        ],
+        "extractor": [
+          "qldpc_code/base.py:115 [argument/coordinate] `strategy` flows into `get_builder(...)`",
+          "qldpc_code/base.py:115 [callee/sub_api] calls `get_builder(...)`",
+          "qldpc_code/base.py:115 [declaration/coordinate] parameter `strategy`",
+          "qldpc_code/base.py:115 [name/coordinate] reads `strategy`",
+          "qldpc_code/base.py:115 [name/sub_api] reads `get_builder`",
+          "qldpc_code/base.py:115 [string/coordinate] string literal `cardinalNSmerge`",
+          "qldpc_code/base.py:115 [string/coordinate] string literal `cardinal`",
+          "qldpc_code/base.py:115 [string/coordinate] string literal `custom`",
+          "qldpc_code/base.py:115 [string/coordinate] string literal `zxcoloration`",
+          "qldpc_code/base.py:115 [string/sub_api] keyword `circuit_build_options=`",
+          "qldpc_code/base.py:115 [string/sub_api] string literal `circuit_build_options`",
+          "qldpc_code/bb.py:66 [argument/coordinate] `strategy` flows into `build_circuit(...)`",
+          "qldpc_code/bb.py:66 [argument/sub_api] `CircuitBuildOptions` flows into `isinstance(...)`",
+          "qldpc_code/bb.py:66 [argument/sub_api] `circuit_build_options` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/bb.py:66 [argument/sub_api] `circuit_build_options` flows into `get_custom_circuit(...)`",
+          "qldpc_code/bb.py:66 [argument/sub_api] `circuit_build_options` flows into `isinstance(...)`",
+          "qldpc_code/bb.py:66 [callee/sub_api] calls `CircuitBuildOptions(...)`",
+          "qldpc_code/bb.py:66 [callee/sub_api] calls `get_builder(...)`",
+          "qldpc_code/bb.py:66 [declaration/coordinate] parameter `strategy`",
+          "qldpc_code/bb.py:66 [declaration/sub_api] parameter `circuit_build_options`",
+          "qldpc_code/bb.py:66 [name/coordinate] reads `strategy`",
+          "qldpc_code/bb.py:66 [name/sub_api] reads `CircuitBuildOptions`",
+          "qldpc_code/bb.py:66 [name/sub_api] reads `circuit_build_options`",
+          "qldpc_code/bb.py:66 [name/sub_api] reads `get_builder`",
+          "qldpc_code/bb.py:66 [string/coordinate] keyword `strategy=`",
+          "qldpc_code/bb.py:66 [string/coordinate] string literal `custom`",
+          "qldpc_code/bb.py:66 [string/coordinate] string literal `zxcoloration`",
+          "qldpc_code/bb.py:66 [string/sub_api] keyword `circuit_build_options=`",
+          "qldpc_code/bpc.py:134 [argument/coordinate] `strategy` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/bpc.py:134 [argument/coordinate] `strategy` flows into `build_circuit(...)`",
+          "qldpc_code/bpc.py:134 [argument/sub_api] `CircuitBuildOptions` flows into `isinstance(...)`",
+          "qldpc_code/bpc.py:134 [argument/sub_api] `circuit_build_options` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/bpc.py:134 [argument/sub_api] `circuit_build_options` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/bpc.py:134 [argument/sub_api] `circuit_build_options` flows into `isinstance(...)`",
+          "qldpc_code/bpc.py:134 [callee/sub_api] calls `CircuitBuildOptions(...)`",
+          "qldpc_code/bpc.py:134 [callee/sub_api] calls `get_builder(...)`",
+          "qldpc_code/bpc.py:134 [declaration/coordinate] parameter `strategy`",
+          "qldpc_code/bpc.py:134 [declaration/sub_api] parameter `circuit_build_options`",
+          "qldpc_code/bpc.py:134 [name/coordinate] reads `strategy`",
+          "qldpc_code/bpc.py:134 [name/sub_api] reads `CircuitBuildOptions`",
+          "qldpc_code/bpc.py:134 [name/sub_api] reads `circuit_build_options`",
+          "qldpc_code/bpc.py:134 [name/sub_api] reads `get_builder`",
+          "qldpc_code/bpc.py:134 [string/coordinate] keyword `strategy=`",
+          "qldpc_code/bpc.py:134 [string/coordinate] string literal `cardinalNSmerge`",
+          "qldpc_code/bpc.py:134 [string/coordinate] string literal `cardinal`",
+          "qldpc_code/bpc.py:134 [string/coordinate] string literal `zxcoloration`",
+          "qldpc_code/bpc.py:134 [string/sub_api] keyword `circuit_build_options=`",
+          "qldpc_code/hgp.py:87 [argument/coordinate] `strategy` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/hgp.py:87 [argument/coordinate] `strategy` flows into `build_circuit(...)`",
+          "qldpc_code/hgp.py:87 [argument/sub_api] `CircuitBuildOptions` flows into `isinstance(...)`",
+          "qldpc_code/hgp.py:87 [argument/sub_api] `circuit_build_options` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/hgp.py:87 [argument/sub_api] `circuit_build_options` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/hgp.py:87 [argument/sub_api] `circuit_build_options` flows into `isinstance(...)`",
+          "qldpc_code/hgp.py:87 [callee/sub_api] calls `CircuitBuildOptions(...)`",
+          "qldpc_code/hgp.py:87 [callee/sub_api] calls `get_builder(...)`",
+          "qldpc_code/hgp.py:87 [declaration/coordinate] parameter `strategy`",
+          "qldpc_code/hgp.py:87 [declaration/sub_api] parameter `circuit_build_options`",
+          "qldpc_code/hgp.py:87 [name/coordinate] reads `strategy`",
+          "qldpc_code/hgp.py:87 [name/sub_api] reads `CircuitBuildOptions`",
+          "qldpc_code/hgp.py:87 [name/sub_api] reads `circuit_build_options`",
+          "qldpc_code/hgp.py:87 [name/sub_api] reads `get_builder`",
+          "qldpc_code/hgp.py:87 [string/coordinate] keyword `strategy=`",
+          "qldpc_code/hgp.py:87 [string/coordinate] string literal `cardinalNSmerge`",
+          "qldpc_code/hgp.py:87 [string/coordinate] string literal `cardinal`",
+          "qldpc_code/hgp.py:87 [string/coordinate] string literal `zxcoloration`",
+          "qldpc_code/hgp.py:87 [string/sub_api] keyword `circuit_build_options=`",
+          "qldpc_code/lcs.py:48 [argument/coordinate] `strategy` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/lcs.py:48 [argument/coordinate] `strategy` flows into `build_circuit(...)`",
+          "qldpc_code/lcs.py:48 [argument/sub_api] `CircuitBuildOptions` flows into `isinstance(...)`",
+          "qldpc_code/lcs.py:48 [argument/sub_api] `circuit_build_options` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/lcs.py:48 [argument/sub_api] `circuit_build_options` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/lcs.py:48 [argument/sub_api] `circuit_build_options` flows into `isinstance(...)`",
+          "qldpc_code/lcs.py:48 [callee/sub_api] calls `CircuitBuildOptions(...)`",
+          "qldpc_code/lcs.py:48 [callee/sub_api] calls `get_builder(...)`",
+          "qldpc_code/lcs.py:48 [declaration/coordinate] parameter `strategy`",
+          "qldpc_code/lcs.py:48 [declaration/sub_api] parameter `circuit_build_options`",
+          "qldpc_code/lcs.py:48 [name/coordinate] reads `strategy`",
+          "qldpc_code/lcs.py:48 [name/sub_api] reads `CircuitBuildOptions`",
+          "qldpc_code/lcs.py:48 [name/sub_api] reads `circuit_build_options`",
+          "qldpc_code/lcs.py:48 [name/sub_api] reads `get_builder`",
+          "qldpc_code/lcs.py:48 [string/coordinate] keyword `strategy=`",
+          "qldpc_code/lcs.py:48 [string/coordinate] string literal `cardinalNSmerge`",
+          "qldpc_code/lcs.py:48 [string/coordinate] string literal `cardinal`",
+          "qldpc_code/lcs.py:48 [string/coordinate] string literal `zxcoloration`",
+          "qldpc_code/lcs.py:48 [string/sub_api] keyword `circuit_build_options=`",
+          "qldpc_code/mitten.py:234 [argument/coordinate] `strategy` flows into `build_circuit(...)`",
+          "qldpc_code/mitten.py:234 [argument/sub_api] `CircuitBuildOptions` flows into `isinstance(...)`",
+          "qldpc_code/mitten.py:234 [argument/sub_api] `circuit_build_options` flows into `_build_hook_error_free_circuit(...)`",
+          "qldpc_code/mitten.py:234 [argument/sub_api] `circuit_build_options` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/mitten.py:234 [argument/sub_api] `circuit_build_options` flows into `get_custom_circuit(...)`",
+          "qldpc_code/mitten.py:234 [argument/sub_api] `circuit_build_options` flows into `isinstance(...)`",
+          "qldpc_code/mitten.py:234 [callee/sub_api] calls `CircuitBuildOptions(...)`",
+          "qldpc_code/mitten.py:234 [callee/sub_api] calls `get_builder(...)`",
+          "qldpc_code/mitten.py:234 [declaration/coordinate] parameter `strategy`",
+          "qldpc_code/mitten.py:234 [declaration/sub_api] parameter `circuit_build_options`",
+          "qldpc_code/mitten.py:234 [name/coordinate] reads `strategy`",
+          "qldpc_code/mitten.py:234 [name/sub_api] reads `CircuitBuildOptions`",
+          "qldpc_code/mitten.py:234 [name/sub_api] reads `circuit_build_options`",
+          "qldpc_code/mitten.py:234 [name/sub_api] reads `get_builder`",
+          "qldpc_code/mitten.py:234 [string/coordinate] keyword `strategy=`",
+          "qldpc_code/mitten.py:234 [string/coordinate] string literal `custom`",
+          "qldpc_code/mitten.py:234 [string/coordinate] string literal `zxcoloration`",
+          "qldpc_code/mitten.py:234 [string/sub_api] keyword `circuit_build_options=`",
+          "qldpc_code/qlp.py:269 [argument/coordinate] `strategy` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/qlp.py:269 [argument/coordinate] `strategy` flows into `build_circuit(...)`",
+          "qldpc_code/qlp.py:269 [argument/sub_api] `CircuitBuildOptions` flows into `isinstance(...)`",
+          "qldpc_code/qlp.py:269 [argument/sub_api] `circuit_build_options` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/qlp.py:269 [argument/sub_api] `circuit_build_options` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/qlp.py:269 [argument/sub_api] `circuit_build_options` flows into `isinstance(...)`",
+          "qldpc_code/qlp.py:269 [callee/sub_api] calls `CircuitBuildOptions(...)`",
+          "qldpc_code/qlp.py:269 [callee/sub_api] calls `get_builder(...)`",
+          "qldpc_code/qlp.py:269 [declaration/coordinate] parameter `strategy`",
+          "qldpc_code/qlp.py:269 [declaration/sub_api] parameter `circuit_build_options`",
+          "qldpc_code/qlp.py:269 [name/coordinate] reads `strategy`",
+          "qldpc_code/qlp.py:269 [name/sub_api] reads `CircuitBuildOptions`",
+          "qldpc_code/qlp.py:269 [name/sub_api] reads `circuit_build_options`",
+          "qldpc_code/qlp.py:269 [name/sub_api] reads `get_builder`",
+          "qldpc_code/qlp.py:269 [string/coordinate] keyword `strategy=`",
+          "qldpc_code/qlp.py:269 [string/coordinate] string literal `cardinalNSmerge`",
+          "qldpc_code/qlp.py:269 [string/coordinate] string literal `cardinal`",
+          "qldpc_code/qlp.py:269 [string/coordinate] string literal `zxcoloration`",
+          "qldpc_code/qlp.py:269 [string/sub_api] keyword `circuit_build_options=`",
+          "qldpc_code/qlp.py:50 [argument/coordinate] `strategy` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/qlp.py:50 [argument/coordinate] `strategy` flows into `build_circuit(...)`",
+          "qldpc_code/qlp.py:50 [argument/sub_api] `CircuitBuildOptions` flows into `isinstance(...)`",
+          "qldpc_code/qlp.py:50 [argument/sub_api] `circuit_build_options` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/qlp.py:50 [argument/sub_api] `circuit_build_options` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/qlp.py:50 [argument/sub_api] `circuit_build_options` flows into `isinstance(...)`",
+          "qldpc_code/qlp.py:50 [callee/sub_api] calls `CircuitBuildOptions(...)`",
+          "qldpc_code/qlp.py:50 [callee/sub_api] calls `get_builder(...)`",
+          "qldpc_code/qlp.py:50 [declaration/coordinate] parameter `strategy`",
+          "qldpc_code/qlp.py:50 [declaration/sub_api] parameter `circuit_build_options`",
+          "qldpc_code/qlp.py:50 [name/coordinate] reads `strategy`",
+          "qldpc_code/qlp.py:50 [name/sub_api] reads `CircuitBuildOptions`",
+          "qldpc_code/qlp.py:50 [name/sub_api] reads `circuit_build_options`",
+          "qldpc_code/qlp.py:50 [name/sub_api] reads `get_builder`",
+          "qldpc_code/qlp.py:50 [string/coordinate] keyword `strategy=`",
+          "qldpc_code/qlp.py:50 [string/coordinate] string literal `cardinalNSmerge`",
+          "qldpc_code/qlp.py:50 [string/coordinate] string literal `cardinal`",
+          "qldpc_code/qlp.py:50 [string/coordinate] string literal `zxcoloration`",
+          "qldpc_code/qlp.py:50 [string/sub_api] keyword `circuit_build_options=`"
+        ],
+        "noise": [
+          "qldpc_code/base.py:115 [string/coordinate] keyword `error_model=`",
+          "qldpc_code/base.py:115 [string/coordinate] string literal `error_model`",
+          "qldpc_code/bb.py:66 [argument/coordinate] `error_model` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/bb.py:66 [argument/coordinate] `error_model` flows into `get_custom_circuit(...)`",
+          "qldpc_code/bb.py:66 [callee/sub_api] calls `ErrorModel(...)`",
+          "qldpc_code/bb.py:66 [declaration/coordinate] parameter `error_model`",
+          "qldpc_code/bb.py:66 [name/coordinate] reads `error_model`",
+          "qldpc_code/bb.py:66 [name/sub_api] reads `ErrorModel`",
+          "qldpc_code/bb.py:66 [string/coordinate] keyword `error_model=`",
+          "qldpc_code/bpc.py:134 [argument/coordinate] `error_model` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/bpc.py:134 [argument/coordinate] `error_model` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/bpc.py:134 [callee/sub_api] calls `ErrorModel(...)`",
+          "qldpc_code/bpc.py:134 [declaration/coordinate] parameter `error_model`",
+          "qldpc_code/bpc.py:134 [name/coordinate] reads `error_model`",
+          "qldpc_code/bpc.py:134 [name/sub_api] reads `ErrorModel`",
+          "qldpc_code/bpc.py:134 [string/coordinate] keyword `error_model=`",
+          "qldpc_code/hgp.py:87 [argument/coordinate] `error_model` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/hgp.py:87 [argument/coordinate] `error_model` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/hgp.py:87 [callee/sub_api] calls `ErrorModel(...)`",
+          "qldpc_code/hgp.py:87 [declaration/coordinate] parameter `error_model`",
+          "qldpc_code/hgp.py:87 [name/coordinate] reads `error_model`",
+          "qldpc_code/hgp.py:87 [name/sub_api] reads `ErrorModel`",
+          "qldpc_code/hgp.py:87 [string/coordinate] keyword `error_model=`",
+          "qldpc_code/lcs.py:48 [argument/coordinate] `error_model` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/lcs.py:48 [argument/coordinate] `error_model` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/lcs.py:48 [callee/sub_api] calls `ErrorModel(...)`",
+          "qldpc_code/lcs.py:48 [declaration/coordinate] parameter `error_model`",
+          "qldpc_code/lcs.py:48 [name/coordinate] reads `error_model`",
+          "qldpc_code/lcs.py:48 [name/sub_api] reads `ErrorModel`",
+          "qldpc_code/lcs.py:48 [string/coordinate] keyword `error_model=`",
+          "qldpc_code/mitten.py:234 [argument/coordinate] `error_model` flows into `_build_hook_error_free_circuit(...)`",
+          "qldpc_code/mitten.py:234 [argument/coordinate] `error_model` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/mitten.py:234 [argument/coordinate] `error_model` flows into `get_custom_circuit(...)`",
+          "qldpc_code/mitten.py:234 [callee/sub_api] calls `ErrorModel(...)`",
+          "qldpc_code/mitten.py:234 [declaration/coordinate] parameter `error_model`",
+          "qldpc_code/mitten.py:234 [name/coordinate] reads `error_model`",
+          "qldpc_code/mitten.py:234 [name/sub_api] reads `ErrorModel`",
+          "qldpc_code/mitten.py:234 [string/coordinate] keyword `error_model=`",
+          "qldpc_code/qlp.py:269 [argument/coordinate] `error_model` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/qlp.py:269 [argument/coordinate] `error_model` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/qlp.py:269 [callee/sub_api] calls `ErrorModel(...)`",
+          "qldpc_code/qlp.py:269 [declaration/coordinate] parameter `error_model`",
+          "qldpc_code/qlp.py:269 [name/coordinate] reads `error_model`",
+          "qldpc_code/qlp.py:269 [name/sub_api] reads `ErrorModel`",
+          "qldpc_code/qlp.py:269 [string/coordinate] keyword `error_model=`",
+          "qldpc_code/qlp.py:50 [argument/coordinate] `error_model` flows into `_build_cardinal_circuit(...)`",
+          "qldpc_code/qlp.py:50 [argument/coordinate] `error_model` flows into `get_coloration_circuit(...)`",
+          "qldpc_code/qlp.py:50 [callee/sub_api] calls `ErrorModel(...)`",
+          "qldpc_code/qlp.py:50 [declaration/coordinate] parameter `error_model`",
+          "qldpc_code/qlp.py:50 [name/coordinate] reads `error_model`",
+          "qldpc_code/qlp.py:50 [name/sub_api] reads `ErrorModel`",
+          "qldpc_code/qlp.py:50 [string/coordinate] keyword `error_model=`"
+        ]
+      },
+      "obligation_clues": [
+        {
+          "kind": "isinstance",
+          "what": "CircuitBuildOptions",
+          "site": "qldpc_code/bb.py:90"
+        },
+        {
+          "kind": "isinstance",
+          "what": "CircuitBuildOptions",
+          "site": "qldpc_code/bpc.py:158"
+        },
+        {
+          "kind": "isinstance",
+          "what": "CircuitBuildOptions",
+          "site": "qldpc_code/hgp.py:111"
+        },
+        {
+          "kind": "isinstance",
+          "what": "CircuitBuildOptions",
+          "site": "qldpc_code/lcs.py:72"
+        },
+        {
+          "kind": "isinstance",
+          "what": "CircuitBuildOptions",
+          "site": "qldpc_code/mitten.py:260"
+        },
+        {
+          "kind": "isinstance",
+          "what": "CircuitBuildOptions",
+          "site": "qldpc_code/qlp.py:293"
+        },
+        {
+          "kind": "isinstance",
+          "what": "CircuitBuildOptions",
+          "site": "qldpc_code/qlp.py:74"
+        },
+        {
+          "kind": "raise",
+          "what": "NotImplementedError",
+          "site": "qldpc_code/base.py:131"
+        },
+        {
+          "kind": "raise",
+          "what": "TypeError",
+          "site": "qldpc_code/bb.py:91"
+        },
+        {
+          "kind": "raise",
+          "what": "TypeError",
+          "site": "qldpc_code/bpc.py:159"
+        },
+        {
+          "kind": "raise",
+          "what": "TypeError",
+          "site": "qldpc_code/hgp.py:112"
+        },
+        {
+          "kind": "raise",
+          "what": "TypeError",
+          "site": "qldpc_code/lcs.py:73"
+        },
+        {
+          "kind": "raise",
+          "what": "TypeError",
+          "site": "qldpc_code/mitten.py:261"
+        },
+        {
+          "kind": "raise",
+          "what": "TypeError",
+          "site": "qldpc_code/qlp.py:294"
+        },
+        {
+          "kind": "raise",
+          "what": "TypeError",
+          "site": "qldpc_code/qlp.py:75"
+        }
+      ]
+    },
+    "arch": {
+      "reads": [
+        "arch"
+      ],
+      "artifact_reads": [
+        "arch",
+        "code"
+      ],
+      "reads_flat": [
+        "arch",
+        "code"
+      ],
+      "sub_api": [
+        "arch",
+        "code"
+      ],
+      "anchors": [
+        {
+          "file": "layout/base.py",
+          "line": 23,
+          "qualname": "Layout.__init__",
+          "self_owner": "arch",
+          "coordinates_here": [],
+          "artifacts_here": [
+            "arch",
+            "code"
+          ]
+        },
+        {
+          "file": "layout/base.py",
+          "line": 39,
+          "qualname": "Layout.node_positions",
+          "self_owner": "arch",
+          "coordinates_here": [
+            "arch"
+          ],
+          "artifacts_here": [
+            "arch",
+            "code"
+          ]
+        },
+        {
+          "file": "layout/toric.py",
+          "line": 13,
+          "qualname": "ToricLayout.__new__",
+          "self_owner": "arch",
+          "coordinates_here": [],
+          "artifacts_here": [
+            "code"
+          ]
+        },
+        {
+          "file": "layout/toric_bb.py",
+          "line": 14,
+          "qualname": "BbToricLayout.__init__",
+          "self_owner": "arch",
+          "coordinates_here": [],
+          "artifacts_here": [
+            "arch",
+            "code"
+          ]
+        },
+        {
+          "file": "layout/toric_common.py",
+          "line": 14,
+          "qualname": "AbstractToricLayout.__init__",
+          "self_owner": "arch",
+          "coordinates_here": [
+            "arch"
+          ],
+          "artifacts_here": [
+            "arch",
+            "code"
+          ]
+        },
+        {
+          "file": "layout/transversal.py",
+          "line": 11,
+          "qualname": "TransversalLayout.__init__",
+          "self_owner": "arch",
+          "coordinates_here": [
+            "arch"
+          ],
+          "artifacts_here": [
+            "arch",
+            "code"
+          ]
+        },
+        {
+          "file": "layout/transversal.py",
+          "line": 34,
+          "qualname": "TransversalLayout._build_mapping",
+          "self_owner": "arch",
+          "coordinates_here": [
+            "arch"
+          ],
+          "artifacts_here": [
+            "arch",
+            "code"
+          ]
+        }
+      ],
+      "evidence": {
+        "arch": [
+          "layout/base.py:23 [receiver/artifact] `self` is an instance of the enclosing class",
+          "layout/base.py:39 [attribute/coordinate] reads `.data`",
+          "layout/base.py:39 [attribute/coordinate] reads `.xcheck`",
+          "layout/base.py:39 [attribute/coordinate] reads `.zcheck`",
+          "layout/base.py:39 [name/sub_api] reads `Coordinate`",
+          "layout/base.py:39 [receiver/artifact] `self` is an instance of the enclosing class",
+          "layout/base.py:39 [string/coordinate] string literal `data`",
+          "layout/toric.py:13 [argument/sub_api] `_TORIC_LAYOUT_ERROR` flows into `ValueError(...)`",
+          "layout/toric.py:13 [callee/sub_api] calls `BbToricLayout(...)`",
+          "layout/toric.py:13 [name/sub_api] reads `BbToricLayout`",
+          "layout/toric.py:13 [name/sub_api] reads `Layout`",
+          "layout/toric.py:13 [name/sub_api] reads `_TORIC_LAYOUT_ERROR`",
+          "layout/toric_bb.py:14 [argument/sub_api] `_BB_TORIC_LAYOUT_ERROR` flows into `ValueError(...)`",
+          "layout/toric_bb.py:14 [name/sub_api] reads `_BB_TORIC_LAYOUT_ERROR`",
+          "layout/toric_bb.py:14 [receiver/artifact] `self` is an instance of the enclosing class",
+          "layout/toric_common.py:14 [attribute/coordinate] reads `._a_terms`",
+          "layout/toric_common.py:14 [attribute/coordinate] reads `._b_terms`",
+          "layout/toric_common.py:14 [attribute/coordinate] reads `._left_size`",
+          "layout/toric_common.py:14 [attribute/coordinate] reads `._mapping`",
+          "layout/toric_common.py:14 [attribute/coordinate] reads `._selection`",
+          "layout/toric_common.py:14 [receiver/artifact] `self` is an instance of the enclosing class",
+          "layout/transversal.py:11 [argument/coordinate] `data_rows` flows into `_validate_rows(...)`",
+          "layout/transversal.py:11 [argument/coordinate] `xcheck_rows` flows into `_validate_rows(...)`",
+          "layout/transversal.py:11 [argument/coordinate] `zcheck_rows` flows into `_validate_rows(...)`",
+          "layout/transversal.py:11 [attribute/coordinate] reads `._mapping`",
+          "layout/transversal.py:11 [attribute/coordinate] reads `.center_checks`",
+          "layout/transversal.py:11 [attribute/coordinate] reads `.data_rows`",
+          "layout/transversal.py:11 [attribute/coordinate] reads `.xcheck_rows`",
+          "layout/transversal.py:11 [attribute/coordinate] reads `.zcheck_rows`",
+          "layout/transversal.py:11 [declaration/coordinate] parameter `center_checks`",
+          "layout/transversal.py:11 [declaration/coordinate] parameter `data_rows`",
+          "layout/transversal.py:11 [declaration/coordinate] parameter `xcheck_rows`",
+          "layout/transversal.py:11 [declaration/coordinate] parameter `zcheck_rows`",
+          "layout/transversal.py:11 [name/coordinate] reads `center_checks`",
+          "layout/transversal.py:11 [name/coordinate] reads `data_rows`",
+          "layout/transversal.py:11 [name/coordinate] reads `xcheck_rows`",
+          "layout/transversal.py:11 [name/coordinate] reads `zcheck_rows`",
+          "layout/transversal.py:11 [receiver/artifact] `self` is an instance of the enclosing class",
+          "layout/transversal.py:11 [string/coordinate] string literal `data_rows`",
+          "layout/transversal.py:11 [string/coordinate] string literal `xcheck_rows`",
+          "layout/transversal.py:11 [string/coordinate] string literal `zcheck_rows`",
+          "layout/transversal.py:34 [argument/coordinate] `data` flows into `LayoutMapping(...)`",
+          "layout/transversal.py:34 [argument/coordinate] `xcheck` flows into `LayoutMapping(...)`",
+          "layout/transversal.py:34 [argument/coordinate] `zcheck` flows into `LayoutMapping(...)`",
+          "layout/transversal.py:34 [attribute/coordinate] reads `.center_checks`",
+          "layout/transversal.py:34 [attribute/coordinate] reads `.data_rows`",
+          "layout/transversal.py:34 [attribute/coordinate] reads `.xcheck_rows`",
+          "layout/transversal.py:34 [attribute/coordinate] reads `.zcheck_rows`",
+          "layout/transversal.py:34 [callee/sub_api] calls `LayoutMapping(...)`",
+          "layout/transversal.py:34 [name/coordinate] reads `data`",
+          "layout/transversal.py:34 [name/coordinate] reads `xcheck`",
+          "layout/transversal.py:34 [name/coordinate] reads `zcheck`",
+          "layout/transversal.py:34 [name/sub_api] reads `LayoutMapping`",
+          "layout/transversal.py:34 [receiver/artifact] `self` is an instance of the enclosing class",
+          "layout/transversal.py:34 [string/coordinate] keyword `data=`",
+          "layout/transversal.py:34 [string/coordinate] keyword `xcheck=`",
+          "layout/transversal.py:34 [string/coordinate] keyword `zcheck=`"
+        ],
+        "code": [
+          "layout/base.py:23 [attribute/artifact] reads `.code`",
+          "layout/base.py:23 [declaration/artifact] parameter `code`",
+          "layout/base.py:23 [name/artifact] reads `code`",
+          "layout/base.py:23 [string/sub_api] string literal `QldpcCode`",
+          "layout/base.py:39 [argument/artifact] `data_qubits` flows into `_node_positions_for_role(...)`",
+          "layout/base.py:39 [argument/artifact] `data_qubits` flows into `update(...)`",
+          "layout/base.py:39 [argument/artifact] `xcheck_qubits` flows into `_node_positions_for_role(...)`",
+          "layout/base.py:39 [argument/artifact] `xcheck_qubits` flows into `update(...)`",
+          "layout/base.py:39 [argument/artifact] `zcheck_qubits` flows into `_node_positions_for_role(...)`",
+          "layout/base.py:39 [argument/artifact] `zcheck_qubits` flows into `update(...)`",
+          "layout/base.py:39 [declaration/artifact] parameter `data_qubits`",
+          "layout/base.py:39 [declaration/artifact] parameter `xcheck_qubits`",
+          "layout/base.py:39 [declaration/artifact] parameter `zcheck_qubits`",
+          "layout/base.py:39 [name/artifact] reads `data_qubits`",
+          "layout/base.py:39 [name/artifact] reads `xcheck_qubits`",
+          "layout/base.py:39 [name/artifact] reads `zcheck_qubits`",
+          "layout/toric.py:13 [argument/artifact] `code` flows into `BbToricLayout(...)`",
+          "layout/toric.py:13 [argument/artifact] `code` flows into `isinstance(...)`",
+          "layout/toric.py:13 [argument/sub_api] `BbCode` flows into `isinstance(...)`",
+          "layout/toric.py:13 [declaration/artifact] parameter `code`",
+          "layout/toric.py:13 [name/artifact] reads `code`",
+          "layout/toric.py:13 [name/sub_api] reads `BbCode`",
+          "layout/toric_bb.py:14 [argument/artifact] `code` flows into `__init__(...)`",
+          "layout/toric_bb.py:14 [argument/artifact] `code` flows into `int(...)`",
+          "layout/toric_bb.py:14 [argument/artifact] `code` flows into `isinstance(...)`",
+          "layout/toric_bb.py:14 [argument/artifact] `code` flows into `len(...)`",
+          "layout/toric_bb.py:14 [argument/artifact] `code` flows into `sorted(...)`",
+          "layout/toric_bb.py:14 [argument/sub_api] `BbCode` flows into `isinstance(...)`",
+          "layout/toric_bb.py:14 [declaration/artifact] parameter `code`",
+          "layout/toric_bb.py:14 [name/artifact] reads `code`",
+          "layout/toric_bb.py:14 [name/sub_api] reads `BbCode`",
+          "layout/toric_common.py:14 [argument/artifact] `code` flows into `__init__(...)`",
+          "layout/toric_common.py:14 [declaration/artifact] parameter `code`",
+          "layout/toric_common.py:14 [name/artifact] reads `code`",
+          "layout/transversal.py:11 [argument/artifact] `code` flows into `__init__(...)`",
+          "layout/transversal.py:11 [attribute/artifact] reads `.hx`",
+          "layout/transversal.py:11 [attribute/artifact] reads `.hz`",
+          "layout/transversal.py:11 [declaration/artifact] parameter `code`",
+          "layout/transversal.py:11 [name/artifact] reads `code`",
+          "layout/transversal.py:34 [attribute/artifact] reads `.code`",
+          "layout/transversal.py:34 [attribute/artifact] reads `.hx`",
+          "layout/transversal.py:34 [attribute/artifact] reads `.hz`"
+        ]
+      },
+      "obligation_clues": [
+        {
+          "kind": "isinstance",
+          "what": "BbCode",
+          "site": "layout/toric.py:17"
+        },
+        {
+          "kind": "isinstance",
+          "what": "BbCode",
+          "site": "layout/toric_bb.py:15"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "layout/toric.py:19"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "layout/toric_bb.py:16"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "layout/toric_bb.py:23"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "layout/toric_common.py:20"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "layout/transversal.py:22"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "layout/transversal.py:24"
+        }
+      ]
+    },
+    "noise": {
+      "reads": [
+        "noise"
+      ],
+      "artifact_reads": [
+        "noise"
+      ],
+      "reads_flat": [
+        "noise"
+      ],
+      "sub_api": [
+        "noise"
+      ],
+      "anchors": [
+        {
+          "file": "noise/error_model.py",
+          "line": 37,
+          "qualname": "ErrorModel.__post_init__",
+          "self_owner": "noise",
+          "coordinates_here": [
+            "noise"
+          ],
+          "artifacts_here": [
+            "noise"
+          ]
+        },
+        {
+          "file": "noise/error_model.py",
+          "line": 45,
+          "qualname": "ErrorModel._validate_single_or_pauli1",
+          "self_owner": "noise",
+          "coordinates_here": [],
+          "artifacts_here": []
+        },
+        {
+          "file": "noise/error_model.py",
+          "line": 60,
+          "qualname": "ErrorModel._validate_single_or_pauli2",
+          "self_owner": "noise",
+          "coordinates_here": [],
+          "artifacts_here": []
+        }
+      ],
+      "evidence": {
+        "noise": [
+          "noise/error_model.py:37 [attribute/coordinate] reads `.idle_error`",
+          "noise/error_model.py:37 [attribute/coordinate] reads `.spam_error`",
+          "noise/error_model.py:37 [attribute/coordinate] reads `.sqgate_error`",
+          "noise/error_model.py:37 [attribute/coordinate] reads `.tqgate_error`",
+          "noise/error_model.py:37 [receiver/artifact] `self` is an instance of the enclosing class",
+          "noise/error_model.py:37 [string/coordinate] string literal `idle_error`",
+          "noise/error_model.py:37 [string/coordinate] string literal `sqgate_error`",
+          "noise/error_model.py:37 [string/coordinate] string literal `tqgate_error`",
+          "noise/error_model.py:45 [callee/sub_api] calls `_is_real_sequence(...)`",
+          "noise/error_model.py:45 [name/sub_api] reads `_is_real_sequence`",
+          "noise/error_model.py:60 [callee/sub_api] calls `_is_real_sequence(...)`",
+          "noise/error_model.py:60 [name/sub_api] reads `_is_real_sequence`"
+        ]
+      },
+      "obligation_clues": [
+        {
+          "kind": "isinstance",
+          "what": "Real",
+          "site": "noise/error_model.py:41"
+        },
+        {
+          "kind": "isinstance",
+          "what": "Real",
+          "site": "noise/error_model.py:53"
+        },
+        {
+          "kind": "isinstance",
+          "what": "Real",
+          "site": "noise/error_model.py:68"
+        },
+        {
+          "kind": "raise",
+          "what": "TypeError",
+          "site": "noise/error_model.py:42"
+        },
+        {
+          "kind": "raise",
+          "what": "TypeError",
+          "site": "noise/error_model.py:57"
+        },
+        {
+          "kind": "raise",
+          "what": "TypeError",
+          "site": "noise/error_model.py:72"
+        }
+      ]
+    },
+    "decoder": {
+      "reads": [
+        "decoder"
+      ],
+      "artifact_reads": [
+        "code",
+        "extractor"
+      ],
+      "reads_flat": [
+        "code",
+        "decoder",
+        "extractor"
+      ],
+      "sub_api": [
+        "decoder"
+      ],
+      "anchors": [
+        {
+          "file": "decoder/base.py",
+          "line": 134,
+          "qualname": "spacetime",
+          "self_owner": "decoder",
+          "coordinates_here": [],
+          "artifacts_here": [
+            "code",
+            "extractor"
+          ]
+        },
+        {
+          "file": "decoder/bplsd.py",
+          "line": 54,
+          "qualname": "sliding_window_bplsd_circuit_mem",
+          "self_owner": "decoder",
+          "coordinates_here": [],
+          "artifacts_here": [
+            "code",
+            "extractor"
+          ]
+        },
+        {
+          "file": "decoder/bposd.py",
+          "line": 54,
+          "qualname": "sliding_window_bposd_circuit_mem",
+          "self_owner": "decoder",
+          "coordinates_here": [],
+          "artifacts_here": [
+            "code",
+            "extractor"
+          ]
+        },
+        {
+          "file": "simulation.py",
+          "line": 31,
+          "qualname": "get_codecap_pL",
+          "self_owner": "assembly",
+          "coordinates_here": [
+            "decoder"
+          ],
+          "artifacts_here": [
+            "code"
+          ]
+        }
+      ],
+      "evidence": {
+        "code": [
+          "decoder/base.py:134 [declaration/artifact] parameter `hz`",
+          "decoder/base.py:134 [name/artifact] reads `hz`",
+          "decoder/bplsd.py:54 [argument/artifact] `hz` flows into `sliding_window_circuit_mem(...)`",
+          "decoder/bplsd.py:54 [argument/artifact] `lz` flows into `sliding_window_circuit_mem(...)`",
+          "decoder/bplsd.py:54 [declaration/artifact] parameter `hz`",
+          "decoder/bplsd.py:54 [declaration/artifact] parameter `lz`",
+          "decoder/bplsd.py:54 [name/artifact] reads `hz`",
+          "decoder/bplsd.py:54 [name/artifact] reads `lz`",
+          "decoder/bposd.py:54 [argument/artifact] `hz` flows into `sliding_window_circuit_mem(...)`",
+          "decoder/bposd.py:54 [argument/artifact] `lz` flows into `sliding_window_circuit_mem(...)`",
+          "decoder/bposd.py:54 [declaration/artifact] parameter `hz`",
+          "decoder/bposd.py:54 [declaration/artifact] parameter `lz`",
+          "decoder/bposd.py:54 [name/artifact] reads `hz`",
+          "decoder/bposd.py:54 [name/artifact] reads `lz`",
+          "simulation.py:31 [attribute/artifact] reads `.hx`",
+          "simulation.py:31 [attribute/artifact] reads `.hz`",
+          "simulation.py:31 [attribute/artifact] reads `.lx`",
+          "simulation.py:31 [attribute/artifact] reads `.lz`",
+          "simulation.py:31 [declaration/artifact] parameter `code`",
+          "simulation.py:31 [name/artifact] reads `code`"
+        ],
+        "decoder": [
+          "decoder/base.py:134 [callee/sub_api] calls `detector_error_model_to_matrix(...)`",
+          "decoder/base.py:134 [name/sub_api] reads `detector_error_model_to_matrix`",
+          "decoder/bplsd.py:54 [callee/sub_api] calls `sliding_window_circuit_mem(...)`",
+          "decoder/bplsd.py:54 [name/sub_api] reads `sliding_window_circuit_mem`",
+          "decoder/bposd.py:54 [callee/sub_api] calls `sliding_window_circuit_mem(...)`",
+          "decoder/bposd.py:54 [name/sub_api] reads `sliding_window_circuit_mem`",
+          "simulation.py:31 [callee/coordinate] calls `decoder(...)`",
+          "simulation.py:31 [declaration/coordinate] parameter `decoder`",
+          "simulation.py:31 [name/coordinate] reads `decoder`"
+        ],
+        "extractor": [
+          "decoder/base.py:134 [argument/artifact] `model` flows into `detector_error_model_to_matrix(...)`",
+          "decoder/base.py:134 [declaration/artifact] parameter `circuit`",
+          "decoder/base.py:134 [name/artifact] reads `circuit`",
+          "decoder/base.py:134 [name/artifact] reads `model`",
+          "decoder/bplsd.py:54 [argument/artifact] `circuit` flows into `sliding_window_circuit_mem(...)`",
+          "decoder/bplsd.py:54 [declaration/artifact] parameter `circuit`",
+          "decoder/bplsd.py:54 [name/artifact] reads `circuit`",
+          "decoder/bposd.py:54 [argument/artifact] `circuit` flows into `sliding_window_circuit_mem(...)`",
+          "decoder/bposd.py:54 [declaration/artifact] parameter `circuit`",
+          "decoder/bposd.py:54 [name/artifact] reads `circuit`"
+        ]
+      },
+      "obligation_clues": [
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "decoder/base.py:150"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "decoder/base.py:162"
+        },
+        {
+          "kind": "raise",
+          "what": "ValueError",
+          "site": "simulation.py:48"
+        }
+      ]
+    }
+  },
+  "diff": {
+    "rows": {
+      "code": {
+        "vs_hand_declared": {
+          "auto": [
+            "code"
+          ],
+          "manual": [
+            "code"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "vs_hand_declared_flat": {
+          "auto": [
+            "code"
+          ],
+          "manual": [
+            "code"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "vs_dataflow_assembly": {
+          "auto": [
+            "code"
+          ],
+          "manual": [
+            "code"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "vs_dataflow_assembly_flat": {
+          "auto": [
+            "code"
+          ],
+          "manual": [
+            "code"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "is_published_baseline": true
+      },
+      "extractor": {
+        "vs_hand_declared": {
+          "auto": [
+            "code",
+            "extractor",
+            "noise"
+          ],
+          "manual": [
+            "code",
+            "extractor"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [
+            "noise"
+          ],
+          "verdict": "manual_under_approximates",
+          "agrees": false
+        },
+        "vs_hand_declared_flat": {
+          "auto": [
+            "code",
+            "extractor",
+            "noise"
+          ],
+          "manual": [
+            "code",
+            "extractor"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [
+            "noise"
+          ],
+          "verdict": "manual_under_approximates",
+          "agrees": false
+        },
+        "vs_dataflow_assembly": {
+          "auto": [
+            "code",
+            "extractor",
+            "noise"
+          ],
+          "manual": [
+            "code",
+            "extractor",
+            "noise"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "vs_dataflow_assembly_flat": {
+          "auto": [
+            "code",
+            "extractor",
+            "noise"
+          ],
+          "manual": [
+            "code",
+            "extractor",
+            "noise"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "is_published_baseline": true
+      },
+      "arch": {
+        "vs_hand_declared": {
+          "auto": [
+            "arch"
+          ],
+          "manual": [
+            "arch"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "vs_hand_declared_flat": {
+          "auto": [
+            "arch",
+            "code"
+          ],
+          "manual": [
+            "arch"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [
+            "code"
+          ],
+          "verdict": "manual_under_approximates",
+          "agrees": false
+        },
+        "vs_dataflow_assembly": {
+          "auto": [
+            "arch"
+          ],
+          "manual": [
+            "arch"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "vs_dataflow_assembly_flat": {
+          "auto": [
+            "arch",
+            "code"
+          ],
+          "manual": [
+            "arch"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [
+            "code"
+          ],
+          "verdict": "manual_under_approximates",
+          "agrees": false
+        },
+        "is_published_baseline": true
+      },
+      "noise": {
+        "vs_hand_declared": {
+          "auto": [
+            "noise"
+          ],
+          "manual": [
+            "noise"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "vs_hand_declared_flat": {
+          "auto": [
+            "noise"
+          ],
+          "manual": [
+            "noise"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "vs_dataflow_assembly": {
+          "auto": [
+            "noise"
+          ],
+          "manual": [
+            "noise"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "vs_dataflow_assembly_flat": {
+          "auto": [
+            "noise"
+          ],
+          "manual": [
+            "noise"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "is_published_baseline": true
+      },
+      "decoder": {
+        "vs_hand_declared": {
+          "auto": [
+            "decoder"
+          ],
+          "manual": [
+            "decoder"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [],
+          "verdict": "agreement",
+          "agrees": true
+        },
+        "vs_hand_declared_flat": {
+          "auto": [
+            "code",
+            "decoder",
+            "extractor"
+          ],
+          "manual": [
+            "decoder"
+          ],
+          "in_manual_not_auto": [],
+          "in_auto_not_manual": [
+            "code",
+            "extractor"
+          ],
+          "verdict": "manual_under_approximates",
+          "agrees": false
+        },
+        "vs_dataflow_assembly": {
+          "auto": [
+            "decoder"
+          ],
+          "manual": [
+            "arch",
+            "code",
+            "decoder",
+            "extractor",
+            "noise"
+          ],
+          "in_manual_not_auto": [
+            "arch",
+            "code",
+            "extractor",
+            "noise"
+          ],
+          "in_auto_not_manual": [],
+          "verdict": "manual_over_approximates",
+          "agrees": false
+        },
+        "vs_dataflow_assembly_flat": {
+          "auto": [
+            "code",
+            "decoder",
+            "extractor"
+          ],
+          "manual": [
+            "arch",
+            "code",
+            "decoder",
+            "extractor",
+            "noise"
+          ],
+          "in_manual_not_auto": [
+            "arch",
+            "noise"
+          ],
+          "in_auto_not_manual": [],
+          "verdict": "manual_over_approximates",
+          "agrees": false
+        },
+        "is_published_baseline": true
+      }
+    },
+    "hand_declared": {
+      "code": [
+        "code"
+      ],
+      "extractor": [
+        "code",
+        "extractor"
+      ],
+      "arch": [
+        "arch"
+      ],
+      "noise": [
+        "noise"
+      ],
+      "decoder": [
+        "decoder"
+      ]
+    },
+    "dataflow_assembly": {
+      "code": [
+        "code"
+      ],
+      "extractor": [
+        "code",
+        "extractor",
+        "noise"
+      ],
+      "arch": [
+        "arch"
+      ],
+      "noise": [
+        "noise"
+      ],
+      "decoder": [
+        "code",
+        "extractor",
+        "arch",
+        "noise",
+        "decoder"
+      ]
+    },
+    "all_hand_agree": false,
+    "n_hand_disagreements": 1,
+    "all_hand_agree_flat": false,
+    "n_hand_disagreements_flat": 3,
+    "n_dataflow_disagreements": 1
+  },
+  "role": {
+    "status": "cross-validation",
+    "ground_truth": "experiments/dynamic_impact.py (runs QUITS and measures the impact surface of five real substitutions)",
+    "claim": "the read sets reported here are correct with respect to the pinned QUITS source; the dynamic experiment independently confirms the dependency structure they imply",
+    "published_baseline_assembly": "source_faithful",
+    "assembly_model_sources": {
+      "source_faithful": {
+        "baseline": true,
+        "builder": "semantics.make_source_faithful_assembly()",
+        "read_sets": "auto-extracted from the pinned QUITS tree by experiments/extract_read_sets.py (READ_SETS_FROM_SOURCE)",
+        "edges": "auto-derived: ARTIFACT_READS_FROM_SOURCE minus self-loops (ASSEMBLY_EDGES_FROM_SOURCE): extractor <- code, arch <- code, decoder <- (code, extractor)",
+        "faithfulness": "faithful by construction (AST-extracted), cross-validated against the dynamic measurements in experiments/dynamic_impact.json",
+        "note": "the published baseline since 2026-10-09 (decisions 2 and 4)",
+        "_baseline_dimensions": [
+          "code",
+          "extractor",
+          "arch",
+          "noise",
+          "decoder"
+        ]
+      },
+      "quits_dataflow": {
+        "baseline": false,
+        "builder": "experiments.cone_table.make_quits_dataflow_assembly()",
+        "read_sets": "hand-declared conservative H3 model: R(extractor) contains `noise` (build_circuit bakes the error model into the circuit) and R(decoder) is everything embedded in the circuit plus its own coordinate",
+        "edges": "hand-set, deliberately over-approximating: extractor <- (code, noise); decoder <- (code, extractor, arch, noise); arch <- code (added 2026-10-09 -- the dynamic measurement shows a code substitution changes `layout_positions`, so this edge is real)",
+        "faithfulness": "conservative over-approximation of the source, and still *wider* than the auto-extracted one",
+        "note": "kept as the hand-modelled counterpart of `source_faithful`"
+      },
+      "_baseline": "source_faithful"
+    },
+    "scope_limits": "the evidence channels are declaration/attribute/name/string/keyword/callee/argument; ambiguous names are dropped rather than guessed, so the result is a conservative *under*-approximation (PIVOT_NOTE section 8.6 item 8)"
+  },
+  "summary": {
+    "auto_read_sets": {
+      "code": [
+        "code"
+      ],
+      "extractor": [
+        "code",
+        "extractor",
+        "noise"
+      ],
+      "arch": [
+        "arch"
+      ],
+      "noise": [
+        "noise"
+      ],
+      "decoder": [
+        "decoder"
+      ]
+    },
+    "auto_artifact_reads": {
+      "code": [
+        "code"
+      ],
+      "extractor": [
+        "code"
+      ],
+      "arch": [
+        "arch",
+        "code"
+      ],
+      "noise": [
+        "noise"
+      ],
+      "decoder": [
+        "code",
+        "extractor"
+      ]
+    },
+    "auto_read_sets_flat": {
+      "code": [
+        "code"
+      ],
+      "extractor": [
+        "code",
+        "extractor",
+        "noise"
+      ],
+      "arch": [
+        "arch",
+        "code"
+      ],
+      "noise": [
+        "noise"
+      ],
+      "decoder": [
+        "code",
+        "decoder",
+        "extractor"
+      ]
+    },
+    "n_ambiguous_names_dropped": 2,
+    "n_anchors": 32,
+    "hand_declared_all_agree": false,
+    "n_hand_disagreements": 1,
+    "hand_declared_all_agree_flat": false,
+    "n_hand_disagreements_flat": 3,
+    "n_dataflow_disagreements": 1
+  }
+}

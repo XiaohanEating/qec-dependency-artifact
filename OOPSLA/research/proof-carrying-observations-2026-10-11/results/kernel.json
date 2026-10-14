@@ -1,0 +1,39 @@
+{
+  "cases": {
+    "quits_transport": {
+      "accepted": true,
+      "generation_ns": 7000,
+      "checking_ns": 16300,
+      "input_enumerations": 0
+    },
+    "qecc_schema": {
+      "accepted": true,
+      "generation_ns": 4400,
+      "checking_ns": 11900,
+      "input_enumerations": 0
+    },
+    "qecc_ideal": {
+      "accepted": true,
+      "generation_ns": 3300,
+      "checking_ns": 8200,
+      "input_enumerations": 0
+    },
+    "changed_priors": {
+      "accepted": false,
+      "generation_ns": 4700,
+      "checking_ns": 100,
+      "input_enumerations": 0
+    },
+    "equal_branch_refactor": {
+      "accepted": true,
+      "generation_ns": 9100,
+      "checking_ns": 74800,
+      "input_enumerations": 0
+    }
+  },
+  "forged_proofs_rejected": 2,
+  "scope": "unbounded total pure first-order terms under explicit producer field relations",
+  "python_translation_validated": false,
+  "producer_relations_automatically_proved": false,
+  "real_data_mapping": "QUITS updates and qecc schema/noise_free names correspond to prior saved real evidence; these terms are adapters, not automatic translation"
+}
